@@ -1,0 +1,14 @@
+{% load static %}
+
+{% if user.is_authenticated %}
+
+								Hey: <span>{{ user.username}} </span>
+
+                        {% else %}
+                        					<a href="{% url 'register-account' %}" class="btn btn-default pull-left"><i class="icon-arrow-left13 position-left"></i> Register account</a>
+
+
+                        {% endif %}
+
+
+{% endblock %}
