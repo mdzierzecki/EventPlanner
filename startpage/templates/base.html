@@ -3,12 +3,14 @@
 {% if user.is_authenticated %}
 
 								Hey: <span>{{ user.username}} </span>
+                        					<a href="{% url 'logout_view' %}" class="btn btn-default pull-left"><i class="icon-arrow-left13 position-left"></i> Logout</a>
 
                         {% else %}
-                        					<a href="{% url 'register-account' %}" class="btn btn-default pull-left"><i class="icon-arrow-left13 position-left"></i> Register account</a>
+                        					<a href="{% url 'register_account' %}" class="btn btn-default pull-left"><i class="icon-arrow-left13 position-left"></i> Register account</a>
 
+                        					<a href="{% url 'login_view' %}" class="btn btn-default pull-left"><i class="icon-arrow-left13 position-left"></i> Sign in</a>
 
                         {% endif %}
 
 
-{% endblock %}
+
