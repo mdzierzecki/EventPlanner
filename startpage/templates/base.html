@@ -1,9 +1,14 @@
 {% load static %}
+<a href="/" class="btn btn-default pull-left"><i class="icon-arrow-left13 position-left"></i> HOMEPAGE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 {% if user.is_authenticated %}
 
 								Hey: <span>{{ user.username}} </span>
                         					<a href="{% url 'logout_view' %}" class="btn btn-default pull-left"><i class="icon-arrow-left13 position-left"></i> Logout</a>
+                        					<a href="{% url 'event_add_view' %}" class="btn btn-default pull-left"><i class="icon-arrow-left13 position-left"></i> Add event</a>
+                        					<a href="{% url 'user_events_list' %}" class="btn btn-default pull-left"><i class="icon-arrow-left13 position-left"></i> Your events</a>
+
+
 
                         {% else %}
                         					<a href="{% url 'register_account' %}" class="btn btn-default pull-left"><i class="icon-arrow-left13 position-left"></i> Register account</a>
@@ -14,3 +19,8 @@
 
 
 
+</br></br>
+
+{% block content %}
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+  {% for event in user_events_list %}
+
+
+                {{ event.id }} {{ event.name }}<a href="{{ event.id }}/delete" class="btn btn-default pull-left"><i class="icon-arrow-left13 position-left"></i> delete</a></br>
+
+
+
+            {% endfor %}
+
+
+{% endblock %}
