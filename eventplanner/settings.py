@@ -39,9 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'ckeditor',
+    'ckeditor_uploader',
     'startpage',
     'events'
 ]
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -128,4 +131,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = "startpage/static/"
 
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'media/'
