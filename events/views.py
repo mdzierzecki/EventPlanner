@@ -1,5 +1,8 @@
+from time import timezone
+
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
+from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Event, Participant
@@ -29,6 +32,11 @@ class EventListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         queryset = Event.objects.all().filter(author=self.request.user).order_by('-id')
         return queryset
+
+
+class EventDetailView(DetailView):
+    model = Event
+    template_name = 'event_detail.html'
 
 
 class EventDeleteView(LoginRequiredMixin, DeleteView):
