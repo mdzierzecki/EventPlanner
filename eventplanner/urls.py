@@ -23,7 +23,7 @@ from ckeditor_uploader import views
 urlpatterns = [
     path('', include('startpage.urls')),
     path('', include('events.urls')),
-    path('ckeditor/upload', views.upload, name='ckeditor_upload'),
-    path('ckeditor/browse', views.browse, name='ckeditor_browse'),
+    path('ckeditor/upload', views.upload, name='ckeditor_upload'),   # special path for upload
+    path('ckeditor/browse', views.browse, name='ckeditor_browse'),   # special path for browse, both connected to some CKEUploader glitch
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
