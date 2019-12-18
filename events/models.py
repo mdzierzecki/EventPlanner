@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-
+from ckeditor.fields import RichTextField
 
 class Event(models.Model):
 
@@ -9,7 +9,7 @@ class Event(models.Model):
     name = models.CharField(max_length=64)
     location = models.CharField(max_length=64, null=True)
     # event description
-    description = models.CharField(max_length=9000, null=True)
+    description = RichTextField(null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     created_at = models.DateTimeField(
         _("Created at"),
