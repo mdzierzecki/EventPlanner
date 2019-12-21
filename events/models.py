@@ -24,16 +24,16 @@ class Event(models.Model):
 
 class Participant(models.Model):
     name = models.CharField(max_length=30)
-    surname = models.CharField(max_length=30)
+    email = models.EmailField(max_length=30)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     reg_date = models.DateTimeField(
         _("Created at"),
         auto_now_add=True,
-        help_text=_("When event was created")
+        help_text=_("When participant jointed event")
     )
 
     def __str__(self):
-        return self.name + " " + self.surname
+        return self.name
 
     class Meta:
         ordering = ['reg_date']

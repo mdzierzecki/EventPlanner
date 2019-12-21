@@ -110,10 +110,6 @@
                                                                 {{ event.description|safe }}
 
 
-                                                                <div class="my-3">
-                                                                    <button class="btn btn-primary px-3">Dołącz do wydarzenia</button>
-                                                                </div>
-
                                                            </div>
                                                        </div>
                                                         <div class="col-md-6">
@@ -121,49 +117,19 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h3>Dołącz do wydarzenia!</h3><br>
-                                                    <div class="">
-                                                        <form method="post">{% csrf_token %}
-     <p><label for="id_name">Name:</label> <input type="text" name="name" maxlength="30" required id="id_name"></p>
-<p><label for="id_surname">Surname:</label> <input type="text" name="surname" maxlength="30" required id="id_surname"></p>
-    <input type="submit" value="Send message">
-</form>
 
-<!--                                                        <form class="form-horizontal form-material mb-0">-->
-<!--                                                            <div class="form-group">-->
-<!--                                                                <input type="text" placeholder="Full Name" class="form-control">-->
-<!--                                                            </div>-->
+                                                        <form class="form-horizontal form-material mb-0" method="post">{% csrf_token %}
+                                                            <div class="form-group">
+                                                                <input type="text" placeholder="Imie" class="form-control" name="name" maxlength="30" required id="id_name">
+                                                            </div>
 
-<!--                                                            <div class="form-group row">-->
-<!--                                                                <div class="col-md-4">-->
-<!--                                                                    <input type="email" placeholder="Email" class="form-control" name="example-email" id="example-email">-->
-<!--                                                                </div>-->
-<!--                                                                <div class="col-md-4">-->
-<!--                                                                    <input type="password" placeholder="password" class="form-control">-->
-<!--                                                                </div>-->
-<!--                                                                <div class="col-md-4">-->
-<!--                                                                    <input type="password" placeholder="Re-password" class="form-control">-->
-<!--                                                                </div>-->
-<!--                                                            </div>-->
-<!--                                                            <div class="form-group row">-->
-<!--                                                                <div class="col-md-6">-->
-<!--                                                                    <input type="text" placeholder="Phone No" class="form-control">-->
-<!--                                                                </div>-->
-<!--                                                                <div class="col-md-6">-->
-<!--                                                                    <select class="form-control">-->
-<!--                                                                        <option>London</option>-->
-<!--                                                                        <option>India</option>-->
-<!--                                                                        <option>Usa</option>-->
-<!--                                                                        <option>Canada</option>-->
-<!--                                                                        <option>Thailand</option>-->
-<!--                                                                    </select>-->
-<!--                                                                </div>-->
-<!--                                                            </div>-->
-<!--                                                            <div class="form-group">-->
-<!--                                                                <textarea rows="5" placeholder="Message" class="form-control"></textarea>-->
-<!--                                                                <button class="btn btn-primary btn-sm text-light px-4 mt-3 float-right mb-0">Wyślij</button>-->
-<!--                                                            </div>-->
-<!--                                                        </form>-->
-                                                    </div>
+                                                           <div class="form-group">
+                                                                <input type="email" placeholder="Email" class="form-control" name="email" maxlength="30" required id="id_email">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <button class="btn btn-primary btn-sm text-light px-4 mt-3 float-right mb-0" type="submit">Dołącz</button>
+                                                            </div>
+                                                        </form>
                                                 </div>
                                             </div>
                                         </div> <!--end col-->
