@@ -34,9 +34,22 @@ class EventListView(LoginRequiredMixin, ListView):
         return queryset
 
 
-class EventDetailView(DetailView):
-    model = Event
+# view both for event details and participant (join) form
+class EventDetailView(CreateView):
+
+    model = Participant
+    form_class = ParticipantAddForm
     template_name = 'event_detail.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['event'] = Event.objects.get(pk=self.kwargs['pk'])
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.event_id = self.kwargs.get('pk')
+        obj.save()
+        return redirect('/')
 
 
 class EventDeleteView(LoginRequiredMixin, DeleteView):
@@ -49,15 +62,3 @@ class EventDeleteView(LoginRequiredMixin, DeleteView):
     def get_success_url(self):
         return reverse('user_events_list')
 
-
-class ParticipantAddView(CreateView):
-
-    model = Participant
-    form_class = ParticipantAddForm
-    template_name = 'event_add.html'
-
-    def form_valid(self, form):
-        obj = form.save(commit=False)
-        obj.event_id = self.kwargs.get('pk')
-        obj.save()
-        return redirect('/')

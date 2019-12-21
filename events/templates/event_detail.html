@@ -52,7 +52,7 @@
                                                 <div class="met-profile-main">
 
                                                     <div class="met-profile_user-detail">
-                                                        <h5 class="met-user-name">{{ object.name }}</h5>
+                                                        <h5 class="met-user-name">{{ event.name }}</h5>
                                                     </div>
                                                 </div>
                                             </div><!--end col-->
@@ -60,7 +60,7 @@
                                                 <ul class="list-unstyled personal-detail">
                                                     <li class=""><i class="dripicons-phone mr-2 text-info font-18"></i> <b> phone </b> : +91 23456 78910</li>
                                                     <li class="mt-2"><i class="dripicons-mail text-info font-18 mt-2 mr-2"></i> <b> Email </b> : mannat.theme@gmail.com</li>
-                                                    <li class="mt-2"><i class="dripicons-location text-info font-18 mt-2 mr-2"></i> <b>Location</b> : {{ object.location }}</li>
+                                                    <li class="mt-2"><i class="dripicons-location text-info font-18 mt-2 mr-2"></i> <b>Location</b> : {{ event.location }}</li>
                                                 </ul>
                                                 <div class="button-list btn-social-icon">
                                                     <button type="button" class="btn btn-blue btn-round">
@@ -105,9 +105,9 @@
 
                                                        <div class="col-md-6">
                                                            <div class="met-basic-detail">
-                                                                <h3>{{ object.name }}</h3>
+                                                                <h3>{{ event.name }}</h3>
 
-                                                                {{ object.description|safe }}
+                                                                {{ event.description|safe }}
 
 
                                                                 <div class="my-3">
@@ -122,41 +122,47 @@
                                                 <div class="card-body">
                                                     <h3>Dołącz do wydarzenia!</h3><br>
                                                     <div class="">
-                                                        <form class="form-horizontal form-material mb-0">
-                                                            <div class="form-group">
-                                                                <input type="text" placeholder="Full Name" class="form-control">
-                                                            </div>
+                                                        <form method="post">{% csrf_token %}
+     <p><label for="id_name">Name:</label> <input type="text" name="name" maxlength="30" required id="id_name"></p>
+<p><label for="id_surname">Surname:</label> <input type="text" name="surname" maxlength="30" required id="id_surname"></p>
+    <input type="submit" value="Send message">
+</form>
 
-                                                            <div class="form-group row">
-                                                                <div class="col-md-4">
-                                                                    <input type="email" placeholder="Email" class="form-control" name="example-email" id="example-email">
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                    <input type="password" placeholder="password" class="form-control">
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                    <input type="password" placeholder="Re-password" class="form-control">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <div class="col-md-6">
-                                                                    <input type="text" placeholder="Phone No" class="form-control">
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <select class="form-control">
-                                                                        <option>London</option>
-                                                                        <option>India</option>
-                                                                        <option>Usa</option>
-                                                                        <option>Canada</option>
-                                                                        <option>Thailand</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <textarea rows="5" placeholder="Message" class="form-control"></textarea>
-                                                                <button class="btn btn-primary btn-sm text-light px-4 mt-3 float-right mb-0">Wyślij</button>
-                                                            </div>
-                                                        </form>
+<!--                                                        <form class="form-horizontal form-material mb-0">-->
+<!--                                                            <div class="form-group">-->
+<!--                                                                <input type="text" placeholder="Full Name" class="form-control">-->
+<!--                                                            </div>-->
+
+<!--                                                            <div class="form-group row">-->
+<!--                                                                <div class="col-md-4">-->
+<!--                                                                    <input type="email" placeholder="Email" class="form-control" name="example-email" id="example-email">-->
+<!--                                                                </div>-->
+<!--                                                                <div class="col-md-4">-->
+<!--                                                                    <input type="password" placeholder="password" class="form-control">-->
+<!--                                                                </div>-->
+<!--                                                                <div class="col-md-4">-->
+<!--                                                                    <input type="password" placeholder="Re-password" class="form-control">-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                            <div class="form-group row">-->
+<!--                                                                <div class="col-md-6">-->
+<!--                                                                    <input type="text" placeholder="Phone No" class="form-control">-->
+<!--                                                                </div>-->
+<!--                                                                <div class="col-md-6">-->
+<!--                                                                    <select class="form-control">-->
+<!--                                                                        <option>London</option>-->
+<!--                                                                        <option>India</option>-->
+<!--                                                                        <option>Usa</option>-->
+<!--                                                                        <option>Canada</option>-->
+<!--                                                                        <option>Thailand</option>-->
+<!--                                                                    </select>-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                            <div class="form-group">-->
+<!--                                                                <textarea rows="5" placeholder="Message" class="form-control"></textarea>-->
+<!--                                                                <button class="btn btn-primary btn-sm text-light px-4 mt-3 float-right mb-0">Wyślij</button>-->
+<!--                                                            </div>-->
+<!--                                                        </form>-->
                                                     </div>
                                                 </div>
                                             </div>
