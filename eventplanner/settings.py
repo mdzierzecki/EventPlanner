@@ -83,9 +83,9 @@ WSGI_APPLICATION = 'eventplanner.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'eplaner',
-        'USER': 'dzierzen2',
-        'PASSWORD': 'password123',
+        'NAME': 'mydb1',
+        'USER': 'mat1',
+        'PASSWORD': 'matpass1',
         'HOST': 'localhost',
         'PORT': '',
     }

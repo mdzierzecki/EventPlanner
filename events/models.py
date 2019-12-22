@@ -6,11 +6,41 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 class Event(models.Model):
 
+    # event statuses
+    ACTIVE = 'Active event'
+    INACTIVE = 'Stopped event'
+    PAUSED = 'Paused event'
+
+    EVENT_STATUS_CHOICES = (
+        (ACTIVE, _('Active event')),
+        (INACTIVE, _('Stopped event')),
+        (PAUSED, _('Paused event'))
+    )
+
     # basic informations
-    name = models.CharField(max_length=64)
-    location = models.CharField(max_length=64, null=True)
+    title = models.CharField(max_length=128, null=True)
+
+    # location
+    city = models.CharField(max_length=64, null=True)
+    street = models.CharField(max_length=64, null=True)
+
     # event description
     description = RichTextUploadingField(null=True)
+    contact_description = RichTextUploadingField(null=True, blank=True)
+
+    # status
+    event_status = models.CharField(max_length=64, choices=EVENT_STATUS_CHOICES,
+                                         default=ACTIVE, null=True)
+
+    # date of event
+    date = models.DateField()
+
+    # social media
+
+    facebook = models.CharField(max_length=64, null=True)
+    website = models.CharField(max_length=64, null=True)
+
+    # footer
     author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     created_at = models.DateTimeField(
         _("Created at"),

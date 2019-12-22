@@ -2,6 +2,7 @@ from .models import Event, Participant
 from django import forms
 from ckeditor.fields import CKEditorWidget
 
+
 class EventAddForm(forms.ModelForm):
     class Meta:
         model = Event
