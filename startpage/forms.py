@@ -1,12 +1,14 @@
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.bootstrap import Field, InlineRadios, TabHolder, Tab
-from crispy_forms.layout import  Submit, Fieldset, Layout, Div
+from crispy_forms.layout import Submit, Fieldset, Layout, Div
 
 
 class UserLoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'username',
+                                                             'placeholder': 'Wprowadź login'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'userpassword',
+                                                                 'placeholder': 'Wprowadź hasło'}))
 
 
 class UserRegisterForm(forms.Form):

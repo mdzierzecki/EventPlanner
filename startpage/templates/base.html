@@ -14,7 +14,9 @@
         <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}">
 
         <link href="{% static '/assets/plugins/dropify/css/dropify.min.css' %}" rel="stylesheet">
+        {% block style %}
 
+        {% endblock %}
         <!-- App css -->
         <link href="{% static '/assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
         <link href="{% static '/assets/css/icons.css' %}" rel="stylesheet" type="text/css" />
@@ -249,6 +251,7 @@
         </div>
         <!-- end page-wrapper -->
 
+
         <!-- jQuery  -->
         <script src="{% static '/assets/js/jquery.min.js' %}"></script>
         <script src="{% static '/assets/js/bootstrap.bundle.min.js' %}"></script>
@@ -257,9 +260,13 @@
         <script src="{% static '/assets/js/jquery.slimscroll.min.js' %}"></script>
 
         <script src="{% static '/assets/plugins/dropify/js/dropify.min.js' %}"></script>
+        {% block scripts %}
 
+        {% endblock %}
         <!-- App js -->
         <script src="{% static '/assets/js/app.js' %}"></script>
+
+
         <script>
             $('.dropify').dropify();
         </script>
