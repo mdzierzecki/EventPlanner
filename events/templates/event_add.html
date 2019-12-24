@@ -2,7 +2,9 @@
 {% load static %}
 
 {% block style %}
-    <link href="{% static '/assets/plugins/jquery-steps/jquery.steps.css' %}" rel="stylesheet">
+
+    <link href="{% static '/assets/plugins/timepicker/bootstrap-material-datetimepicker.css' %}" rel="stylesheet">
+
 {% endblock %}
 
 
@@ -10,268 +12,125 @@
 
  <!-- Page Content-->
 
-                <div class="container-fluid">
+<div class="container-fluid">
                     <!-- Page-Title -->
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="page-title-box">
-
-                                <h4 class="page-title">Stwórz wydarzenie</h4>
+                                <div class="float-right">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="javascript:void(0);">Event Planner</a></li>
+                                        <li class="breadcrumb-item active">Dodaj wydarzenie</li>
+                                    </ol><!--end breadcrumb-->
+                                </div><!--end /div-->
+                                <h4 class="page-title">Dodaj wydarzenie</h4>
                             </div><!--end page-title-box-->
                         </div><!--end col-->
                     </div><!--end row-->
                     <!-- end page title end breadcrumb -->
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="mt-0 header-title">Jquery Steps Wizard</h4>
-                                    <p class="text-muted mb-3">A powerful jQuery wizard plugin that
-                                        supports accessibility and HTML5</p>
-
-                                    <form id="form-horizontal" class="form-horizontal form-wizard-wrapper">
-                                        <h3>Podstawowe informacje</h3>
-                                        <fieldset>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="id_title" class="col-lg-3 col-form-label">Tytuł</label>
-                                                        <div class="col-lg-9">
-                                                            <input type="text" name="title" maxlength="128" required id="id_title" class="form-control">
-                                                        </div>
-                                                    </div><!--end form-group-->
-                                                </div><!--end col-->
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="txtLastNameBilling" class="col-lg-3 col-form-label">Mobile No.</label>
-                                                        <div class="col-lg-9">
-                                                            <input id="txtLastNameBilling" name="txtLastNameBilling" type="text" class="form-control">
-                                                        </div>
-                                                    </div><!--end form-group-->
-                                                </div><!--end col-->
-                                            </div><!--end row-->
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="txtCompanyBilling" class="col-lg-3 col-form-label">Landline No.</label>
-                                                        <div class="col-lg-9">
-                                                            <input id="txtCompanyBilling" name="txtCompanyBilling" type="text" class="form-control">
-                                                        </div>
-                                                    </div><!--end form-group-->
-                                                </div><!--end col-->
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="txtEmailAddressBilling" class="col-lg-3 col-form-label">Email Address</label>
-                                                        <div class="col-lg-9">
-                                                            <input id="txtEmailAddressBilling" name="txtEmailAddressBilling" type="text" class="form-control">
-                                                        </div>
-                                                    </div><!--end form-group-->
-                                                </div><!--end col-->
-                                            </div><!--end row-->
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="txtAddress1Billing" class="col-lg-3 col-form-label">Address 1</label>
-                                                        <div class="col-lg-9">
-                                                            <textarea id="txtAddress1Billing" name="txtAddress1Billing" rows="4" class="form-control"></textarea>
-                                                        </div>
-                                                    </div><!--end form-group-->
-                                                </div><!--end col-->
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="txtAddress2Billing" class="col-lg-3 col-form-label">Warehouse Address</label>
-                                                        <div class="col-lg-9">
-                                                            <textarea id="txtAddress2Billing" name="txtAddress2Billing" rows="4" class="form-control"></textarea>
-                                                        </div>
-                                                    </div><!--end form-group-->
-                                                </div><!--end col-->
-                                            </div><!--end row-->
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="txtCityBilling" class="col-lg-3 col-form-label">Company Type</label>
-                                                        <div class="col-lg-9">
-                                                            <input id="txtCityBilling" name="txtCityBilling" type="text" class="form-control">
-                                                        </div>
-                                                    </div>
+                                    <h4 class="mt-0 header-title">Kreator wydarzenia</h4>
+                                    <p class="text-muted mb-3">Tutaj możesz stworzyć własne wydarzenie. Pamiętaj, że wszystkie informacje możesz potem wygodnie edytować!
+                                    </p>
+                                    <form method="post">{% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label text-right">Tytuł: </label>
+                                                <div class="col-sm-10">
+                                                    {{ form.title }}
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="txtStateProvinceBilling" class="col-lg-3 col-form-label">Live Market A/C</label>
-                                                        <div class="col-lg-9">
-                                                            <input id="txtStateProvinceBilling" name="txtStateProvinceBilling" type="text" class="form-control">
-                                                        </div>
-                                                    </div><!--end form-group-->
-                                                </div><!--end col-->
-                                            </div><!--end row-->
-
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="txtTelephoneBilling" class="col-lg-3 col-form-label">Product Category</label>
-                                                        <div class="col-lg-9">
-                                                            <input id="txtTelephoneBilling" name="txtTelephoneBilling" type="text" class="form-control">
-                                                        </div>
-                                                    </div><!--end form-group-->
-                                                </div><!--end col-->
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="txtFaxBilling" class="col-lg-3 col-form-label">Product Sub Category</label>
-                                                        <div class="col-lg-9">
-                                                            <input id="txtFaxBilling" name="txtFaxBilling" type="text" class="form-control">
-                                                        </div>
-                                                    </div><!--end form-group-->
-                                                </div><!--end col-->
-                                            </div><!--end row-->
-                                        </fieldset><!--end fieldset-->
-
-                                        <h3>Company Document</h3>
-                                        <fieldset>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="txtFirstNameShipping" class="col-lg-3 col-form-label">PAN Card</label>
-                                                        <div class="col-lg-9">
-                                                            <input id="txtFirstNameShipping" name="txtFirstNameShipping" type="text" class="form-control">
-                                                        </div>
-                                                    </div><!--end form-group-->
-                                                </div><!--end col-->
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="txtLastNameShipping" class="col-lg-3 col-form-label">VAT/TIN No.</label>
-                                                        <div class="col-lg-9">
-                                                            <input id="txtLastNameShipping" name="txtLastNameShipping" type="text" class="form-control">
-                                                        </div>
-                                                    </div><!--end form-group-->
-                                                </div><!--end col-->
-                                            </div><!--end row-->
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="txtCompanyShipping" class="col-lg-3 col-form-label">CST No.</label>
-                                                        <div class="col-lg-9">
-                                                            <input id="txtCompanyShipping" name="txtCompanyShipping" type="text" class="form-control">
-                                                        </div>
-                                                    </div><!--end form-group-->
-                                                </div><!--end col-->
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="txtEmailAddressShipping" class="col-lg-3 col-form-label">Service Tax No.</label>
-                                                        <div class="col-lg-9">
-                                                            <input id="txtEmailAddressShipping" name="txtEmailAddressShipping" type="text" class="form-control">
-                                                        </div>
-                                                    </div><!--end form-group-->
-                                                </div><!--end col-->
-                                            </div><!--end row-->
-
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="txtCityShipping" class="col-lg-3 col-form-label">Company UIN</label>
-                                                        <div class="col-lg-9">
-                                                            <input id="txtCityShipping" name="txtCityShipping" type="text" class="form-control">
-                                                        </div>
-                                                    </div><!--end form-group-->
-                                                </div><!--end col-->
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="txtStateProvinceShipping" class="col-lg-3 col-form-label">Declaration</label>
-                                                        <div class="col-lg-9">
-                                                            <input id="txtStateProvinceShipping" name="txtStateProvinceShipping" type="text" class="form-control">
-                                                        </div>
-                                                    </div><!--end form-group-->
-                                                </div><!--end col-->
-                                            </div><!--end row-->
-                                        </fieldset><!--end fieldset-->
-
-                                        <h3>Bank Details</h3>
-                                        <fieldset>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="txtNameCard" class="col-lg-3 col-form-label">Name on Card</label>
-                                                        <div class="col-lg-9">
-                                                            <input id="txtNameCard" name="txtNameCard" type="text" class="form-control">
-                                                        </div>
-                                                    </div><!--end form-group-->
-                                                </div><!--end col-->
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="ddlCreditCardType" class="col-lg-3 col-form-label">Credit Card Type</label>
-                                                        <div class="col-lg-9">
-                                                            <select id="ddlCreditCardType" name="ddlCreditCardType" class="form-control">
-                                                                <option value="">--Please Select--</option>
-                                                                <option value="AE">American Express</option>
-                                                                <option value="VI">Visa</option>
-                                                                <option value="MC">MasterCard</option>
-                                                                <option value="DI">Discover</option>
-                                                            </select>
-                                                        </div>
-                                                    </div><!--end form-group-->
-                                                </div><!--end col-->
-                                            </div><!--end row-->
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="txtCreditCardNumber" class="col-lg-3 col-form-label">Credit Card Number</label>
-                                                        <div class="col-lg-9">
-                                                            <input id="txtCreditCardNumber" name="txtCreditCardNumber" type="text" class="form-control">
-                                                        </div>
-                                                    </div><!--end form-group-->
-                                                </div><!--end col-->
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="txtCardVerificationNumber" class="col-lg-3 col-form-label">Card Verification Number</label>
-                                                        <div class="col-lg-9">
-                                                            <input id="txtCardVerificationNumber" name="txtCardVerificationNumber" type="text" class="form-control">
-                                                        </div>
-                                                    </div><!--end form-group-->
-                                                </div><!--end col-->
-                                            </div><!--end row-->
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="txtExpirationDate" class="col-lg-3 col-form-label">Expiration Date</label>
-                                                        <div class="col-lg-9">
-                                                            <input id="txtExpirationDate" name="txtExpirationDate" type="text" class="form-control">
-                                                        </div>
-                                                    </div><!--end form-group-->
-                                                </div><!--end col-->
-                                            </div><!--end row-->
-                                        </fieldset><!--end fieldset-->
-
-                                        <h3>Confirm Detail</h3>
-                                        <fieldset>
-                                            <div class="p-3">
-                                                <label class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input">
-                                                    <span class="custom-control-indicator"></span>
-                                                    <span class="custom-control-description">I agree with the Terms and Conditions.</span>
-                                                </label>
                                             </div>
-                                        </fieldset><!--end fieldset-->
-                                    </form><!--end form-->
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label text-right">Miasto: </label>
+                                                <div class="col-sm-10">
+                                                    {{ form.city }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label text-right">Adres: </label>
+                                                <div class="col-sm-10">
+                                                    {{ form.street }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label text-right">Opis: </label>
+                                                <div class="col-sm-10">
+                                                    {{ form.description }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label text-right">Kontakt: </label>
+                                                <div class="col-sm-10">
+                                                    {{ form.contact_description }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label text-right">Data: </label>
+                                                <div class="col-sm-10">
+                                                    {{ form.date }}
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label text-right">Godzina: </label>
+                                                <div class="col-sm-10">
+                                                    {{ form.time }}
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label text-right">Status wydarzenia: </label>
+                                                <div class="col-sm-10">
+                                                     {{ form.event_status }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label text-right">Facebook: </label>
+                                                <div class="col-sm-10">
+                                                     {{ form.facebook }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label text-right">Strona internetowa: </label>
+                                                <div class="col-sm-10">
+                                                     {{ form.website }}
+                                                </div>
+                                            </div>
+
+
+
+
+                                        <button type="submit" class="btn btn-primary px-5 py-2">Dodaj wydarzenie</button>
+                                        </div>
+                                    </div>
+                                        </form>
+                                    </div>
                                 </div><!--end card-body-->
                             </div><!--end card-->
                         </div><!--end col-->
                     </div><!--end row-->
-
-
-            </div>
-<form method="post">{% csrf_token %}
-    {{ form.media }}
-    {{ form.as_p }}
-    <input type="submit" value="Send message">
-</form>
-
-
+</div>
 
 
 
 {% endblock %}
 
 {% block scripts %}
-    <script src="{% static '/assets/plugins/jquery-steps/jquery.steps.min.js' %}"></script>
-    <script src="{% static '/assets/pages/jquery.form-wizard.init.js' %}"></script>
+
+        <script src="{% static '/assets/plugins/moment/moment.js' %}"></script>
+        <script src="{% static '/assets/plugins/daterangepicker/daterangepicker.js' %}"></script>
+        <script src="{% static '/assets/plugins/select2/select2.min.js' %}"></script>
+        <script src="{% static '/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js' %}"></script>
+        <script src="{% static '/assets/plugins/timepicker/bootstrap-material-datetimepicker.js' %}"></script>
+
+        <script src="{% static '/assets/pages/jquery.forms-advanced.js' %}"></script>
+
+
+<script src="{% static '/ckeditor/ckeditor-init.js' %}"></script>
+<script src="{% static '/ckeditor/ckeditor/ckeditor.js' %}"></script>
 {% endblock %}
 

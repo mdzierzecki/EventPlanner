@@ -7,14 +7,14 @@ from ckeditor_uploader.fields import RichTextUploadingField
 class Event(models.Model):
 
     # event statuses
-    ACTIVE = 'Active event'
-    INACTIVE = 'Stopped event'
-    PAUSED = 'Paused event'
+    ACTIVE = 'Aktywne'
+    INACTIVE = 'Zatrzymane'
+    PAUSED = 'Wstrzymane'
 
     EVENT_STATUS_CHOICES = (
-        (ACTIVE, _('Active event')),
-        (INACTIVE, _('Stopped event')),
-        (PAUSED, _('Paused event'))
+        (ACTIVE, _('Aktywne')),
+        (INACTIVE, _('Zatrzymane')),
+        (PAUSED, _('Wstrzymane'))
     )
 
     # basic informations
@@ -28,17 +28,19 @@ class Event(models.Model):
     description = RichTextUploadingField(null=True)
     contact_description = RichTextUploadingField(null=True, blank=True)
 
+    # date of event
+    date = models.DateField(null=True)
+    time = models.TimeField(null=True)
+
     # status
     event_status = models.CharField(max_length=64, choices=EVENT_STATUS_CHOICES,
                                          default=ACTIVE, null=True)
 
-    # date of event
-    date = models.DateField()
 
     # social media
 
-    facebook = models.CharField(max_length=64, null=True)
-    website = models.CharField(max_length=64, null=True)
+    facebook = models.CharField(max_length=64, null=True, blank=True)
+    website = models.CharField(max_length=64, null=True, blank=True)
 
     # footer
     author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
@@ -49,7 +51,7 @@ class Event(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return self.title
 
 
 class Participant(models.Model):
