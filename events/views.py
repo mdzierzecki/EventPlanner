@@ -12,7 +12,6 @@ from .forms import EventAddForm, ParticipantAddForm
 class EventAddView(LoginRequiredMixin, CreateView):
     login_url = '/login'
 
-    model = Event
     form_class = EventAddForm
     template_name = 'event_add.html'
 
