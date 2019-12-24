@@ -1,7 +1,4 @@
 from django import forms
-from crispy_forms.helper import FormHelper
-from crispy_forms.bootstrap import Field, InlineRadios, TabHolder, Tab
-from crispy_forms.layout import Submit, Fieldset, Layout, Div
 
 
 class UserLoginForm(forms.Form):
@@ -12,28 +9,18 @@ class UserLoginForm(forms.Form):
 
 
 class UserRegisterForm(forms.Form):
-    username = forms.CharField()
-    email = forms.EmailField()
-    email_confirm = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
-    password_confirm = forms.CharField(widget=forms.PasswordInput)
-    from_where = forms.CharField()
-
-    def __init__(self, *args, **kwargs):
-        super(UserRegisterForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_id = 'id-user-register-form'
-        self.helper.form_method = 'post'
-        self.helper.add_input(Submit('submit', 'Register', css_class='btn-success'))
-        self.helper.form_class = 'form-horizontal'
-        self.helper.layout = Layout(
-            Fieldset('Log in',
-                     Field('username', css_class="some-class"),
-                     Field('email', css_class="some-class"),
-                     Field('email_confirm', css_class="some-class"),
-                     Field('password', css_class="some-class"),
-                     Field('password_confirm', css_class="some-class")),
-        )
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'username',
+                                                             'placeholder': 'Wprowadź login'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'id': 'useremail',
+                                                             'placeholder': 'Wprowadź email'}))
+    email_confirm = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'id': 'conf-useremail',
+                                                             'placeholder': 'Powtórz email'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'userpassword',
+                                                                 'placeholder': 'Wprowadź hasło'}))
+    password_confirm = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'conf_password',
+                                                                 'placeholder': 'Powtórz hasło'}))
+    from_where = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'from_where',
+                                                             'placeholder': 'Skad jestes'}))
 
     def clean(self):
         print(self.cleaned_data)
