@@ -1,5 +1,8 @@
 from time import timezone
 
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
@@ -9,7 +12,7 @@ from .models import Event, Participant
 from .forms import EventAddForm, ParticipantAddForm
 
 
-class EventAddView(LoginRequiredMixin, CreateView):
+class EventAddView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     login_url = '/login'
 
     form_class = EventAddForm
@@ -19,7 +22,8 @@ class EventAddView(LoginRequiredMixin, CreateView):
         obj = form.save(commit=False)
         obj.author = self.request.user
         obj.save()
-        return redirect('/')
+        messages.add_message(self.request, messages.SUCCESS, 'Wydarzenie poprawnie dodane.')
+        return HttpResponseRedirect(reverse('user_events_list'))
 
 
 class EventListView(LoginRequiredMixin, ListView):
@@ -51,8 +55,9 @@ class EventDetailView(CreateView):
         return redirect('/')
 
 
-class EventDeleteView(LoginRequiredMixin, DeleteView):
+class EventDeleteView(SuccessMessageMixin, DeleteView):
     template_name = 'event_delete.html'
+    success_message = 'Wydarzenie zostało usunięte'
 
     def get_object(self):
         id = self.kwargs.get("id")
@@ -60,4 +65,8 @@ class EventDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse('user_events_list')
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(EventDeleteView, self).delete(request, *args, **kwargs)
 

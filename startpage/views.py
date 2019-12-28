@@ -1,5 +1,7 @@
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views.generic import FormView, View
 from django.contrib.auth.models import User, Group
 from .models import eUser
@@ -41,9 +43,9 @@ class UserLoginView(View):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('/')
+                return HttpResponseRedirect(reverse('user_events_list'))
             else:
-                messages.error(request, "Incorrect credentials")
+                messages.error(request, "Niepoprawne dane logowania. Spróbuj ponownie")
 
         return render(request, self.template_name, {
 
@@ -69,6 +71,7 @@ class UserRegisterView(FormView):
             iUser = eUser(user=user, from_where=from_where)
             iUser.save()
             user.save()
+            messages.add_message(self.request, messages.SUCCESS, 'Dziękujemy za rejestrację. Poniżej możesz zalogować się podanymi danymi')
             return redirect('/login')
         except IntegrityError:
             form._errors['username'] = ErrorList(['Username "{}" is already in use'.format(username)])
