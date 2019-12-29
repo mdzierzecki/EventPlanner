@@ -71,8 +71,19 @@ class EventListView(LoginRequiredMixin, ListView):
         return queryset
 
 
+class ParticipantsListView(LoginRequiredMixin, ListView):
+
+    template_name = 'event_members.html'
+    model = Participant
+    context_object_name = 'participants'
+
+    def get_queryset(self):
+        queryset = Participant.objects.all().filter(event=self.kwargs.get('id'))
+        return queryset
+
+
 # view both for event details and participant (join) form
-class EventDetailView(CreateView):
+class EventDetailParticipantAddView(CreateView):
 
     model = Participant
     form_class = ParticipantAddForm

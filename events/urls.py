@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.urls import path
 
-from .views import EventAddView, EventListView, EventDeleteView,  EventDetailView, EventUpdateView
+from .views import EventAddView, EventListView, EventDeleteView,  EventDetailParticipantAddView, EventUpdateView, ParticipantsListView
 
 urlpatterns = [
     path('add-event/', EventAddView.as_view(), name="event_add_view"),
@@ -10,8 +10,12 @@ urlpatterns = [
 
     path('your-events/<int:id>/edit', EventUpdateView.as_view(), name="event_update_view"),
 
+    path('your-events/<int:id>/members', ParticipantsListView.as_view(), name="event_members_view"),
+
+    path('your-events/member/<int:id>/delete', EventDeleteView.as_view(), name="event_delete_view"),
+
     # both for event detail and participant form
-    path('info/<int:pk>', EventDetailView.as_view(), name='event_detail'),
+    path('info/<int:pk>', EventDetailParticipantAddView.as_view(), name='event_detail'),
 
 
 ]
