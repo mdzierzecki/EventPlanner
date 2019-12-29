@@ -27,13 +27,13 @@
                                             <tbody>
                                             {% for event in user_events_list %}
                                             <tr>
-                                                <td><a target="_blank" rel="noopener noreferrer" href="{% url 'event-detail' event.id %}">{{ event.title }} </td>
+                                                <td><a target="_blank" rel="noopener noreferrer" href="{% url 'event_detail' event.id %}">{{ event.title }} </td>
                                                 <td>{{ event.location }}</td>
                                                 <td>{{ event.id }}</td>
                                                 <td>18/07/2019</td>
                                                 <td><span class="badge badge-soft-danger">Zakończony</span></td>
                                                 <td class="text-right">
-                                                    <a href="../hospital/patient-edit.html" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                                    <a href="{{ event.id }}/edit" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
                                                     <a href="{{ event.id }}/delete"><i class="fas fa-trash-alt text-danger font-16"></i></a>
                                                 </td>
                                             </tr><!--end tr-->

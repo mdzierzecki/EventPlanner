@@ -26,6 +26,40 @@ class EventAddView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         return HttpResponseRedirect(reverse('user_events_list'))
 
 
+class EventDeleteView(SuccessMessageMixin, DeleteView):
+    template_name = 'event_delete.html'
+    success_message = 'Wydarzenie zostało usunięte'
+
+    def get_object(self):
+        id = self.kwargs.get("id")
+        return get_object_or_404(Event, id=id)
+
+    def get_success_url(self):
+        return reverse('user_events_list')
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(EventDeleteView, self).delete(request, *args, **kwargs)
+
+
+class EventUpdateView(UpdateView):
+    model = Event
+    form_class = EventAddForm
+    pk_url_kwarg = 'pk'
+    template_name = 'event_edit.html'
+
+    def get_object(self):
+        id = self.kwargs.get("id")
+        return get_object_or_404(Event, id=id)
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.author = self.request.user
+        obj.save()
+        messages.add_message(self.request, messages.SUCCESS, 'Wydarzenie poprawnie zapisane.')
+        return HttpResponseRedirect(reverse('user_events_list'))
+
+
 class EventListView(LoginRequiredMixin, ListView):
 
     template_name = 'events_list.html'
@@ -52,21 +86,6 @@ class EventDetailView(CreateView):
         obj = form.save(commit=False)
         obj.event_id = self.kwargs.get('pk')
         obj.save()
-        return redirect('/')
+        return HttpResponseRedirect(reverse('event_detail', kwargs={'pk':self.kwargs.get('pk')}))
 
-
-class EventDeleteView(SuccessMessageMixin, DeleteView):
-    template_name = 'event_delete.html'
-    success_message = 'Wydarzenie zostało usunięte'
-
-    def get_object(self):
-        id = self.kwargs.get("id")
-        return get_object_or_404(Event, id=id)
-
-    def get_success_url(self):
-        return reverse('user_events_list')
-
-    def delete(self, request, *args, **kwargs):
-        messages.success(self.request, self.success_message)
-        return super(EventDeleteView, self).delete(request, *args, **kwargs)
 
