@@ -71,17 +71,6 @@ class EventListView(LoginRequiredMixin, ListView):
         return queryset
 
 
-class ParticipantsListView(LoginRequiredMixin, ListView):
-
-    template_name = 'event_members.html'
-    model = Participant
-    context_object_name = 'participants'
-
-    def get_queryset(self):
-        queryset = Participant.objects.all().filter(event=self.kwargs.get('id'))
-        return queryset
-
-
 # view both for event details and participant (join) form
 class EventDetailParticipantAddView(CreateView):
 
@@ -100,3 +89,31 @@ class EventDetailParticipantAddView(CreateView):
         return HttpResponseRedirect(reverse('event_detail', kwargs={'pk':self.kwargs.get('pk')}))
 
 
+# Participants views
+
+class ParticipantsListView(LoginRequiredMixin, ListView):
+
+    template_name = 'event_members.html'
+    model = Participant
+    context_object_name = 'participants'
+
+    def get_queryset(self):
+        queryset = Participant.objects.all().filter(event=self.kwargs.get('id'))
+        return queryset
+
+
+class ParticipantDeleteView(SuccessMessageMixin, DeleteView):
+    template_name = 'participant_delete.html'
+    success_message = 'Uczestnik został usunięty'
+
+    def get_object(self):
+        id = self.kwargs.get("id")
+        return get_object_or_404(Participant, id=id)
+
+    def get_success_url(self):
+        participant = Participant.objects.get(pk=self.kwargs.get('id'))
+        return reverse('event_members_view', kwargs={'id':participant.event.id})
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(ParticipantDeleteView, self).delete(request, *args, **kwargs)
