@@ -27,7 +27,7 @@
                                             <tbody>
                                             {% for event in user_events_list %}
                                             <tr>
-                                                <td><a target="_blank" rel="noopener noreferrer" href="{% url 'event_detail' event.id %}">{{ event.title }} </td>
+                                                <td><a target="_blank" rel="noopener noreferrer" href="{% url 'event_detail' event.id %}">{{ event.title }} </a></td>
                                                 <td>{{ event.location }}</td>
                                                 <td>{{ event.id }}</td>
                                                 <td>18/07/2019</td>
