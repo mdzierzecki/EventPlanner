@@ -136,12 +136,12 @@ class ParticipantSuccessAddView(DetailView):
 # view for participants export to csv
 def participant_export_csv(request, event_pk):
     queryset = Participant.objects.all().filter(event=event_pk)
-    ourevent = Event.objects.get(pk=event_pk)
+    our_event = Event.objects.get(pk=event_pk)
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="emails.csv"'
     writer = csv.writer(response)
-    writer.writerow(['Event: {}'.format(ourevent.title)])
+    writer.writerow(['Event: {}'.format(our_event.title)])
     writer.writerow(['Nazwa uczestnika', 'Email', 'Data rejestracji'])
     for participant in queryset:
         writer.writerow([participant.name, participant.email, participant.reg_date])
