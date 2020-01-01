@@ -86,7 +86,7 @@ class EventDetailParticipantAddView(CreateView):
         obj = form.save(commit=False)
         obj.event_id = self.kwargs.get('pk')
         obj.save()
-        return HttpResponseRedirect(reverse('event_detail', kwargs={'pk':self.kwargs.get('pk')}))
+        return HttpResponseRedirect(reverse('participant_successful', kwargs={'pk':self.kwargs.get('pk')}))
 
 
 # Participants views
@@ -117,3 +117,10 @@ class ParticipantDeleteView(SuccessMessageMixin, DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
         return super(ParticipantDeleteView, self).delete(request, *args, **kwargs)
+
+
+# OFFER DETAIL VIEW
+class ParticipantSuccessAddView(DetailView):
+
+    model = Event
+    template_name = 'participant_sucessful.html'
