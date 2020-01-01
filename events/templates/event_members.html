@@ -21,7 +21,7 @@
                                     <h4 class="mt-0 header-title">Lista uczestników wydarzenia</h4>
                                     <p class="text-muted mb-3">W tym miejscu możesz przeglądać uczestników wydarzneia, eksportować ich dane a także usuwać.
                                     </p>
-
+                                    <a class="btn btn-primary" href="{% url 'export_csv' event.id %}" role="button">Eksport .csv</a>
                                     <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                         <tr>

@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.urls import path
 
 from .views import EventAddView, EventListView, EventDeleteView,  EventDetailParticipantAddView, EventUpdateView, \
-    ParticipantsListView, ParticipantDeleteView, ParticipantSuccessAddView
+    ParticipantsListView, ParticipantDeleteView, ParticipantSuccessAddView, participant_export_csv
 
 urlpatterns = [
     path('add-event/', EventAddView.as_view(), name="event_add_view"),
@@ -20,6 +20,8 @@ urlpatterns = [
 
     # success page
     path('event/<int:pk>/thanks', ParticipantSuccessAddView.as_view(), name='participant_successful'),
+
+    path('export/<int:event_pk>', participant_export_csv, name="export_csv"),
 
 
 ]

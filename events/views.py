@@ -10,6 +10,8 @@ from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Event, Participant
 from .forms import EventAddForm, ParticipantAddForm
+import csv
+from django.http import HttpResponse
 
 
 class EventAddView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
@@ -101,6 +103,11 @@ class ParticipantsListView(LoginRequiredMixin, ListView):
         queryset = Participant.objects.all().filter(event=self.kwargs.get('id'))
         return queryset
 
+    def get_context_data(self, **kwargs):
+        participant = Event.objects.get(pk=self.kwargs['id'])
+        kwargs['event'] = participant
+        return super().get_context_data(**kwargs)
+
 
 class ParticipantDeleteView(SuccessMessageMixin, DeleteView):
     template_name = 'participant_delete.html'
@@ -124,3 +131,19 @@ class ParticipantSuccessAddView(DetailView):
 
     model = Event
     template_name = 'participant_sucessful.html'
+
+
+# view for participants export to csv
+def participant_export_csv(request, event_pk):
+    queryset = Participant.objects.all().filter(event=event_pk)
+    ourevent = Event.objects.get(pk=event_pk)
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="emails.csv"'
+    writer = csv.writer(response)
+    writer.writerow(['Event: {}'.format(ourevent.title)])
+    writer.writerow(['Nazwa uczestnika', 'Email', 'Data rejestracji'])
+    for participant in queryset:
+        writer.writerow([participant.name, participant.email, participant.reg_date])
+
+    return response
