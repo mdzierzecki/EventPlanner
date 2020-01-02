@@ -74,6 +74,7 @@ class UserRegisterView(FormView):
             messages.add_message(self.request, messages.SUCCESS, 'Dziękujemy za rejestrację. Poniżej możesz zalogować się podanymi danymi')
             return redirect('/login')
         except IntegrityError:
-            form._errors['username'] = ErrorList(['Username "{}" is already in use'.format(username)])
+            form._errors['username'] = ErrorList(['Użytkownik "{}" już istnieje'.format(username)])
 
         return super(UserRegisterView, self).form_invalid(form)
+
