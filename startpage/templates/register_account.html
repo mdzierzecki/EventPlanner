@@ -1,7 +1,28 @@
-{% extends 'base.html' %}
+{% load static %}
 
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Metrica - Responsive Bootstrap 4 Admin Dashboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A premium admin dashboard template by Mannatthemes" name="description" />
+        <meta content="Mannatthemes" name="author" />
 
-{% block content %}
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}">
+
+        <link href="{% static '/assets/plugins/dropify/css/dropify.min.css' %}" rel="stylesheet">
+
+        <!-- App css -->
+        <link href="{% static '/assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static '/assets/css/icons.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static '/assets/css/metisMenu.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static '/assets/css/style.css' %}" rel="stylesheet" type="text/css" />
+
+    </head>
+
+    <body>
 
 <body class="account-body accountbg">
 
@@ -12,10 +33,12 @@
                     <div class="card auth-card shadow-lg">
                         <div class="card-body">
                             <div class="px-3">
-
+                             <div class="auth-logo-box">
+                                    <a href="../analytics/analytics-index.html" class="logo logo-admin"><img src="{% static '/assets/images/logo-sm.png' %}" height="55" alt="logo" class="auth-logo"></a>
+                                </div><!--end auth-logo-box-->
                                 <div class="text-center auth-logo-text">
-                                    <h4 class="mt-0 mb-3 mt-5">Free Register for Metrica</h4>
-                                    <p class="text-muted mb-0">Get your free Metrica account now.</p>
+                                    <h4 class="mt-0 mb-3 mt-5">Dołącz do ZipEvent</h4>
+                                    <p class="text-muted mb-0">Załóż swoje bezpłatne konta aby tworzyć niesamowite eventy.</p>
                                 </div> <!--end auth-logo-text-->
 
 
@@ -23,7 +46,7 @@
                                     {% csrf_token %}
 
                                     <div class="form-group">
-                                        <label>Username</label>
+                                        <label>Nazwa użytkownika</label>
                                         <div class="input-group mb-3">
                                             <span class="auth-form-icon">
                                                 <i class="dripicons-user"></i>
@@ -43,7 +66,7 @@
                                     </div><!--end form-group-->
 
                                     <div class="form-group">
-                                        <label>Confirm Email</label>
+                                        <label>Powtórz Email</label>
                                         <div class="input-group mb-3">
                                             <span class="auth-form-icon">
                                                 <i class="dripicons-mail"></i>
@@ -53,7 +76,7 @@
                                     </div><!--end form-group-->
 
                                     <div class="form-group">
-                                        <label>Password</label>
+                                        <label>Hasło</label>
                                         <div class="input-group mb-3">
                                             <span class="auth-form-icon">
                                                 <i class="dripicons-lock"></i>
@@ -63,7 +86,7 @@
                                     </div><!--end form-group-->
 
                                     <div class="form-group">
-                                        <label>Confirm Password</label>
+                                        <label>Powtórz hasło</label>
                                         <div class="input-group mb-3">
                                             <span class="auth-form-icon">
                                                 <i class="dripicons-lock-open"></i>
@@ -72,7 +95,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label>From where</label>
+                                            <label>Jak się o nas dowiedziałeś?</label>
                                             <div class="input-group mb-3">
                                                 <span class="auth-form-icon">
                                                     <i class="dripicons-phone"></i>
@@ -86,21 +109,21 @@
                                         <div class="col-sm-12">
                                             <div class="custom-control custom-switch switch-success">
                                                 <input type="checkbox" class="custom-control-input" id="customSwitchSuccess">
-                                                <label class="custom-control-label text-muted" for="customSwitchSuccess">By registering you agree to the Frogetor <a href="#" class="text-primary">Terms of Use</a></label>
+                                                <label class="custom-control-label text-muted" for="customSwitchSuccess">Akceptuję regulamin <a href="#" class="text-primary">Regulamin serwisu</a></label>
                                             </div>
                                         </div><!--end col-->
                                     </div><!--end form-group-->
 
                                     <div class="form-group mb-0 row">
                                         <div class="col-12 mt-2">
-                                            <button class="btn btn-primary btn-round btn-block waves-effect waves-light" type="submit">Register <i class="fas fa-sign-in-alt ml-1"></i></button>
+                                            <button class="btn btn-primary btn-round btn-block waves-effect waves-light" type="submit">Zarejestruj <i class="fas fa-sign-in-alt ml-1"></i></button>
                                         </div><!--end col-->
                                     </div> <!--end form-group-->
                                 </form><!--end form-->
                             </div><!--end /div-->
 
                             <div class="m-3 text-center text-muted">
-                                <p class="">Already have an account ? <a href="../authentication/auth-login.html" class="text-primary ml-2">Log in</a></p>
+                                <p class="">Masz już u nas konto? <a href="../authentication/auth-login.html" class="text-primary ml-2">Zaloguj się</a></p>
                             </div>
                         </div><!--end card-body-->
                     </div><!--end card-->
@@ -109,4 +132,6 @@
         </div><!--end row-->
         <!-- End Log In page -->
 
-{% endblock %}
+    </body>
+
+</html>

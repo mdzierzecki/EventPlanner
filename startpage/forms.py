@@ -20,7 +20,7 @@ class UserRegisterForm(forms.Form):
     password_confirm = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'conf_password',
                                                                  'placeholder': 'Powtórz hasło'}))
     from_where = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'from_where',
-                                                             'placeholder': 'Skad jestes'}))
+                                                             'placeholder': 'Wpisz tutaj...'}))
 
     def clean(self):
         print(self.cleaned_data)
