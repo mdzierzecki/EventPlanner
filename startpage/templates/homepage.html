@@ -1,16 +1,297 @@
-{% extends 'base.html' %}
+{% load static %}
 
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>fsasfa</title>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
 
-{% block content %}
+    <title>ZipEvent - zarządzaj wydarzeniami</title>
+
+    <!-- Styles -->
+    <link href="{% static '/assets_landing/css/page.min.css' %}" rel="stylesheet">
+    <link href="{% static '/assets_landing/css/style.css' %}" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="{% static '/assets_landing/img/apple-touch-icon.png' %}">
+    <link rel="icon" href="{% static '/assets_landing/img/favicon.png' %}">
+  </head>
+
+  <body>
 
 
-{% endblock %}
-</body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" data-navbar="smart">
+      <div class="container">
+
+        <div class="navbar-left mr-auto">
+          <a class="navbar-brand" href="#">
+            <img class="logo-dark" src="{% static '/assets_landing/img/logo-dark.png' %}" alt="logo">
+            <img class="logo-light" src="{% static '/assets_landing/img/logo-light.png' %}" alt="logo">
+          </a>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="mr-4">
+          <a class="btn btn-xs btn-danger ml-lg-4 mr-2" href="{% url 'login_view' %}">PANEL</a>
+          <a class="btn btn-xs btn-outline-danger" href="{% url 'logout_view' %}">Wyloguj się</a>
+        </div>
+        {% else %}
+        <div class="mr-4">
+          <a class="btn btn-xs btn-info ml-lg-4 mr-2" href="{% url 'register_account' %}">REJESTRACJA</a>
+          <a class="btn btn-xs btn-outline-info" href="{% url 'login_view' %}">Zaloguj się</a>
+        </div>
+        {% endif %}
+
+
+        <nav class="nav nav-inline nav-navbar">
+          <a class="nav-link lead-3" href="{% url 'user_events_list' %}" data-toggle="offcanvas" data-target="#offcanvas-menu">&#9776;</a>
+        </nav>
+      </div>
+    </nav><!-- /.navbar -->
+
+
+    <!-- Header -->
+    <header class="header overflow-hidden pb-0 pt-11" style="background-image: linear-gradient(85deg, #e6e9f0 0%, #eef1f5 100%);">
+      <div class="container">
+        <div class="row h-100">
+
+          <div class="col-lg-5 align-self-center pb-8 pb-lg-10">
+            <h1>Lepsza komunikacja <br> Więcej statystyk</h1>
+            <p class="lead mt-5 mb-8">Aplikacja do tworzenia, publikacji i zarządzania eventami</p>
+            <p class="gap-xy">
+              <a class="btn btn-round btn-primary mw-150" href="#section-features">Czytaj więcej</a>
+              <a class="btn btn-round btn-outline-primary mw-150" href="#">Stwórz event</a>
+            </p>
+          </div>
+
+          <div class="col-lg-6 ml-auto">
+            <img class="shadow-7" src="{% static '/assets_landing/img/screen.png' %}" alt="img">
+          </div>
+
+        </div>
+      </div>
+    </header><!-- /.header -->
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <!--
+      |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+      | Features
+      |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+      !-->
+      <section id="section-features" class="section">
+        <div class="container">
+          <header class="section-header">
+            <small>Funkcje</small>
+            <h2>Wszystko w jednym</h2>
+            <hr>
+            <p class="lead">Łatwe udostępnianie wydarzenia, śledzenie stastyk i wysyłanie maili. Słowem, wszystko czego potrzebujesz do zarządzania wydarzeniami.</p>
+          </header>
+
+
+
+          <div class="row gap-y">
+
+            <div class="col-md-8 mx-auto mb-7">
+              <img class="shadow-5" src="{% static '/assets_landing/img/preview/dribbble-10.jpg' %}" alt="..." data-aos="fade-up" data-aos-duration="2000">
+            </div>
+
+
+            <div class="w-100"></div>
+
+
+            <div class="col-md-6 col-xl-4">
+              <div class="media">
+                <div class="lead-6 line-height-1 text-dark mr-5"><i class="icon-piechart"></i></div>
+                <div class="media-body">
+                  <h5>Statystyki</h5>
+                  <p>Obserwuj statystyki swojego wydarzenia - ilość zapisanych osób, wyświetlenia eventu i wiele więcej.</p>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-md-6 col-xl-4">
+              <div class="media">
+                <div class="lead-6 line-height-1 text-info mr-5"><i class="icon-envelope"></i></div>
+                <div class="media-body">
+                  <h5>Zarządzaj adresami email</h5>
+                  <p>Prosta wysyłka i zarządzanie bazami mailingowymi</p>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-md-6 col-xl-4">
+              <div class="media">
+                <div class="lead-6 line-height-1 text-primary mr-5"><i class="icon-gears"></i></div>
+                <div class="media-body">
+                  <h5>Intuicyjny edytor</h5>
+                  <p>Nasz prosty a jednocześnie rozbudowany edytor pozwala edytować dowolny element wydarzenia.</p>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-md-6 col-xl-4">
+              <div class="media">
+                <div class="lead-6 line-height-1 text-warning mr-5"><i class="icon-global"></i></div>
+                <div class="media-body">
+                  <h5>Udostępnianie</h5>
+                  <p>Udostępnianie eventu jeszcze nigdy nie było tak proste</p>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-md-6 col-xl-4">
+              <div class="media">
+                <div class="lead-6 line-height-1 text-danger mr-5"><i class="icon-phone"></i></div>
+                <div class="media-body">
+                  <h5>Mobilnie</h5>
+                  <p>Nasza aplikacja jest w pełni dostosowana do urządzeń mobilnych</p>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-md-6 col-xl-4">
+              <div class="media">
+                <div class="lead-6 line-height-1 text-success mr-5"><i class="icon-chat"></i></div>
+                <div class="media-body">
+                  <h5>Pomoc techiczna</h5>
+                  <p>Odpowiemy na twoje pytania tak szybko, jak będzie to możliwe.</p>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+      </section>
+
+
+      <section class="section">
+        <div class="container">
+          <header class="section-header">
+            <small>FAQ</small>
+            <h2>Najczęściej zadawane pytania</h2>
+            <hr>
+            <p>Postaraliśmy się odpowiedzieć na wszystkie najpopularniejsze pytania. Jeśli twojego pytania tutaj nie ma,
+            zapraszamy do kontaktu!</p>
+          </header>
+
+
+          <div class="row gap-y">
+            <div class="col-md-6">
+              <h5>Czy jest to bezpłatna usługa?</h5>
+              <p>Tak, ZipEvent jest w 100% darmowy i na zawsze taki pozostanie.</p>
+            </div>
+
+
+            <div class="col-md-6">
+              <h5>Czy będę mógł sam skonfigurować wydarzenie?</h5>
+              <p>Tak, tworzenie wydarzenia jest maksymalnie proste i intuicyjne. Jeśli jednak miałbyś jakieś problemy, służymy pomocą!</p>
+            </div>
+
+
+            <div class="col-md-6">
+              <h5>Czy mogę założyć testowe wydarzenie?</h5>
+              <p>Absolutnie tak! Możesz utworzyć tak dużo wydarzeń jak tylko zechesz. To od Ciebie zależy które opublikujesz.</p>
+            </div>
+
+
+            <div class="col-md-6">
+              <h5>Czy mogę wyeksportować maile wszystkich uczestników wydarzenia?</h5>
+              <p>Wszystkie dane uczestników wydarzeń które stworzysz możesz wyeksportować do pliku .csv jednym przyciskiem w panelu. </p>
+            </div>
+
+
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer bg-gray py-7">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-12">
+            <p><a href="#"><img src="{% static '/assets_landing/img/logo-dark.png' %}" alt="logo"></a></p>
+          </div>
+
+          <div class="col-xl-5">
+            <p>We’re a team of experienced designers and developers. We can combine beautiful, modern designs with clean, functional and high-performance code to produce stunning websites.</p>
+                              <br> <span class="text-muted d-none d-sm-inline-block ">Rozwijane z <img src="{% static '/assets_landing/img/Heart.png' %}" alt="heart"> przez &nbsp;<a href="https://slickcode.pl" target="_blank" >Slickcode</a></span>
+            <br>  &copy; 2019 ZipEvent
+
+
+
+            <hr class="d-xl-none">
+          </div>
+
+          <div class="col-4 col-xl-2 offset-xl-1">
+            <div class="nav flex-column">
+              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="#">Careers</a>
+              <a class="nav-link" href="#">Contact</a>
+            </div>
+          </div>
+
+          <div class="col-4 col-xl-2">
+            <div class="nav flex-column">
+              <a class="nav-link" href="#">Features</a>
+              <a class="nav-link" href="#">Pricing</a>
+              <a class="nav-link" href="#">Security</a>
+            </div>
+          </div>
+
+          <div class="col-4 col-xl-2">
+            <div class="nav flex-column">
+              <a class="nav-link" href="#">Help Center</a>
+              <a class="nav-link" href="#">API</a>
+              <a class="nav-link" href="#">FAQ</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </footer><!-- /.footer -->
+
+
+    <!-- Offcanvas - Menu -->
+    <div id="offcanvas-menu" class="offcanvas text-white w-300 px-7" data-animation="slide-left" style="background-color: rgba(0,0,0,0.95)">
+      <button type="button" class="close position-static px-0" data-dismiss="offcanvas" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      <nav class="nav nav-lead flex-column my-7">
+        <a class="nav-link" href="#">Features</a>
+        <a class="nav-link" href="#">Pricing</a>
+        <a class="nav-link" href="#">Shop</a>
+        <a class="nav-link" href="#">Blog</a>
+        <a class="nav-link" href="#">About</a>
+        <a class="nav-link" href="#">Contact</a>
+      </nav>
+
+      <div class="social social-bg-dark">
+        <a class="social-facebook" href="#"><i class="fa fa-facebook"></i></a>
+        <a class="social-twitter" href="#"><i class="fa fa-twitter"></i></a>
+        <a class="social-instagram" href="#"><i class="fa fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{% static '/assets_landing/js/page.min.js' %}"></script>
+    <script src="{% static '/assets_landing/js/script.js' %}"></script>
+
+  </body>
 </html>
-
