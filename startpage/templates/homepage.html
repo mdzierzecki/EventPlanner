@@ -33,7 +33,7 @@
         </div>
         {% if user.is_authenticated %}
         <div class="mr-4">
-          <a class="btn btn-xs btn-danger ml-lg-4 mr-2" href="{% url 'login_view' %}">PANEL</a>
+          <a class="btn btn-xs btn-danger ml-lg-4 mr-2" href="{% url 'user_events_list' %}">PANEL</a>
           <a class="btn btn-xs btn-outline-danger" href="{% url 'logout_view' %}">Wyloguj się</a>
         </div>
         {% else %}
