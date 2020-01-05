@@ -8,12 +8,12 @@ class Event(models.Model):
 
     # event statuses
     ACTIVE = 'Aktywne'
-    INACTIVE = 'Zatrzymane'
+    ENDED = 'Zakończone'
     PAUSED = 'Wstrzymane'
 
     EVENT_STATUS_CHOICES = (
         (ACTIVE, _('Aktywne')),
-        (INACTIVE, _('Zatrzymane')),
+        (ENDED, _('Zakończone')),
         (PAUSED, _('Wstrzymane'))
     )
 
@@ -35,7 +35,6 @@ class Event(models.Model):
     # status
     event_status = models.CharField(max_length=64, choices=EVENT_STATUS_CHOICES,
                                          default=ACTIVE, null=True)
-
 
     # social media
 
