@@ -28,7 +28,7 @@ class EventAddView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         return HttpResponseRedirect(reverse('user_events_list'))
 
 
-class EventDeleteView(SuccessMessageMixin, DeleteView):
+class EventDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     template_name = 'event_delete.html'
     success_message = 'Wydarzenie zostało usunięte'
 
@@ -44,7 +44,7 @@ class EventDeleteView(SuccessMessageMixin, DeleteView):
         return super(EventDeleteView, self).delete(request, *args, **kwargs)
 
 
-class EventUpdateView(UpdateView):
+class EventUpdateView(LoginRequiredMixin, UpdateView):
     model = Event
     form_class = EventAddForm
     pk_url_kwarg = 'pk'
@@ -109,7 +109,7 @@ class ParticipantsListView(LoginRequiredMixin, ListView):
         return super().get_context_data(**kwargs)
 
 
-class ParticipantDeleteView(SuccessMessageMixin, DeleteView):
+class ParticipantDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     template_name = 'participant_delete.html'
     success_message = 'Uczestnik został usunięty'
 
