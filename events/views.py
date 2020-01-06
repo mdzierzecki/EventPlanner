@@ -135,9 +135,16 @@ class ParticipantDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView)
 
     def get_success_url(self):
         participant = Participant.objects.get(pk=self.kwargs.get('id'))
+
         return reverse('event_members_view', kwargs={'id':participant.event.id})
 
     def delete(self, request, *args, **kwargs):
+        # decrement event participant
+        participant = Participant.objects.get(pk=self.kwargs.get('id'))
+        event = participant.event
+        event.participants_amount -= 1
+        event.save()
+
         messages.success(self.request, self.success_message)
         return super(ParticipantDeleteView, self).delete(request, *args, **kwargs)
 
