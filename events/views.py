@@ -81,13 +81,24 @@ class EventDetailParticipantAddView(CreateView):
     template_name = 'event_detail.html'
 
     def get_context_data(self, **kwargs):
-        kwargs['event'] = Event.objects.get(pk=self.kwargs['pk'])
+        e = Event.objects.get(pk=self.kwargs['pk'])
+        kwargs['event'] = e
+
+        # event views counter
+        e.event_views += 1
+        e.save()
+
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
         obj = form.save(commit=False)
         obj.event_id = self.kwargs.get('pk')
         obj.save()
+
+        # participants increment counter
+        e = Event.objects.get(pk=self.kwargs['pk'])
+        e.participants_amount += 1
+        e.save()
         return HttpResponseRedirect(reverse('participant_successful', kwargs={'pk':self.kwargs.get('pk')}))
 
 
@@ -104,8 +115,13 @@ class ParticipantsListView(LoginRequiredMixin, ListView):
         return queryset
 
     def get_context_data(self, **kwargs):
-        participant = Event.objects.get(pk=self.kwargs['id'])
-        kwargs['event'] = participant
+        event = Event.objects.get(pk=self.kwargs['id'])
+        kwargs['event'] = event
+
+        # conversion rate shows user how many people who viewed event in real joined to the event
+        if event.event_views > 0:
+            conversion_rate = event.participants_amount/event.event_views
+            kwargs['conversion_rate'] = round(conversion_rate, 4)
         return super().get_context_data(**kwargs)
 
 
