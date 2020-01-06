@@ -15,7 +15,7 @@
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="{% static '/assets_landing/img/apple-touch-icon.png' %}">
-    <link rel="icon" href="{% static '/assets_landing/img/favicon.png' %}">
+    <link rel="icon" href="{% static '/assets_landing/img/favicon.ico' %}">
   </head>
 
   <body>
@@ -28,7 +28,6 @@
         <div class="navbar-left mr-auto">
           <a class="navbar-brand" href="#">
             <img class="logo-dark" src="{% static '/assets_landing/img/logo-dark.png' %}" alt="logo">
-            <img class="logo-light" src="{% static '/assets_landing/img/logo-light.png' %}" alt="logo">
           </a>
         </div>
         {% if user.is_authenticated %}
