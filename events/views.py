@@ -139,7 +139,7 @@ class ParticipantDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView)
         return reverse('event_members_view', kwargs={'id':participant.event.id})
 
     def delete(self, request, *args, **kwargs):
-        # decrement event participant
+        # decrement event participants counter
         participant = Participant.objects.get(pk=self.kwargs.get('id'))
         event = participant.event
         event.participants_amount -= 1
