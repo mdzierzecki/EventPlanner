@@ -20,58 +20,62 @@
 
   <body>
 
-
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark" data-navbar="smart">
+    <nav class="navbar navbar-expand-lg navbar-light navbar-stick-dark" data-navbar="sticky">
       <div class="container">
+        <div class="row">
 
-        <div class="navbar-left mr-auto">
+          <section class="col-lg-5 navbar-mobile">
+            <nav class="nav nav-navbar mr-auto">
+              <a class="nav-link" href="#">Funkcje</a>
+              <a class="nav-link" href="#">Kontakt</a>
+            </nav>
+          </section>
+
+          <div class="col-auto col-lg-auto1 mr-auto mx-lg-auto d-flex align-items-center">
+            <button class="navbar-toggler" type="button"><span class="navbar-toggler-icon"></span></button>
           <a class="navbar-brand" href="#">
             <img class="logo-dark" src="{% static '/assets_landing/img/logo-dark.png' %}" alt="logo">
+            <img class="logo-light" src="{% static '/assets_landing/img/logo-light.png' %}" alt="logo">
           </a>
-        </div>
-        {% if user.is_authenticated %}
-        <div class="mr-4">
-          <a class="btn btn-xs btn-danger ml-lg-4 mr-2" href="{% url 'user_events_list' %}">PANEL</a>
-          <a class="btn btn-xs btn-outline-danger" href="{% url 'logout_view' %}">Wyloguj się</a>
-        </div>
-        {% else %}
-        <div class="mr-4">
-          <a class="btn btn-xs btn-info ml-lg-4 mr-2" href="{% url 'register_account' %}">REJESTRACJA</a>
-          <a class="btn btn-xs btn-outline-info" href="{% url 'login_view' %}">Zaloguj się</a>
-        </div>
-        {% endif %}
+          </div>
 
+          <div class="col-auto col-lg-5 text-right">
+            {% if user.is_authenticated %}
+            <a class="btn btn-sm btn-round btn-outline-success d-none d-lg-inline-block mr-2" href="{% url 'user_events_list' %}">Panel klienta</a>
+            <a class="btn btn-sm btn-round btn-success" href="{% url 'logout_view' %}">Wyloguj się</a>
 
-        <nav class="nav nav-inline nav-navbar">
-          <a class="nav-link lead-3" href="{% url 'user_events_list' %}" data-toggle="offcanvas" data-target="#offcanvas-menu">&#9776;</a>
-        </nav>
+            {% else %}
+            <a class="btn btn-sm btn-round btn-outline-success d-none d-lg-inline-block mr-2" href="{% url 'register_account' %}">Zarejestruj się</a>
+            <a class="btn btn-sm btn-round btn-success" href="{% url 'login_view' %}">Zaloguj się</a>
+            {% endif %}
+
+          </div>
+
+        </div>
       </div>
     </nav><!-- /.navbar -->
 
 
     <!-- Header -->
-    <header class="header overflow-hidden pb-0 pt-11" style="background-image: linear-gradient(85deg, #e6e9f0 0%, #eef1f5 100%);">
-      <div class="container">
-        <div class="row h-100">
+    <header class="header text-white h-fullscreen pb-0 overflow-hidden" style="background-image: url(../assets/img/vector/16.png); background-color: #262a37;">
+      <div class="overlay opacity-95" style="background-image: linear-gradient(to bottom, #09203f 0%, #537895 100%);"></div>
+      <div class="container text-center">
+        <div class="row align-items-center h-100">
 
-          <div class="col-lg-5 align-self-center pb-8 pb-lg-10">
-            <h1>Lepsza komunikacja <br> Więcej statystyk</h1>
-            <p class="lead mt-5 mb-8">Aplikacja do tworzenia, publikacji i zarządzania eventami</p>
-            <p class="gap-xy">
-              <a class="btn btn-round btn-primary mw-150" href="#section-features">Czytaj więcej</a>
-              <a class="btn btn-round btn-outline-primary mw-150" href="#">Stwórz event</a>
-            </p>
+          <div class="col-md-8 mx-auto">
+            <h1>Lepsze zarządzanie wydarzeniami</h1>
+            <p class="lead mt-4 mb-7">Stwórz wydarzenie, udostępnij link, obserwuj statystyki i eksportuj dane</p>
+            <a class="btn btn-xl btn-round btn-primary px-8" href="{% url 'register_account' %}">Stwórz bezpłatne konto</a>
           </div>
 
-          <div class="col-lg-6 ml-auto">
-            <img class="shadow-7" src="{% static '/assets_landing/img/screen.png' %}" alt="img">
+          <div class="col-md-8 mx-auto align-self-end">
+            <img class="mt-7" src="{% static '/assets_landing/img/screen.png' %}" alt="img" data-aos="fade-up">
           </div>
 
         </div>
       </div>
-    </header><!-- /.header -->
-
+    </header>
 
     <!-- Main Content -->
     <main class="main-content">
