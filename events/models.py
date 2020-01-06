@@ -41,6 +41,12 @@ class Event(models.Model):
     facebook = models.CharField(max_length=64, null=True, blank=True)
     website = models.CharField(max_length=64, null=True, blank=True)
 
+    # stats
+
+    participants_amount = models.PositiveIntegerField(default=0)  # amount of participants added to event
+
+    event_views = models.PositiveIntegerField(default=0)  # counter of events views
+
     # footer
     author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     created_at = models.DateTimeField(
@@ -62,6 +68,13 @@ class Participant(models.Model):
         auto_now_add=True,
         help_text=_("When participant jointed event")
     )
+
+    def save(self, force_insert=False, force_update=False):
+        # if self.id is None:
+        self.event.participants_amount +1
+        self.event.save()
+
+        super(Participant, self).save(force_insert, force_update)
 
     def __str__(self):
         return self.name

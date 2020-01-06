@@ -19,6 +19,7 @@ class EventAddForm(forms.ModelForm):
             'website': forms.TextInput(attrs={'class': 'form-control', }),
             'author': forms.HiddenInput,
         }
+        exclude = ('participants_amount', 'event_views')
 
 
 class ParticipantAddForm(forms.ModelForm):

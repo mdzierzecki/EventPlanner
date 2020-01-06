@@ -114,6 +114,8 @@
                                                 <div class="card-body">
                                                     <h3>Dołącz do wydarzenia!</h3><br>
 
+                                                    {% if event.event_status == 'Aktywne' %}
+
                                                         <form class="form-horizontal form-material mb-0" method="post">{% csrf_token %}
                                                             <div class="form-group">
                                                                 <input type="text" placeholder="Imie" class="form-control" name="name" maxlength="30" required id="id_name">
@@ -126,6 +128,11 @@
                                                                 <button class="btn btn-primary btn-sm text-light px-4 mt-3 float-right mb-0" type="submit">Dołącz</button>
                                                             </div>
                                                         </form>
+                                                    {% elif event.event_status == 'Wstrzymane' %}
+                                                        Organizator wydarzenia wstrzymał możliwość dodawania nowych uczestników.
+                                                    {% elif event.event_status == 'Zakończone' %}
+                                                        Wydarzenie zostało zakończone. Nie można już dołączyć do tego wydarzenia.
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         </div> <!--end col-->
