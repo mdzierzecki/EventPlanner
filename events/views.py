@@ -121,7 +121,7 @@ class ParticipantsListView(LoginRequiredMixin, ListView):
         # conversion rate shows user how many people who viewed event in real joined to the event
         if event.event_views > 0:
             conversion_rate = event.participants_amount/event.event_views
-            kwargs['conversion_rate'] = round(conversion_rate, 4)
+            kwargs['conversion_rate'] = round(conversion_rate, 3)
         return super().get_context_data(**kwargs)
 
 
