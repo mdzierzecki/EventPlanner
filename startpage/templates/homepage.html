@@ -27,14 +27,15 @@
 
           <section class="col-lg-5 navbar-mobile">
             <nav class="nav nav-navbar mr-auto">
-              <a class="nav-link" href="#">Funkcje</a>
-              <a class="nav-link" href="#">Kontakt</a>
+              <a class="nav-link" href="/#section-features">Funkcje</a>
+              <a class="nav-link" href="/#faq">FAQ</a>
+              <a class="nav-link" href="/#contact">Kontakt</a>
             </nav>
           </section>
 
           <div class="col-auto col-lg-auto1 mr-auto mx-lg-auto d-flex align-items-center">
             <button class="navbar-toggler" type="button"><span class="navbar-toggler-icon"></span></button>
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="/">
             <img class="logo-dark" src="{% static '/assets_landing/img/logo-dark.png' %}" alt="logo">
             <img class="logo-light" src="{% static '/assets_landing/img/logo-light.png' %}" alt="logo">
           </a>
@@ -86,8 +87,8 @@
       |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
       !-->
       <section id="section-features" class="section">
-        <div class="container">
-          <header class="section-header">
+        <div class="container" id="functions">
+          <header class="section-header" >
             <small>Funkcje</small>
             <h2>Wszystko w jednym</h2>
             <hr>
@@ -99,7 +100,7 @@
           <div class="row gap-y">
 
             <div class="col-md-8 mx-auto mb-7">
-              <img class="shadow-5" src="{% static '/assets_landing/img/preview/dribbble-10.jpg' %}" alt="..." data-aos="fade-up" data-aos-duration="2000">
+              <img class="shadow-5" src="{% static '/assets_landing/img/screen2.png' %}" alt="..." data-aos="fade-up" data-aos-duration="2000">
             </div>
 
 
@@ -178,7 +179,7 @@
       </section>
 
 
-      <section class="section">
+      <section class="section" id="faq">
         <div class="container">
           <header class="section-header">
             <small>FAQ</small>
@@ -213,13 +214,60 @@
               <p>Wszystkie dane uczestników wydarzeń które stworzysz możesz wyeksportować do pliku .csv jednym przyciskiem w panelu. </p>
             </div>
 
-
           </div>
-
         </div>
       </section>
 
     </main>
+
+      <section class="section">
+        <div class="container">
+
+          <h2 class="text-center" id="contact">Kontakt</h2>
+
+          <div class="row gap-y mt-8">
+            <form class="col-lg-6" action="{% static '/assets_landing/php/sendmail.php' %}" method="POST" data-form="mailer">
+
+              <div class="alert alert-success d-on-success">Otrzymaliśmy twoją wiadomość. Odpowiemy na nią tak szybko jak to będzie możliwe.</div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <input class="form-control form-control-lg" type="text" name="firstname" placeholder="Imię">
+                </div>
+
+                <div class="form-group col-md-6">
+                  <input class="form-control form-control-lg" type="text" name="lastname" placeholder="Nazwisko">
+                </div>
+
+                <div class="form-group col-md-6">
+                  <input class="form-control form-control-lg" type="email" name="email" placeholder="Email">
+                </div>
+
+                <div class="form-group col-md-6">
+                  <input class="form-control form-control-lg" type="text" name="phone" placeholder="Telefon">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <textarea class="form-control form-control-lg" rows="4" placeholder="Treść wiadomości" name="message"></textarea>
+              </div>
+
+              <button class="btn btn-lg btn-primary" type="submit">Wyślij</button>
+
+            </form>
+
+
+            <div class="col-lg-5 ml-auto text-center text-lg-left">
+              <hr class="d-lg-none">
+              <h5>ZipEvent</h5>
+              <p>Warszawa, Polska</p>
+              <p>+48 783 111 141</p>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
 
 
     <!-- Footer -->
@@ -232,69 +280,51 @@
           </div>
 
           <div class="col-xl-5">
-            <p>We’re a team of experienced designers and developers. We can combine beautiful, modern designs with clean, functional and high-performance code to produce stunning websites.</p>
+            <p>Nasze narzędzie wspiera organizację wydarzeń na każdym etapie. Już teraz skorzystaj z naszego bezpłatnej aplikacji. </p>
                               <br> <span class="text-muted d-none d-sm-inline-block ">Rozwijane z <img src="{% static '/assets_landing/img/Heart.png' %}" alt="heart"> przez &nbsp;<a href="https://slickcode.pl" target="_blank" >Slickcode</a></span>
-            <br>  &copy; 2019 ZipEvent
+            <br>  &copy; 2020 ZipEvent
 
 
 
             <hr class="d-xl-none">
           </div>
 
-          <div class="col-4 col-xl-2 offset-xl-1">
-            <div class="nav flex-column">
-              <a class="nav-link" href="#">About</a>
-              <a class="nav-link" href="#">Careers</a>
-              <a class="nav-link" href="#">Contact</a>
-            </div>
-          </div>
+<!--          <div class="col-4 col-xl-2 offset-xl-1">-->
+<!--            <div class="nav flex-column">-->
+<!--              <a class="nav-link" href="#">About</a>-->
+<!--              <a class="nav-link" href="#">Careers</a>-->
+<!--              <a class="nav-link" href="#">Contact</a>-->
+<!--            </div>-->
+<!--          </div>-->
 
-          <div class="col-4 col-xl-2">
-            <div class="nav flex-column">
-              <a class="nav-link" href="#">Features</a>
-              <a class="nav-link" href="#">Pricing</a>
-              <a class="nav-link" href="#">Security</a>
-            </div>
-          </div>
+<!--          <div class="col-4 col-xl-2">-->
+<!--            <div class="nav flex-column">-->
+<!--              <a class="nav-link" href="#">Features</a>-->
+<!--              <a class="nav-link" href="#">Pricing</a>-->
+<!--              <a class="nav-link" href="#">Security</a>-->
+<!--            </div>-->
+<!--          </div>-->
 
-          <div class="col-4 col-xl-2">
-            <div class="nav flex-column">
-              <a class="nav-link" href="#">Help Center</a>
-              <a class="nav-link" href="#">API</a>
-              <a class="nav-link" href="#">FAQ</a>
-            </div>
-          </div>
+<!--          <div class="col-4 col-xl-2">-->
+<!--            <div class="nav flex-column">-->
+<!--              <a class="nav-link" href="#">Help Center</a>-->
+<!--              <a class="nav-link" href="#">API</a>-->
+<!--              <a class="nav-link" href="#">FAQ</a>-->
+<!--            </div>-->
+<!--          </div>-->
 
         </div>
       </div>
     </footer><!-- /.footer -->
 
 
-    <!-- Offcanvas - Menu -->
-    <div id="offcanvas-menu" class="offcanvas text-white w-300 px-7" data-animation="slide-left" style="background-color: rgba(0,0,0,0.95)">
-      <button type="button" class="close position-static px-0" data-dismiss="offcanvas" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
 
-      <nav class="nav nav-lead flex-column my-7">
-        <a class="nav-link" href="#">Features</a>
-        <a class="nav-link" href="#">Pricing</a>
-        <a class="nav-link" href="#">Shop</a>
-        <a class="nav-link" href="#">Blog</a>
-        <a class="nav-link" href="#">About</a>
-        <a class="nav-link" href="#">Contact</a>
-      </nav>
-
-      <div class="social social-bg-dark">
-        <a class="social-facebook" href="#"><i class="fa fa-facebook"></i></a>
-        <a class="social-twitter" href="#"><i class="fa fa-twitter"></i></a>
-        <a class="social-instagram" href="#"><i class="fa fa-instagram"></i></a>
-      </div>
-    </div>
 
     <!-- Scripts -->
     <script src="{% static '/assets_landing/js/page.min.js' %}"></script>
     <script src="{% static '/assets_landing/js/script.js' %}"></script>
+
+
 
   </body>
 </html>
