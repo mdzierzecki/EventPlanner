@@ -12,6 +12,10 @@ from .models import Event, Participant
 from .forms import EventAddForm, ParticipantAddForm
 import csv
 from django.http import HttpResponse
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import get_template
+from django.template import loader
+
 
 
 class EventAddView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
@@ -92,6 +96,8 @@ class EventDetailParticipantAddView(CreateView):
 
     def form_valid(self, form):
         obj = form.save(commit=False)
+        mail = obj.email
+        name = obj.name
         obj.event_id = self.kwargs.get('pk')
         obj.save()
 
@@ -99,6 +105,23 @@ class EventDetailParticipantAddView(CreateView):
         e = Event.objects.get(pk=self.kwargs['pk'])
         e.participants_amount += 1
         e.save()
+
+        # confirmation email
+        text_content = 'Dziekujemy za zapisanie na wydarzenie. Ten email jest potwierdzeniem rejestracji na wydarzenie, prosimy na niego nie odpowiadać. '
+        html_message = loader.render_to_string(
+            'email_confirmation/email.html',
+            {
+                'user_name': name,
+                'event_title': e.title,
+                'event_id': e.pk,
+
+        }
+        )
+
+        email = EmailMultiAlternatives('Potwierdzenie uczestnictwa w wydarzeniu', text_content, 'ZipEvent Team <mateusz@luksurio.pl>', to=['{}'.format(mail)])
+        email.attach_alternative(html_message, "text/html")
+        email.send()
+
         return HttpResponseRedirect(reverse('participant_successful', kwargs={'pk':self.kwargs.get('pk')}))
 
 
