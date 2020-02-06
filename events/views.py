@@ -17,7 +17,6 @@ from django.template.loader import get_template
 from django.template import loader
 
 
-
 class EventAddView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     login_url = '/login'
 
