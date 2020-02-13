@@ -47,6 +47,11 @@ class Event(models.Model):
 
     event_views = models.PositiveIntegerField(default=0)  # counter of events views
 
+    # additional field
+
+    if_additional_field = models.BooleanField(default=False)
+    additional_field = models.CharField(max_length=70, null=True, blank=True)
+
     # footer
     author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     created_at = models.DateTimeField(
@@ -62,6 +67,7 @@ class Event(models.Model):
 class Participant(models.Model):
     name = models.CharField(max_length=30)
     email = models.EmailField(max_length=30)
+    additional_field = models.BooleanField(default=False)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     reg_date = models.DateTimeField(
         _("Created at"),

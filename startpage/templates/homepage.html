@@ -220,67 +220,23 @@
 
     </main>
 
-      <section class="section">
-        <div class="container">
-
-          <h2 class="text-center" id="contact">Kontakt</h2>
-
-          <div class="row gap-y mt-8">
-            <form class="col-lg-6" action="{% static '/assets_landing/php/sendmail.php' %}" method="POST" data-form="mailer">
-
-              <div class="alert alert-success d-on-success">Otrzymaliśmy twoją wiadomość. Odpowiemy na nią tak szybko jak to będzie możliwe.</div>
-
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <input class="form-control form-control-lg" type="text" name="firstname" placeholder="Imię">
-                </div>
-
-                <div class="form-group col-md-6">
-                  <input class="form-control form-control-lg" type="text" name="lastname" placeholder="Nazwisko">
-                </div>
-
-                <div class="form-group col-md-6">
-                  <input class="form-control form-control-lg" type="email" name="email" placeholder="Email">
-                </div>
-
-                <div class="form-group col-md-6">
-                  <input class="form-control form-control-lg" type="text" name="phone" placeholder="Telefon">
-                </div>
-              </div>
-
-              <div class="form-group">
-                <textarea class="form-control form-control-lg" rows="4" placeholder="Treść wiadomości" name="message"></textarea>
-              </div>
-
-              <button class="btn btn-lg btn-primary" type="submit">Wyślij</button>
-
-            </form>
-
-
-            <div class="col-lg-5 ml-auto text-center text-lg-left">
-              <hr class="d-lg-none">
-              <h5>ZipEvent</h5>
-              <p>Warszawa, Polska</p>
-              <p>+48 783 111 141</p>
-            </div>
-          </div>
-
-        </div>
-
-      </section>
-
 
     <!-- Footer -->
     <footer class="footer bg-gray py-7">
       <div class="container">
-        <div class="row">
+        <div class="row" id="contact">
 
           <div class="col-12">
             <p><a href="#"><img src="{% static '/assets_landing/img/logo-dark.png' %}" alt="logo"></a></p>
           </div>
 
           <div class="col-xl-5">
-            <p>Nasze narzędzie wspiera organizację wydarzeń na każdym etapie. Już teraz skorzystaj z naszego bezpłatnej aplikacji. </p>
+
+            <b>ZipEvent</b><br>
+            Warszawa, Polska<br>
+            <b>Email: </b>kontakt@slickcode.pl<br>
+            <b>Tel: </b>+48 783 111 141<br>
+
                               <br> <span class="text-muted d-none d-sm-inline-block ">Rozwijane z <img src="{% static '/assets_landing/img/Heart.png' %}" alt="heart"> przez &nbsp;<a href="https://slickcode.pl" target="_blank" >Slickcode</a></span>
             <br>  &copy; 2020 ZipEvent
 

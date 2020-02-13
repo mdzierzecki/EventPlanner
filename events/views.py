@@ -144,6 +144,9 @@ class ParticipantsListView(LoginRequiredMixin, ListView):
         if event.event_views > 0:
             conversion_rate = event.participants_amount/event.event_views
             kwargs['conversion_rate'] = round(conversion_rate, 3)
+
+        if event.if_additional_field:
+            kwargs['question_result'] = len(Participant.objects.all().filter(event=self.kwargs.get('id'), additional_field=True))
         return super().get_context_data(**kwargs)
 
 

@@ -51,15 +51,19 @@
                             <div class="card report-card">
                                 <div class="card-body">
                                     <div class="float-right">
-                                        <i class="fas fa-superscript text-warning report-main-icon"></i>
+                                        <i class="far fa-check-square text-warning report-main-icon"></i>
                                     </div>
-                                    <h4 class="title-text mt-0">ICU</h4>
+                                    <h4 class="title-text mt-0">Pozytywne odpowiedzi </h4>
+                                    {% if event.if_additional_field == True %}
+                                    <h3 class="my-3">{{ question_result }}</h3>
+                                    {% else %}
                                     <h3 class="my-3">(N/A) </h3>
+                                    {% endif %}
                                 </div><!--end card-body-->
                             </div><!--end card-->
                         </div> <!--end col-->
                     </div><!--end row-->
-<div class="row">
+                    <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
@@ -75,6 +79,9 @@
                                             <th>id</th>
                                             <th>Nazwa</th>
                                             <th>Email</th>
+                                            {% if event.if_additional_field == True %}
+                                            <th>{{ event.additional_field }}</th>
+                                            {% endif %}
                                             <th>Data dodania</th>
                                             <th class="text-right">Opcje</th>
 
@@ -87,11 +94,18 @@
                                             <td>{{ participant.pk }}</td>
                                             <td>{{ participant.name }}</td>
                                             <td>{{ participant.email }}</td>
+                                            {% if event.if_additional_field == True %}
+                                            {% if participant.additional_field == True %}
+                                            <th>Tak</th>
+                                            {% else %}
+                                            <th>Nie</th>
+                                            {% endif %}
+                                            {% endif %}
                                             <td>{{ participant.reg_date }}</td>
                                             <td class="text-right">
-                                                    <a href="/edit" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
-                                                    <a href="{% url 'member_delete_view' id=participant.id %}"><i class="fas fa-trash-alt text-danger font-16"></i></a>
-                                                </td>
+                                                <a href="/edit" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                                <a href="{% url 'member_delete_view' id=participant.id %}"><i class="fas fa-trash-alt text-danger font-16"></i></a>
+                                            </td>
                                         </tr>
                                         {% endfor %}
                                         </tbody>
@@ -107,8 +121,8 @@
 {% block scripts %}
 
     <script src="{% static '/assets/plugins/moment/moment.js' %}"></script>
-        <script src="{% static '/assets/plugins/datatables/jquery.dataTables.min.js' %}"></script>
-       <script src="{% static '/assets/plugins/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static '/assets/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static '/assets/plugins/datatables/dataTables.bootstrap4.min.js' %}"></script>
 
 
 

@@ -17,6 +17,8 @@ class EventAddForm(forms.ModelForm):
             'event_status': forms.Select(attrs={'class': 'form-control', }),
             'facebook': forms.TextInput(attrs={'class': 'form-control', }),
             'website': forms.TextInput(attrs={'class': 'form-control', }),
+            'if_additional_field': forms.CheckboxInput(attrs={'class': 'custom-control-input'}),
+            'additional_field': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Tu wpisz pytanie do uczestników'}),
             'author': forms.HiddenInput,
         }
         exclude = ('participants_amount', 'event_views')

@@ -99,7 +99,22 @@
                                                 </div>
                                             </div>
 
+                                              <div class="form-group row">
+                                           <label class="col-sm-2 col-form-label text-right"></label>
 
+                                            <div class="custom-control custom-switch">
+                                                     {{ form.if_additional_field }}
+                                                    <label class="custom-control-label" for="id_if_additional_field">Dodatkowe pytanie do uczestników</label>
+                                                </div>
+                                           </div>
+
+
+                                              <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label text-right"></label>
+                                                <div class="col-sm-10"  id="additional_field_div">
+                                                     {{ form.additional_field }}
+                                                </div>
+                                            </div>
 
 
                                         <button type="submit" class="btn btn-primary px-5 py-2">Zapisz </button>
@@ -130,5 +145,25 @@
 
 <script src="{% static '/ckeditor/ckeditor-init.js' %}"></script>
 <script src="{% static '/ckeditor/ckeditor/ckeditor.js' %}"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var checkbox = document.querySelector('input[type="checkbox"]');
+  var additional_field = document.getElementById('additional_field_div');
+  if (checkbox.checked) {
+      additional_field.style.display = 'block';
+    } else {
+      additional_field.style.display = 'none';
+    }
+
+  checkbox.addEventListener('change', function () {
+    if (checkbox.checked) {
+      additional_field.style.display = 'block';
+    } else {
+      additional_field.style.display = 'none';
+    }
+  });
+});
+</script>
 {% endblock %}
 
