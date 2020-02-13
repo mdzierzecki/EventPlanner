@@ -84,16 +84,26 @@ class EventDetailParticipantAddView(CreateView):
     template_name = 'event_detail.html'
 
     def get_context_data(self, **kwargs):
-        e = Event.objects.get(pk=self.kwargs['pk'])
-        kwargs['event'] = e
+        event = Event.objects.get(pk=self.kwargs['pk'])
+        kwargs['event'] = event
+        kwargs['participant_limit_exceeded'] = False
+
+        if event.if_participants_limit:
+            if event.participants_amount >= event.participants_limit:
+                kwargs['participant_limit_exceeded'] = True
 
         # event views counter
-        e.event_views += 1
-        e.save()
+        event.event_views += 1
+        event.save()
 
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
+        event = Event.objects.get(pk=self.kwargs['pk'])
+        if event.if_participants_limit:
+            if event.participants_amount >= event.participants_limit:
+                messages.add_message(self.request, messages.ERROR, 'Dziękujemy za rejestrację. Poniżej możesz zalogować się podanymi danymi')
+                return HttpResponseRedirect(reverse('event_detail', kwargs={'pk': self.kwargs.get('pk')}))
         obj = form.save(commit=False)
         mail = obj.email
         name = obj.name
@@ -147,6 +157,7 @@ class ParticipantsListView(LoginRequiredMixin, ListView):
 
         if event.if_additional_field:
             kwargs['question_result'] = len(Participant.objects.all().filter(event=self.kwargs.get('id'), additional_field=True))
+
         return super().get_context_data(**kwargs)
 
 

@@ -1,239 +1,202 @@
 {% load static %}
 
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>ZipEvent - zarządzaj wydarzeniami</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="ZipEvent to aplikacja do zarządzania wydarzeniami: statystyki, automatyczna wysyłka maili." name="description" />
-
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}">
-
-        <link href="{% static '/assets/plugins/dropify/css/dropify.min.css' %}" rel="stylesheet">
-        {% block style %}
-
-        {% endblock %}
-        <!-- App css -->
-        <link href="{% static '/assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static '/assets/css/icons.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static '/assets/css/metisMenu.min.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static '/assets/css/style.css' %}" rel="stylesheet" type="text/css" />
-
-    </head>
-
-    <body>
-
-                     <!-- Top Bar Start -->
-        <!-- Top Bar Start -->
-        <div class="topbar">
-
-            <!-- Navbar -->
-            <nav class="topbar-main">
-                <!-- LOGO -->
-                <div class="topbar-left">
-                    <a href="/" class="logo">
-                        <span>
-                            <img src="{% static '/assets/images/logo-sm.png' %}" alt="logo-small" class="logo-sm">
-                        </span>
-                        <span>
-                            <img src="{% static '/assets/images/logo-dark.png' %}" alt="logo-large" class="logo-lg">
-                        </span>
-                    </a>
-                </div><!--topbar-left-->
-                <!--end logo-->
-                <ul class="list-unstyled topbar-nav float-right mb-0">
-                    <li class="hidden-sm">
-                        <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="javascript: void(0);" role="button"
-                            aria-haspopup="false" aria-expanded="false">
-                            English <img src="{% static '/assets/images/flags/us_flag.jpg' %}" class="ml-2" height="16" alt=""/> <i class="mdi mdi-chevron-down"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javascript: void(0);"><span> Polski </span><img src="{% static '/assets/images/flags/polish_flag.png' %}" alt="" class="ml-2 float-right" height="14"/></a>
-
-                        </div>
-                    </li><!--end li-->
-{% if user.is_authenticated %}
-
-
-
-                    <li class="dropdown">
-                        <a class="nav-link dropdown-toggle waves-effect waves-light nav-user pr-0" data-toggle="dropdown" href="#" role="button"
-                            aria-haspopup="false" aria-expanded="false">
-                            <img src="{% static '/assets/images/users/user-4.jpg' %}" alt="profile-user" class="rounded-circle" />
-                            <span class="ml-1 nav-user-name hidden-sm">Cześć, &nbsp;{{ user.username}} <i class="mdi mdi-chevron-down"></i> </span>
-                        </a>
-                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="#"><i class="dripicons-wallet text-muted mr-2"></i> Profil</a>
-                             <a class="dropdown-item" href="#"><i class="dripicons-wallet text-muted mr-2"></i> Zmiana hasła</a>
-
-
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'logout_view' %}"><i class="dripicons-exit text-muted mr-2"></i> Wyloguj się</a>
-                        </div>
-                    </li><!--end dropdown-->
-                    <li class="menu-item">
-                        <!-- Mobile menu toggle-->
-                        <a class="navbar-toggle nav-link" id="mobileToggle">
-                            <div class="lines">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </a>
-                        <!-- End mobile menu toggle-->
-                    </li> <!--end menu item-->
-
-                    {% else %}
-                    <a href="{% url 'register_account' %}" class="btn btn-default pull-left"><i class="icon-arrow-left13 position-left"></i> Dołącz do nas</a>
-
-                        					<a href="{% url 'login_view' %}" class="btn btn-default pull-left"><i class="icon-arrow-left13 position-left"></i> Zaloguj się</a>
-
-
-   {% endif %}
-
-                </ul><!--end topbar-nav-->
-
-                <ul class="list-unstyled topbar-nav mb-0">
-                    <li class="hide-phone app-search">
-                        <form role="search" class="">
-                            <input type="text" placeholder="Szukaj..." class="form-control">
-                            <a href=""><i class="fas fa-search"></i></a>
-                        </form>
-                    </li>
-                </ul><!--end topbar-nav-->
-            </nav>
-            <!-- end navbar-->
-             <!-- MENU Start -->
-            <div class="navbar-custom-menu">
-                <div class="container-fluid">
-                    <div id="navigation">
-                        <!-- Navigation Menu-->
-                        <ul class="navigation-menu">
-                            <li class="has-submenu">
-                                <a href="{% url 'user_events_list' %}">
-                                    <i class="fas fa-bars"></i><span class="w-100">
-                                    <span>Moje wydarzenia</span>
-                                </a>
-
-
-                            </li><!--end has-submenu-->
-
-                            <li class="has-submenu">
-                                <a href="{% url 'event_add_view' %}">
-                                    <i class="far fa-calendar-plus"></i><span class="w-100">
-                                    <span>Dodaj wydarzenie</span>
-                                </a>
-
-                            </li><!--end has-submenu-->
-
-
-
-                            <li class="has-submenu">
-                                <a href="#">
-                                    <i class="fas fa-chart-bar"></i><span class="w-100">
-                                    <span>Statystyki wydarzeń</span>
-                                </a>
-
-                            </li><!--end has-submenu-->
-
-
-                            <li class="has-submenu">
-                                <a href="#">
-                                    <i class="fas fa-info-circle"></i><span class="w-100">
-                                    <span>Pomoc</span>
-                                </a>
-                            </li><!--end has-submenu-->
-
-                            <li class="has-submenu">
-                                <a href="#">
-                                    <i class="fas fa-comment-dots"></i><span class="w-100">
-                                    <span>Kontakt</span>
-                                </a>
-                            </li><!--end has-submenu-->
-
-
-                        </ul><!-- End navigation menu -->
-                    </div> <!-- end navigation -->
-                </div> <!-- end container-fluid -->
-            </div> <!-- end navbar-custom -->
-        </div>
-        <!-- Top Bar End -->
-
-
-        <div class="page-wrapper">
-            <!-- Page Content-->
-            <div class="page-content">
-
-  <div class="row">
-    <div class="col">
-    </div>
-    <div class="col-6 ">
-
-{% if messages %}
-    {% for message in messages %}
-
-    {% if message.tags == "success" %}
-          <div class="alert alert-secondary border-0" role="alert">
-                                        {{ message }}
-                                    </div>
-    {% endif %}
-    {% if message.tags == "error" %}
-<div class="alert alert-info alert-dismissible fade show" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
-                                        </button>
-                                        {{ message }}
-                                    </div>
-    {% endif %}
-    {% endfor %}
-{% endif %}
-
-
-
-    </div>
-    <div class="col">
-    </div>
-  </div>
-
-            </br>
-
-               {% block content %}
-
-
-                {% endblock %}
-
+   <head>
+      <meta charset="utf-8" />
+      <title>ZipEvent - zarządzaj wydarzeniami</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta content="ZipEvent to aplikacja do zarządzania wydarzeniami: statystyki, automatyczna wysyłka maili." name="description" />
+      <!-- App favicon -->
+      <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}">
+      <link href="{% static '/assets/plugins/dropify/css/dropify.min.css' %}" rel="stylesheet">
+      {% block style %}
+      {% endblock %}
+      <!-- App css -->
+      <link href="{% static '/assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+      <link href="{% static '/assets/css/icons.css' %}" rel="stylesheet" type="text/css" />
+      <link href="{% static '/assets/css/metisMenu.min.css' %}" rel="stylesheet" type="text/css" />
+      <link href="{% static '/assets/css/style.css' %}" rel="stylesheet" type="text/css" />
+   </head>
+   <body>
+      <!-- Top Bar Start -->
+      <!-- Top Bar Start -->
+      <div class="topbar">
+         <!-- Navbar -->
+         <nav class="topbar-main">
+            <!-- LOGO -->
+            <div class="topbar-left">
+               <a href="/" class="logo">
+               <span>
+               <img src="{% static '/assets/images/logo-sm.png' %}" alt="logo-small" class="logo-sm">
+               </span>
+               <span>
+               <img src="{% static '/assets/images/logo-dark.png' %}" alt="logo-large" class="logo-lg">
+               </span>
+               </a>
             </div>
-            <!-- end page content -->
-            <footer class="footer text-center text-sm-left">
-               <div class="boxed-footer">
-                   &copy; 2020 ZipEvent <span class="text-muted d-none d-sm-inline-block float-right">Rozwijane z <i class="mdi mdi-heart text-danger"></i> przez <a href="https://slickcode.pl" target="_blank">Slickcode</a></span>
+            <!--topbar-left-->
+            <!--end logo-->
+            <ul class="list-unstyled topbar-nav float-right mb-0">
+               <li class="hidden-sm">
+                  <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="javascript: void(0);" role="button"
+                     aria-haspopup="false" aria-expanded="false">
+                  English <img src="{% static '/assets/images/flags/us_flag.jpg' %}" class="ml-2" height="16" alt=""/> <i class="mdi mdi-chevron-down"></i>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right">
+                     <a class="dropdown-item" href="javascript: void(0);"><span> Polski </span><img src="{% static '/assets/images/flags/polish_flag.png' %}" alt="" class="ml-2 float-right" height="14"/></a>
+                  </div>
+               </li>
+               <!--end li-->
+               {% if user.is_authenticated %}
+               <li class="dropdown">
+                  <a class="nav-link dropdown-toggle waves-effect waves-light nav-user pr-0" data-toggle="dropdown" href="#" role="button"
+                     aria-haspopup="false" aria-expanded="false">
+                  <img src="{% static '/assets/images/users/user-4.jpg' %}" alt="profile-user" class="rounded-circle" />
+                  <span class="ml-1 nav-user-name hidden-sm">Cześć, &nbsp;{{ user.username}} <i class="mdi mdi-chevron-down"></i> </span>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right">
+                     <a class="dropdown-item" href="#"><i class="dripicons-wallet text-muted mr-2"></i> Profil</a>
+                     <a class="dropdown-item" href="#"><i class="dripicons-wallet text-muted mr-2"></i> Zmiana hasła</a>
+                     <div class="dropdown-divider"></div>
+                     <a class="dropdown-item" href="{% url 'logout_view' %}"><i class="dripicons-exit text-muted mr-2"></i> Wyloguj się</a>
+                  </div>
+               </li>
+               <!--end dropdown-->
+               <li class="menu-item">
+                  <!-- Mobile menu toggle-->
+                  <a class="navbar-toggle nav-link" id="mobileToggle">
+                     <div class="lines">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                     </div>
+                  </a>
+                  <!-- End mobile menu toggle-->
+               </li>
+               <!--end menu item-->
+               {% else %}
+               <a href="{% url 'register_account' %}" class="btn btn-default pull-left"><i class="icon-arrow-left13 position-left"></i> Dołącz do nas</a>
+               <a href="{% url 'login_view' %}" class="btn btn-default pull-left"><i class="icon-arrow-left13 position-left"></i> Zaloguj się</a>
+               {% endif %}
+            </ul>
+            <!--end topbar-nav-->
+            <ul class="list-unstyled topbar-nav mb-0">
+               <li class="hide-phone app-search">
+                  <form role="search" class="">
+                     <input type="text" placeholder="Szukaj..." class="form-control">
+                     <a href=""><i class="fas fa-search"></i></a>
+                  </form>
+               </li>
+            </ul>
+            <!--end topbar-nav-->
+         </nav>
+         <!-- end navbar-->
+         <!-- MENU Start -->
+         <div class="navbar-custom-menu">
+            <div class="container-fluid">
+               <div id="navigation">
+                  <!-- Navigation Menu-->
+                  <ul class="navigation-menu">
+                     <li class="has-submenu">
+                        <a href="{% url 'user_events_list' %}">
+                        <i class="fas fa-bars"></i><span class="w-100">
+                        <span>Moje wydarzenia</span>
+                        </a>
+                     </li>
+                     <!--end has-submenu-->
+                     <li class="has-submenu">
+                        <a href="{% url 'event_add_view' %}">
+                        <i class="far fa-calendar-plus"></i><span class="w-100">
+                        <span>Dodaj wydarzenie</span>
+                        </a>
+                     </li>
+                     <!--end has-submenu-->
+                     <li class="has-submenu">
+                        <a href="#">
+                        <i class="fas fa-chart-bar"></i><span class="w-100">
+                        <span>Statystyki wydarzeń</span>
+                        </a>
+                     </li>
+                     <!--end has-submenu-->
+                     <li class="has-submenu">
+                        <a href="#">
+                        <i class="fas fa-info-circle"></i><span class="w-100">
+                        <span>Pomoc</span>
+                        </a>
+                     </li>
+                     <!--end has-submenu-->
+                     <li class="has-submenu">
+                        <a href="#">
+                        <i class="fas fa-comment-dots"></i><span class="w-100">
+                        <span>Kontakt</span>
+                        </a>
+                     </li>
+                     <!--end has-submenu-->
+                  </ul>
+                  <!-- End navigation menu -->
                </div>
-            </footer><!--end footer-->
-        </div>
-        <!-- end page-wrapper -->
-
-
-        <!-- jQuery  -->
-        <script src="{% static '/assets/js/jquery.min.js' %}"></script>
-        <script src="{% static '/assets/js/bootstrap.bundle.min.js' %}"></script>
-        <script src="{% static '/assets/js/metisMenu.min.js' %}"></script>
-        <script src="{% static '/assets/js/waves.min.js' %}"></script>
-        <script src="{% static '/assets/js/jquery.slimscroll.min.js' %}"></script>
-
-        <script src="{% static '/assets/plugins/dropify/js/dropify.min.js' %}"></script>
-        {% block scripts %}
-
-        {% endblock %}
-        <!-- App js -->
-        <script src="{% static '/assets/js/app.js' %}"></script>
-
-
-        <script>
-            $('.dropify').dropify();
-        </script>
-
-    </body>
+               <!-- end navigation -->
+            </div>
+            <!-- end container-fluid -->
+         </div>
+         <!-- end navbar-custom -->
+      </div>
+      <!-- Top Bar End -->
+      <div class="page-wrapper">
+         <!-- Page Content-->
+         <div class="page-content">
+            <div class="row">
+               <div class="col">
+               </div>
+               <div class="col-6 ">
+                  {% if messages %}
+                      {% for message in messages %}
+                      {% if message.tags == "success" %}
+                          <div class="alert alert-secondary border-0" role="alert">
+                          {{ message }}
+                          </div>
+                      {% endif %}
+                      {% if message.tags == "error" %}
+                          <div class="alert alert-info alert-dismissible fade show" role="alert">
+                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                             <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
+                             </button>
+                             {{ message }}
+                          </div>
+                      {% endif %}
+                  {% endfor %}
+                  {% endif %}
+               </div>
+               <div class="col">
+               </div>
+            </div>
+            </br>
+            {% block content %}
+            {% endblock %}
+         </div>
+         <!-- end page content -->
+         <footer class="footer text-center text-sm-left">
+            <div class="boxed-footer">
+               &copy; 2020 ZipEvent <span class="text-muted d-none d-sm-inline-block float-right">Rozwijane z <i class="mdi mdi-heart text-danger"></i> przez <a href="https://slickcode.pl" target="_blank">Slickcode</a></span>
+            </div>
+         </footer>
+         <!--end footer-->
+      </div>
+      <!-- end page-wrapper -->
+      <!-- jQuery  -->
+      <script src="{% static '/assets/js/jquery.min.js' %}"></script>
+      <script src="{% static '/assets/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static '/assets/js/metisMenu.min.js' %}"></script>
+      <script src="{% static '/assets/js/waves.min.js' %}"></script>
+      <script src="{% static '/assets/js/jquery.slimscroll.min.js' %}"></script>
+      <script src="{% static '/assets/plugins/dropify/js/dropify.min.js' %}"></script>
+      {% block scripts %}
+      {% endblock %}
+      <!-- App js -->
+      <script src="{% static '/assets/js/app.js' %}"></script>
+      <script>
+         $('.dropify').dropify();
+      </script>
+   </body>
 </html>

@@ -113,7 +113,7 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h3>Dołącz do wydarzenia!</h3><br>
-
+                                                    {% if participant_limit_exceeded == False %}
                                                     {% if event.event_status == 'Aktywne' %}
 
                                                         <form class="form-parsley form-material mb-0" method="post">{% csrf_token %}
@@ -144,6 +144,9 @@
                                                         Organizator wydarzenia wstrzymał możliwość dodawania nowych uczestników.
                                                     {% elif event.event_status == 'Zakończone' %}
                                                         Wydarzenie zostało zakończone. Nie można już dołączyć do tego wydarzenia.
+                                                    {% endif %}
+                                                    {% else %}
+                                                        Limit uczestników tego wydarzenia został przekroczony.
                                                     {% endif %}
                                                 </div>
                                             </div>
@@ -183,6 +186,7 @@
                             </div><!--end tab-content-->
 
                         </div><!--end col-->
+                        
                     </div><!--end row-->
 
                 </div><!-- container -->

@@ -19,6 +19,7 @@ class EventAddForm(forms.ModelForm):
             'website': forms.TextInput(attrs={'class': 'form-control', }),
             'if_additional_field': forms.CheckboxInput(attrs={'class': 'custom-control-input'}),
             'additional_field': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Tu wpisz pytanie do uczestników'}),
+            'if_participants_limit': forms.CheckboxInput(attrs={'class': 'custom-control-input'}),
             'author': forms.HiddenInput,
         }
         exclude = ('participants_amount', 'event_views')

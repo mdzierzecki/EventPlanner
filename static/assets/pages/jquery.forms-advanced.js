@@ -163,12 +163,12 @@
           buttondown_class: 'btn btn-primary',
           buttonup_class: 'btn btn-primary'
       });
-      $("input[name='demo2']").TouchSpin({
-          min: -1000000000,
+      $("input[name='participants_limit']").TouchSpin({
+          min: 0,
           max: 1000000000,
           stepinterval: 50,
           maxboostedstep: 10000000,
-          prefix: '$',
+          prefix: 'Limit',
           buttondown_class: 'btn btn-primary',
           buttonup_class: 'btn btn-primary'
       });

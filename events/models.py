@@ -37,20 +37,20 @@ class Event(models.Model):
                                          default=ACTIVE, null=True)
 
     # social media
-
     facebook = models.CharField(max_length=64, null=True, blank=True)
     website = models.CharField(max_length=64, null=True, blank=True)
 
     # stats
-
     participants_amount = models.PositiveIntegerField(default=0)  # amount of participants added to event
-
     event_views = models.PositiveIntegerField(default=0)  # counter of events views
 
     # additional field
-
     if_additional_field = models.BooleanField(default=False)
     additional_field = models.CharField(max_length=70, null=True, blank=True)
+
+    # participants limit
+    if_participants_limit = models.BooleanField(default=False)
+    participants_limit = models.PositiveIntegerField(default=0, null=True, blank=True)
 
     # footer
     author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
