@@ -11,9 +11,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Event, Participant
 from .forms import EventAddForm, ParticipantAddForm
 import csv
+from datetime import date
 from django.http import HttpResponse
 from django.core.mail import EmailMultiAlternatives
-from django.template.loader import get_template
 from django.template import loader
 
 
@@ -26,6 +26,9 @@ class EventAddView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         obj = form.save(commit=False)
         obj.author = self.request.user
+        # if obj.date < date.today():
+        #     messages.add_message(self.request, messages.ERROR, 'Nie możesz dodać wydarzenia ze wsteczną datą.')
+        #     return HttpResponseRedirect(reverse('user_events_list'))
         obj.save()
         messages.add_message(self.request, messages.SUCCESS, 'Wydarzenie poprawnie dodane.')
         return HttpResponseRedirect(reverse('user_events_list'))

@@ -1,6 +1,7 @@
 from .models import Event, Participant
 from django import forms
 from ckeditor.fields import CKEditorWidget
+from datetime import date
 
 
 class EventAddForm(forms.ModelForm):
@@ -23,6 +24,14 @@ class EventAddForm(forms.ModelForm):
             'author': forms.HiddenInput,
         }
         exclude = ('participants_amount', 'event_views')
+
+    def clean(self):
+        date_field = self.cleaned_data['date']
+
+        if date_field < date.today():
+            raise forms.ValidationError("Nie możesz dodać wydarzenia z przeszłą datą")
+
+        return self.cleaned_data
 
 
 class ParticipantAddForm(forms.ModelForm):
