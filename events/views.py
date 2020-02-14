@@ -189,7 +189,7 @@ class ParticipantDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView)
 class ParticipantSuccessAddView(DetailView):
 
     model = Event
-    template_name = 'participant_sucessful.html'
+    template_name = 'participant_successful.html'
 
 
 # view for participants export to csv
