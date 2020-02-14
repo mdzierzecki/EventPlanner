@@ -122,7 +122,7 @@
                         <div class="form-group row">
                            <label class="col-sm-2 col-form-label text-right"></label>
                            <div class="custom-control custom-switch">
-                              <input type="checkbox" class="custom-control-input" id="id_if_additional_field" name="if_additional_field">
+                              {{ form.if_additional_field }}
                               <label class="custom-control-label" for="id_if_additional_field">Dodatkowe pytanie do uczestników</label>
                            </div>
                         </div>
@@ -184,6 +184,18 @@
 
      additional_field.style.display = 'none';
      participants_limit.style.display = 'none';
+
+     if (checkbox_additional_field.checked) {
+         additional_field.style.display = 'block';
+       } else {
+         additional_field.style.display = 'none';
+       }
+
+     if (checkbox_participants_limit.checked) {
+         participants_limit.style.display = 'block';
+       } else {
+         participants_limit.style.display = 'none';
+       }
 
      checkbox_additional_field.addEventListener('change', function () {
        if (checkbox_additional_field.checked) {
