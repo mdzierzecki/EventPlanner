@@ -67,12 +67,11 @@
 {% block scripts %}
 
 <script>
-
     $(".mr-2a").click(function () {
-      var mailing_id = $(this).attr('value')
-        var info_badge = $( "#spinner"+mailing_id );
-        info_badge.text("Wysyłanie");
-        info_badge.attr('badge-soft-primary', 'badge-soft-info');
+      var mailing_id = $(this).attr('value');
+      var info_badge = $( "#spinner"+mailing_id );
+      info_badge.text("Wysyłanie");
+      info_badge.attr('badge-soft-primary', 'badge-soft-info');
       info_badge.append( "<div class=\"spinner-grow spinner-grow-sm\" role=\"status\"></div>" );
       $(this).hide();
 
@@ -85,20 +84,18 @@
 
         success: function (data) {
           if (data.done) {
-             info_badge.text("Wysłano!");
+            info_badge.text("Wysłano!");
           } else {
-              info_badge.text("Błąd!!!");
-              setTimeout(
-                function()
-                {
-                    location.reload();
-                }, 3000);
+            info_badge.text("Błąd!!!");
           }
+          setTimeout(
+            function()
+            {
+              location.reload();
+            }, 3000);
         }
 
       });
-
-
     });
 </script>
 
