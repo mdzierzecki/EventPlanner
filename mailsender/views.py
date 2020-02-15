@@ -1,18 +1,16 @@
 import time
 
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect, get_object_or_404, reverse
-from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
+from django.shortcuts import reverse
+from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Mailing
 from .forms import MailingAddForm
-from events.models import Event
+from events.models import Event, Participant
 from django.core.mail import EmailMultiAlternatives
 from django.template import loader
 from django.http import JsonResponse
-
-from django.http import HttpResponseNotFound
 
 
 class MailingListView(LoginRequiredMixin, ListView):
@@ -55,7 +53,7 @@ def send_email(request):
     mailing.status = mailing.IN_PROGRESS
     mailing.save()
 
-    mail = "realmati@onet.pl"
+    participants = Participant.objects.all().filter(event=mailing.event).order_by('reg_date')
     # confirmation email
     text_content = 'Dziekujemy za zapisanie na wydarzenie. Ten email jest potwierdzeniem rejestracji na wydarzenie, prosimy na niego nie odpowiadać. '
     html_message = loader.render_to_string(
@@ -69,23 +67,24 @@ def send_email(request):
         }
     )
 
-    email = EmailMultiAlternatives(mailing.subject, text_content, 'ZipEvent Team <mateusz@luksurio.pl>',
-                                   to=['{}'.format(mail)])
-    email.attach_alternative(html_message, "text/html")
-    time.sleep(30)
+    for participant in participants:
+        try:
+            email = EmailMultiAlternatives(mailing.subject, text_content, 'ZipEvent Team <mateusz@luksurio.pl>',
+                                           to=['{}'.format(participant.email)])
+            email.attach_alternative(html_message, "text/html")
+            email.send()
+            mailing.status = mailing.SENT
+            mailing.save()
+            data = {
+                'done': True,
+            }
+        except:
+            mailing.status = mailing.ERROR
+            mailing.save()
+            data = {
+                'done': False,
+            }
+            return JsonResponse(data)
+        time.sleep(4)
 
-    try:
-        email.send()
-        mailing.status = mailing.SENT
-        mailing.save()
-        data = {
-            'done': True,
-        }
-        return JsonResponse(data)
-    except:
-        mailing.status = mailing.ERROR
-        mailing.save()
-        data = {
-            'done': False,
-        }
-        return JsonResponse(data)
+    return JsonResponse(data)
