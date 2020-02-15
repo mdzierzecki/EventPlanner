@@ -11,10 +11,10 @@ from events.models import Event, Participant
 from django.core.mail import EmailMultiAlternatives
 from django.template import loader
 from django.http import JsonResponse
+import datetime
 
 
 class MailingListView(LoginRequiredMixin, ListView):
-
     template_name = 'mailing_list.html'
     model = Event
     context_object_name = 'mailing_list'
@@ -35,7 +35,6 @@ class EventMailingCreator(LoginRequiredMixin, CreateView):
         return kwargs
 
     def get_context_data(self, **kwargs):
-
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
@@ -54,8 +53,8 @@ def send_email(request):
     mailing.save()
 
     participants = Participant.objects.all().filter(event=mailing.event).order_by('reg_date')
-    # confirmation email
-    text_content = 'Dziekujemy za zapisanie na wydarzenie. Ten email jest potwierdzeniem rejestracji na wydarzenie, prosimy na niego nie odpowiadać. '
+
+    text_content = '{}'.format(mailing.text)
     html_message = loader.render_to_string(
         'email_mailing/email_mailing.html',
         {
@@ -67,17 +66,21 @@ def send_email(request):
         }
     )
 
+    data = {
+        'done': True,
+    }
+
     for participant in participants:
         try:
             email = EmailMultiAlternatives(mailing.subject, text_content, 'ZipEvent Team <mateusz@luksurio.pl>',
                                            to=['{}'.format(participant.email)])
             email.attach_alternative(html_message, "text/html")
             email.send()
-            mailing.status = mailing.SENT
-            mailing.save()
             data = {
                 'done': True,
             }
+            mailing.emails_sent += 1
+            mailing.save()
         except:
             mailing.status = mailing.ERROR
             mailing.save()
@@ -86,5 +89,7 @@ def send_email(request):
             }
             return JsonResponse(data)
         time.sleep(4)
-
+    mailing.status = mailing.SENT
+    mailing.send_date = datetime.datetime.now()
+    mailing.save()
     return JsonResponse(data)

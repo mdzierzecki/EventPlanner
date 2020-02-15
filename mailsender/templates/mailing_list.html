@@ -20,6 +20,7 @@
                                                 <th>Wydarzenie</th>
                                                 <th>Data wysłania</th>
                                                 <th>Status</th>
+                                                <th>Pozostało/Wysłano</th>
                                                 <th class="text-right">Action</th>
                                             </tr><!--end tr-->
                                             </thead>
@@ -41,6 +42,7 @@
                                                     <span class="badge badge-soft-danger" style="font-size: 100%" id="spinner{{ mailing.id }}">Błąd!</span>
                                                     {% endif %}
                                                 </td>
+                                                <td>{{ mailing.participants_amount }}/{{ mailing.emails_sent }}</td>
                                                 <td class="text-right">
                                                     {% if mailing.status == mailing.READY or mailing.status == mailing.ERROR %}
                                                     <a href="#" class="mr-2a" id="send_button" value="{{ mailing.id }}">WYŚLIJ</a>
