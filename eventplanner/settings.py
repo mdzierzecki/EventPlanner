@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'startpage',
-    'events'
+    'events',
+    'mailsender',
 ]
 
 CKEDITOR_UPLOAD_PATH = "uploads/"

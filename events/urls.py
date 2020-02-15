@@ -21,6 +21,7 @@ urlpatterns = [
     # success page
     path('event/<int:pk>/thanks', ParticipantSuccessAddView.as_view(), name='participant_successful'),
 
+    # csv export
     path('export/<int:event_pk>', participant_export_csv, name="export_csv"),
 
 

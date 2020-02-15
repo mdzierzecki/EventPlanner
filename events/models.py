@@ -87,3 +87,5 @@ class Participant(models.Model):
 
     class Meta:
         ordering = ['reg_date']
+
+

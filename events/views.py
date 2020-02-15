@@ -1,5 +1,3 @@
-from time import timezone
-
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseRedirect
@@ -11,7 +9,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Event, Participant
 from .forms import EventAddForm, ParticipantAddForm
 import csv
-from datetime import date
 from django.http import HttpResponse
 from django.core.mail import EmailMultiAlternatives
 from django.template import loader
@@ -27,9 +24,6 @@ class EventAddView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         obj = form.save(commit=False)
         obj.author = self.request.user
-        # if obj.date < date.today():
-        #     messages.add_message(self.request, messages.ERROR, 'Nie możesz dodać wydarzenia ze wsteczną datą.')
-        #     return HttpResponseRedirect(reverse('user_events_list'))
         obj.save()
         messages.add_message(self.request, messages.SUCCESS, 'Wydarzenie poprawnie dodane.')
         return HttpResponseRedirect(reverse('user_events_list'))
@@ -115,9 +109,8 @@ class EventDetailParticipantAddView(CreateView):
         obj.save()
 
         # participants increment counter
-        e = Event.objects.get(pk=self.kwargs['pk'])
-        e.participants_amount += 1
-        e.save()
+        event.participants_amount += 1
+        event.save()
 
         # confirmation email
         text_content = 'Dziekujemy za zapisanie na wydarzenie. Ten email jest potwierdzeniem rejestracji na wydarzenie, prosimy na niego nie odpowiadać. '
@@ -125,8 +118,8 @@ class EventDetailParticipantAddView(CreateView):
             'email_confirmation/email.html',
             {
                 'user_name': name,
-                'event_title': e.title,
-                'event_id': e.pk,
+                'event_title': event.title,
+                'event_id': event.pk,
 
         }
         )
