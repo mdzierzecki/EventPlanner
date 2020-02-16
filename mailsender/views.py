@@ -14,6 +14,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.template import loader
 from django.http import JsonResponse
 import datetime
+from django.db.models import Q
 
 
 class MailingListView(LoginRequiredMixin, ListView):
@@ -24,6 +25,15 @@ class MailingListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         queryset = Mailing.objects.all().filter(author=self.request.user).order_by('-id')
         return queryset
+
+    def get_context_data(self, **kwargs):
+        active_mailing_queryset = Mailing.objects.all().filter(Q(status=Mailing.IN_PROGRESS) | Q(status=Mailing.READY) | Q(status=Mailing.ERROR),
+                                                               author=self.request.user)
+        kwargs['can_add_event'] = True
+        if len(active_mailing_queryset) >= 1:
+            kwargs['can_add_event'] = False
+
+        return super().get_context_data(**kwargs)
 
 
 class EventMailingCreator(LoginRequiredMixin, CreateView):
@@ -74,7 +84,7 @@ def send_email(request):
 
     for participant in participants:
         try:
-            email = EmailMultiAlternatives(mailing.subject, text_content, 'ZipEvent Team <no-reply@slickcode.pl>',
+            email = EmailMultiAlternatives(mailing.subject, text_content, 'ZipEvent Team <mateusz@luksurio.pl>',
                                            to=['{}'.format(participant.email)])
             email.attach_alternative(html_message, "text/html")
             email.send()

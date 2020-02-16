@@ -100,7 +100,6 @@ class EventDetailParticipantAddView(CreateView):
         event = Event.objects.get(pk=self.kwargs['pk'])
         if event.if_participants_limit:
             if event.participants_amount >= event.participants_limit:
-                messages.add_message(self.request, messages.ERROR, 'Dziękujemy za rejestrację. Poniżej możesz zalogować się podanymi danymi')
                 return HttpResponseRedirect(reverse('event_detail', kwargs={'pk': self.kwargs.get('pk')}))
         obj = form.save(commit=False)
         mail = obj.email

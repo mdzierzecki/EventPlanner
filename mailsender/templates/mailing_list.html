@@ -1,16 +1,21 @@
 {% extends 'base.html' %}
+{% load static %}
 
 
 {% block content %}
-
-
 
                <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <a class="btn btn-primary px-4 mt-0 mb-3" href="{% url 'mailing_creator' %}"><i class="mdi mdi-plus-circle-outline mr-2"></i>Dodaj nowy mailing</a>
-
+                                    {% if can_add_event == True %}
+                                        <a class="btn btn-primary px-4 mt-0 mb-3" href="{% url 'mailing_creator' %}"><i class="mdi mdi-plus-circle-outline mr-2"></i>Dodaj nowy mailing</a>
+                                    {% else %}
+                                        <button type="button" tabindex="0" class="btn btn-info waves-effect" data-toggle="popover" data-trigger="focus" title="" data-content="Możesz mieć tylko jeden aktywny (gotowy do wysłania) mailing na liście" data-original-title="Blokada dodawania">
+                                                <i class="mdi mdi-plus-circle-outline mr-2"></i>Dodaj nowy mailing
+                                        </button>
+                                        </br></br>
+                                    {% endif %}
                                     <div class="table-responsive">
                                         <table id="datatable" class="table">
                                             <thead class="thead-light">
@@ -67,59 +72,59 @@
 {% endblock %}
 
 {% block scripts %}
+    <script src="{% static '/assets/js/jquery.core.js' %}"></script>
+    <script>
+    var sending_mailing = $('#sending');
+    if (sending_mailing.length > 0) {
+        var mailing_id = sending_mailing.attr('value');
 
-<script>
-var sending_mailing = $('#sending');
-if (sending_mailing.length > 0) {
-    var mailing_id = sending_mailing.attr('value');
+        checkLiveResult(mailing_id);
+    }
 
-    checkLiveResult(mailing_id);
-}
-
-$(".mr-2a").click(function() {
-    var mailing_id = $(this).attr('value');
-    var info_badge = $("#spinner" + mailing_id);
-    info_badge.text("Wysyłanie");
-    info_badge.attr('badge-soft-primary', 'badge-soft-info');
-    info_badge.append("<div class=\"spinner-grow spinner-grow-sm\" role=\"status\"></div>");
-    $(this).hide();
-    var done = false;
-    $.ajax({
-        url: '/ajax/send_email/',
-        data: {
-            'mailing_id': mailing_id
-        },
-        dataType: 'json',
-    });
-
-    checkLiveResult(mailing_id);
-
-
-});
-
-function checkLiveResult(mailing_id) {
-    time = setInterval(function() {
+    $(".mr-2a").click(function() {
+        var mailing_id = $(this).attr('value');
+        var info_badge = $("#spinner" + mailing_id);
+        info_badge.text("Wysyłanie");
+        info_badge.attr('badge-soft-primary', 'badge-soft-info');
+        info_badge.append("<div class=\"spinner-grow spinner-grow-sm\" role=\"status\"></div>");
+        $(this).hide();
+        var done = false;
         $.ajax({
-            url: '/ajax/check_emails_sent',
+            url: '/ajax/send_email/',
             data: {
                 'mailing_id': mailing_id
             },
             dataType: 'json',
-            success: function(data) {
-                if (data.status) {
-                    setTimeout(
-                        function() {
-                            location.reload();
-                        }, 4000);
-                } else {
-                    $("#emails_sent_" + mailing_id).text(data.emails_sent);
-                    console.log(data.emails_sent)
-                }
-
-            }
         });
-    }, 1000);
-}
+
+        checkLiveResult(mailing_id);
+
+
+    });
+
+    function checkLiveResult(mailing_id) {
+        time = setInterval(function() {
+            $.ajax({
+                url: '/ajax/check_emails_sent',
+                data: {
+                    'mailing_id': mailing_id
+                },
+                dataType: 'json',
+                success: function(data) {
+                    if (data.status) {
+                        setTimeout(
+                            function() {
+                                location.reload();
+                            }, 4000);
+                    } else {
+                        $("#emails_sent_" + mailing_id).text(data.emails_sent);
+                        console.log(data.emails_sent)
+                    }
+
+                }
+            });
+        }, 1000);
+    }
 </script>
 
 {% endblock %}
