@@ -69,78 +69,57 @@
 {% block scripts %}
 
 <script>
-    console.log($('#sending').length)
+var sending_mailing = $('#sending');
+if (sending_mailing.length > 0) {
+    var mailing_id = sending_mailing.attr('value');
 
-    $(".mr-2a").click(function () {
-      var mailing_id = $(this).attr('value');
-      var info_badge = $( "#spinner"+mailing_id );
-      info_badge.text("Wysyłanie");
-      info_badge.attr('badge-soft-primary', 'badge-soft-info');
-      info_badge.append( "<div class=\"spinner-grow spinner-grow-sm\" role=\"status\"></div>" );
-      $(this).hide();
-      var done = false;
-      $.ajax({
+    checkLiveResult(mailing_id);
+}
+
+$(".mr-2a").click(function() {
+    var mailing_id = $(this).attr('value');
+    var info_badge = $("#spinner" + mailing_id);
+    info_badge.text("Wysyłanie");
+    info_badge.attr('badge-soft-primary', 'badge-soft-info');
+    info_badge.append("<div class=\"spinner-grow spinner-grow-sm\" role=\"status\"></div>");
+    $(this).hide();
+    var done = false;
+    $.ajax({
         url: '/ajax/send_email/',
         data: {
-          'mailing_id': mailing_id
+            'mailing_id': mailing_id
         },
         dataType: 'json',
-        // success: function (data) {
-        //   if (data.done) {
-        //     info_badge.text("Wysłano!");
-        //   } else {
-        //     info_badge.text("Błąd!!!");
-        //   }
-        //   setTimeout(
-        //     function()
-        //     {
-        //       location.reload();
-        //     }, 2000);
-        // }
+    });
 
-      });
-      console.log("sent rq");
-      time=setInterval(function(){
-         $.ajax({
+    checkLiveResult(mailing_id);
+
+
+});
+
+function checkLiveResult(mailing_id) {
+    time = setInterval(function() {
+        $.ajax({
             url: '/ajax/check_emails_sent',
             data: {
                 'mailing_id': mailing_id
             },
             dataType: 'json',
-            success: function (data) {
-                if(data.status) {
-              setTimeout(
-            function()
-            {
-              location.reload();
-            }, 4000);
+            success: function(data) {
+                if (data.status) {
+                    setTimeout(
+                        function() {
+                            location.reload();
+                        }, 4000);
                 } else {
-                   $( "#emails_sent_"+mailing_id).text(data.emails_sent);
-                  console.log(data.emails_sent)
+                    $("#emails_sent_" + mailing_id).text(data.emails_sent);
+                    console.log(data.emails_sent)
                 }
 
             }
         });
-    },1000);
-
-
-    // for (var int = 0; int < 10; int++) {
-    //         setTimeout(
-    //             function () {
-    //                 $.ajax({
-    //                     url: '/ajax/check_emails_sent',
-    //                     data: {
-    //                         'mailing_id': mailing_id
-    //                     },
-    //                     dataType: 'json',
-    //                     success: function (data) {
-    //                         console.log(data.emails_sent)
-    //                     }
-    //                 });
-    //             }
-    //             , 2000);
-    //     }
-    });
+    }, 1000);
+}
 </script>
 
 {% endblock %}
