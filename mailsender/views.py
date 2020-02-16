@@ -74,7 +74,7 @@ def send_email(request):
 
     for participant in participants:
         try:
-            email = EmailMultiAlternatives(mailing.subject, text_content, 'Organizator <leszek@kaminski>',
+            email = EmailMultiAlternatives(mailing.subject, text_content, 'ZipEvent Team <no-reply@slickcode.pl>',
                                            to=['{}'.format(participant.email)])
             email.attach_alternative(html_message, "text/html")
             email.send()
@@ -90,7 +90,7 @@ def send_email(request):
                 'done': False,
             }
             return JsonResponse(data)
-        time.sleep(4)
+        time.sleep(5)
     mailing.status = mailing.SENT
     mailing.send_date = datetime.datetime.now()
     mailing.save()
