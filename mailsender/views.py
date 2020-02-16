@@ -1,8 +1,10 @@
 import time
 
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseRedirect
-from django.shortcuts import reverse
-from django.views.generic.edit import CreateView
+from django.shortcuts import reverse, get_object_or_404
+from django.views.generic.edit import CreateView, DeleteView
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Mailing
@@ -93,3 +95,32 @@ def send_email(request):
     mailing.send_date = datetime.datetime.now()
     mailing.save()
     return JsonResponse(data)
+
+
+def check_emails_sent(request):
+    mailing_id = request.GET.get('mailing_id', None)
+    mailing = Mailing.objects.get(pk=mailing_id)
+    done = False
+    if mailing.participants_amount() == mailing.emails_sent:
+        done = True
+    data = {
+        'emails_sent': mailing.emails_sent,
+        'status': done
+    }
+    return JsonResponse(data)
+
+
+class MailingDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    template_name = 'mailing_delete.html'
+    success_message = 'Mailing został usunięty'
+
+    def get_object(self):
+        id = self.kwargs.get("id")
+        return get_object_or_404(Mailing, id=id)
+
+    def get_success_url(self):
+        return reverse('mailing_list')
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(MailingDeleteView, self).delete(request, *args, **kwargs)
