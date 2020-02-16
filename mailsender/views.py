@@ -74,7 +74,7 @@ def send_email(request):
 
     for participant in participants:
         try:
-            email = EmailMultiAlternatives(mailing.subject, text_content, 'ZipEvent Team <mateusz@luksurio.pl>',
+            email = EmailMultiAlternatives(mailing.subject, text_content, 'Organizator <leszek@kaminski>',
                                            to=['{}'.format(participant.email)])
             email.attach_alternative(html_message, "text/html")
             email.send()
@@ -101,6 +101,8 @@ def check_emails_sent(request):
     mailing_id = request.GET.get('mailing_id', None)
     mailing = Mailing.objects.get(pk=mailing_id)
     done = False
+    if mailing.status == mailing.ERROR:
+        done = True
     if mailing.participants_amount() == mailing.emails_sent:
         done = True
     data = {
