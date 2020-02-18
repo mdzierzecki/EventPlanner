@@ -2,7 +2,9 @@ from django.conf.urls import url
 from django.urls import path
 
 from .views import EventAddView, EventListView, EventDeleteView,  EventDetailParticipantAddView, EventUpdateView, \
-    ParticipantsListView, ParticipantDeleteView, ParticipantSuccessAddView, participant_export_csv
+    ParticipantsListView, ParticipantDeleteView, ParticipantSuccessAddView, participant_export_csv, \
+    participant_self_delete_view, participant_self_delete_succcess, participant_self_delete_error
+
 
 urlpatterns = [
     path('add-event/', EventAddView.as_view(), name="event_add_view"),
@@ -14,6 +16,11 @@ urlpatterns = [
     path('your-events/<int:id>/members', ParticipantsListView.as_view(), name="event_members_view"),
 
     path('your-events/member/<int:id>/delete', ParticipantDeleteView.as_view(), name="member_delete_view"),
+
+    # member self delete
+    path('member/self-delete', participant_self_delete_view, name="member_self_delete_view"),
+    path('member/delete/success', participant_self_delete_succcess, name="member_self_delete_success"),
+    path('member/delete/error', participant_self_delete_error, name="member_self_delete_error"),
 
     # both for event detail and participant form
     path('event/<int:pk>', EventDetailParticipantAddView.as_view(), name='event_detail'),

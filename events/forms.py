@@ -41,4 +41,8 @@ class ParticipantAddForm(forms.ModelForm):
         exclude = ('event', )
 
 
+class ParticipantSelfDelete(forms.Form):
+    your_email = forms.CharField(label='Email', max_length=100)
+
+
 

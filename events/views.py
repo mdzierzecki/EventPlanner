@@ -1,13 +1,13 @@
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect, get_object_or_404, reverse
-from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
+from django.shortcuts import render, get_object_or_404, reverse
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Event, Participant
-from .forms import EventAddForm, ParticipantAddForm
+from .forms import EventAddForm, ParticipantAddForm, ParticipantSelfDelete
 import csv
 from django.http import HttpResponse
 from django.core.mail import EmailMultiAlternatives
@@ -181,7 +181,48 @@ class ParticipantDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView)
         return super(ParticipantDeleteView, self).delete(request, *args, **kwargs)
 
 
-# OFFER DETAIL VIEW
+def participant_self_delete_view(request):
+
+    form = ParticipantSelfDelete(request.POST)
+
+    # If this is a POST request then process the Form data
+    if request.method == 'POST':
+        # Create a form instance and populate it with data from the request (binding):
+        form = ParticipantSelfDelete(request.POST)
+
+        # Check if the form is valid:
+        if form.is_valid():
+            try:
+                participant = Participant.objects.get(email=form.cleaned_data['your_email'])
+            except:
+                return HttpResponseRedirect(reverse('member_self_delete_error'))
+            # decrement event participants counter
+            event = participant.event
+            event.participants_amount -= 1
+            event.save()
+
+            participant.delete()
+            participant.save()
+
+            # redirect to a new URL:
+            return HttpResponseRedirect(reverse('member_self_delete_success'))
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'participant_self_delete.html', context)
+
+
+def participant_self_delete_succcess(request):
+    return render(request, 'participant_self_delete_success.html')
+
+
+def participant_self_delete_error(request):
+    return render(request, 'participant_self_delete_error.html')
+
+
+# Participant add success view
 class ParticipantSuccessAddView(DetailView):
 
     model = Event
