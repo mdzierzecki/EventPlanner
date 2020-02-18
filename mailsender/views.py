@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import reverse, get_object_or_404
-from django.views.generic.edit import CreateView, DeleteView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Mailing
@@ -161,3 +161,30 @@ class MailingDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
         return super(MailingDeleteView, self).delete(request, *args, **kwargs)
 
 
+class MailingUpdateView(LoginRequiredMixin, UpdateView):
+    model = Mailing
+    form_class = MailingAddForm
+    pk_url_kwarg = 'pk'
+    template_name = 'mailing_edit.html'
+
+    def get_object(self):
+        id = self.kwargs.get("id")
+        return get_object_or_404(Mailing, id=id)
+
+    def get_form_kwargs(self):
+        kwargs = super(MailingUpdateView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        event = Event.objects.get(pk=form.instance.event.id)
+        if event.participants_amount > 250:
+            messages.add_message(self.request, messages.ERROR,
+                                 'Nie możesz dodać mailingu dla wydarzenia które ma ponad 250 osób. Skontaktuj się z zespołem ZipEvent.')
+            return HttpResponseRedirect(reverse('mailing_list'))
+
+        obj.author = self.request.user
+        obj.save()
+        messages.add_message(self.request, messages.SUCCESS, 'Mailing poprawnie zapisany.')
+        return HttpResponseRedirect(reverse('mailing_list'))

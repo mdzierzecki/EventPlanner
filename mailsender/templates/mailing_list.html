@@ -62,7 +62,7 @@
                                                     {% if mailing.status == mailing.READY or mailing.status == mailing.ERROR %}
                                                     <a href="#" class="mr-2a" id="send_button" value="{{ mailing.id }}">WYŚLIJ</a>
                                                     {% endif %}
-                                                    <a href="#" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                                    <a href="{{ mailing.id }}/edit" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
                                                     <a href="{{ mailing.id }}/delete"><i class="fas fa-trash-alt text-danger font-16"></i></a>
                                                 </td>
                                             </tr><!--end tr-->
