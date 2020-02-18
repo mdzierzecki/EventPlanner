@@ -16,6 +16,7 @@ from django.http import JsonResponse
 import datetime
 from django.db.models import Q
 from django.core.mail import get_connection, EmailMultiAlternatives
+from django.contrib.auth.models import User
 
 
 class MailingListView(LoginRequiredMixin, ListView):
@@ -90,8 +91,11 @@ def send_email(request):
     for participant in participants:
         participants_list.append(participant.email)
 
-    # divide = lambda lst, sz: [lst[i:i + sz] for i in range(0, len(lst), sz)]
+    user = User.objects.get(pk=request.user.id)
 
+    participants_list.append(user.email)
+    # divide = lambda lst, sz: [lst[i:i + sz] for i in range(0, len(lst), sz)]
+    print(participants_list)
     try:
         connection = get_connection()  # uses SMTP server specified in settings.py
         connection.open()
@@ -107,7 +111,7 @@ def send_email(request):
             'done': True,
         }
         # result = send_mass_html_mail(message1, mailing_id)
-        mailing.emails_sent += len(participants_list)
+        mailing.emails_sent += len(participants_list)-1
         mailing.save()
 
         # if len(participants) != mailing.emails_sent:
