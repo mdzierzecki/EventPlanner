@@ -75,9 +75,8 @@ def send_email(request):
     html = loader.render_to_string(
         'email_mailing/email_mailing.html',
         {
-            'user_name': "Dupa",
-            'event_title': "fas",
-            'event_id': 2,
+            'event_title': mailing.event.title,
+            'event_id': mailing.event.id,
             'email_text': mailing.text,
 
         }
