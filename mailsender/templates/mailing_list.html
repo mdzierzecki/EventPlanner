@@ -10,6 +10,14 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
+                                     <div class="alert alert-light mb-0" role="alert">
+                                        <h4 class="alert-heading font-18">Informacja</h4>
+                                        <p>W kontach bezpłatnych mailing może być obsługiwany dla wydarzeń do 250 osób. W celu zwiększenia tego limitu, prosimy o kontakt z administratorem.</p>
+                                        <p class="mb-0">Wysyłka jest realizowana natychmiastowo. Za treść mailów odpowiada wyłącznie organizator wydarzenia. Administracja ZipEvent.pl udostępnia jedynie narzędzie wysyłkowe, nie weryfikuje mailingów i nie ponosi odpowiedzialności za ich treść.</p>
+                                        <br>
+                                         <p class="mb-0">Wysyłka zostanie również zrealizowana na Twój email. </p>
+                                    </div>
+                                    <br><br>
                                     {% if can_add_event == True %}
                                         <a class="btn btn-primary px-4 mt-0 mb-3" href="{% url 'mailing_creator' %}"><i class="mdi mdi-plus-circle-outline mr-2"></i>Dodaj nowy mailing</a>
                                     {% else %}
