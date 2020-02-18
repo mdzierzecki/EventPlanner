@@ -193,16 +193,18 @@ def participant_self_delete_view(request):
         # Check if the form is valid:
         if form.is_valid():
             try:
-                participant = Participant.objects.get(email=form.cleaned_data['your_email'])
+                participants = Participant.objects.filter(email=form.cleaned_data['your_email'])
             except:
                 return HttpResponseRedirect(reverse('member_self_delete_error'))
             # decrement event participants counter
-            event = participant.event
-            event.participants_amount -= 1
-            event.save()
 
-            participant.delete()
-            participant.save()
+            if len(participants) == 0:
+                return HttpResponseRedirect(reverse('member_self_delete_error'))
+            for participant in participants:
+                event = participant.event
+                event.participants_amount -= 1
+                event.save()
+                participant.delete()
 
             # redirect to a new URL:
             return HttpResponseRedirect(reverse('member_self_delete_success'))
