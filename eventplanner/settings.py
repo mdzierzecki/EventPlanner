@@ -138,3 +138,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media/'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 's11.linuxpl.com'
+EMAIL_HOST_USER = 'no-reply@slickcode.pl'
+EMAIL_HOST_PASSWORD = 'B2bHCb1#1}%(43^'
+SERVER_EMAIL = 's11.linuxpl.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = False

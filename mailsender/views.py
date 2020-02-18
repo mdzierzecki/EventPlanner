@@ -15,6 +15,7 @@ from django.template import loader
 from django.http import JsonResponse
 import datetime
 from django.db.models import Q
+from django.core.mail import get_connection, EmailMultiAlternatives
 
 
 class MailingListView(LoginRequiredMixin, ListView):
@@ -51,6 +52,11 @@ class EventMailingCreator(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         obj = form.save(commit=False)
+        event = Event.objects.get(pk=form.instance.event.id)
+        if event.participants_amount > 250:
+            messages.add_message(self.request, messages.ERROR, 'Nie możesz dodać mailingu dla wydarzenia które ma ponad 250 osób. Skontaktuj się z zespołem ZipEvent.')
+            return HttpResponseRedirect(reverse('mailing_list'))
+
         obj.event_id = form.instance.event.id
         obj.author = self.request.user
         obj.save()
@@ -65,9 +71,8 @@ def send_email(request):
     mailing.save()
 
     participants = Participant.objects.all().filter(event=mailing.event).order_by('reg_date')
-
     text_content = '{}'.format(mailing.text)
-    html_message = loader.render_to_string(
+    html = loader.render_to_string(
         'email_mailing/email_mailing.html',
         {
             'user_name': "Dupa",
@@ -82,25 +87,40 @@ def send_email(request):
         'done': True,
     }
 
+    participants_list = []
     for participant in participants:
-        try:
-            email = EmailMultiAlternatives(mailing.subject, text_content, 'ZipEvent Team <mateusz@luksurio.pl>',
-                                           to=['{}'.format(participant.email)])
-            email.attach_alternative(html_message, "text/html")
-            email.send()
-            data = {
-                'done': True,
-            }
-            mailing.emails_sent += 1
-            mailing.save()
-        except:
-            mailing.status = mailing.ERROR
-            mailing.save()
-            data = {
-                'done': False,
-            }
-            return JsonResponse(data)
-        time.sleep(5)
+        participants_list.append(participant.email)
+
+    # divide = lambda lst, sz: [lst[i:i + sz] for i in range(0, len(lst), sz)]
+
+    try:
+        connection = get_connection()  # uses SMTP server specified in settings.py
+        connection.open()
+
+        text_content = "{}".format(mailing.text)
+        msg = EmailMultiAlternatives(mailing.subject, text_content, "ZipEvent Team <no-reply@slickcode.pl>", bcc=participants_list,
+                                     connection=connection)
+        msg.attach_alternative(html, "text/html")
+        msg.send()
+
+        connection.close()  # Cleanup
+        data = {
+            'done': True,
+        }
+        # result = send_mass_html_mail(message1, mailing_id)
+        mailing.emails_sent += len(participants_list)
+        mailing.save()
+
+        # if len(participants) != mailing.emails_sent:
+        #     for a in range(0, 900):
+        #         time.sleep(1)
+    except:
+        mailing.status = mailing.ERROR
+        mailing.save()
+        data = {
+            'done': False,
+        }
+        return JsonResponse(data)
     mailing.status = mailing.SENT
     mailing.send_date = datetime.datetime.now()
     mailing.save()
@@ -136,3 +156,5 @@ class MailingDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
         return super(MailingDeleteView, self).delete(request, *args, **kwargs)
+
+

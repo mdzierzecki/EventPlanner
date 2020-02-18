@@ -12,11 +12,11 @@
                                 <div class="float-right">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Event Planner</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:void(0);">{{ object }}</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:void(0);">Mailing: {{ object }}</a></li>
                                         <li class="breadcrumb-item active">Usuń</li>
                                     </ol><!--end breadcrumb-->
                                 </div><!--end /div-->
-                                <h4 class="page-title">Usuwanie wydarzenia</h4>
+                                <h4 class="page-title">Usuwanie mailingu</h4>
                             </div><!--end page-title-box-->
                         </div><!--end col-->
                     </div><!--end row-->
@@ -36,7 +36,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="alert alert-dark border-0" style="color:#ffffff; background-color: #212f56; padding: 20px; border-radius: 0;" align="center" valign="top">
-                                                         Czy na pewno chcesz usunąć wydarzenia "{{ object }}"?
+                                                         Czy na pewno chcesz usunąć mailing "{{ object }}"?
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -45,12 +45,12 @@
 
                                                             <tr>
                                                                 <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; font-size: 14px; padding: 10px 10px 20px;" valign="top">
-                                                                    Gdy usuniesz wydarzenie utracisz statystyki, dane zapisanych osób i wszystkie informacje dotyczące wydarzenia.
+                                                                    Gdy usuniesz mailing utracisz statystyki, zapisany szkic mailingu i wszystkie dotyczące jego informacje.
                                                                 </td>
                                                             </tr>
                                                             <tr><form method="post">{% csrf_token %}
                                                                 <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; font-size: 14px; padding: 0 0 20px;" valign="top">
-                                                                    <center><input type="submit" value="   Tak, chcę usunąć wydarzenie   " class="btn-primary" style=" font-size: 14px; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: block; border-radius: 5px;  background-color: #4d79f6; border-color: #4d79f6; padding: 8px 0;"></input>
+                                                                    <center><input type="submit" value="   Tak, chcę usunąć mailing   " class="btn-primary" style=" font-size: 14px; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: block; border-radius: 5px;  background-color: #4d79f6; border-color: #4d79f6; padding: 8px 0;"></input>
                                                                     </center>
                                                                 </td>
                                                                 </form>

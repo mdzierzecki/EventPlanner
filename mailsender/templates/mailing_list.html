@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+
+               <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    {% if can_add_event == True %}
+                                        <a class="btn btn-primary px-4 mt-0 mb-3" href="{% url 'mailing_creator' %}"><i class="mdi mdi-plus-circle-outline mr-2"></i>Dodaj nowy mailing</a>
+                                    {% else %}
+                                        <button type="button" tabindex="0" class="btn btn-info waves-effect" data-toggle="popover" data-trigger="focus" title="" data-content="Możesz mieć tylko jeden aktywny (gotowy do wysłania) mailing na liście" data-original-title="Blokada dodawania">
+                                                <i class="mdi mdi-plus-circle-outline mr-2"></i>Dodaj nowy mailing
+                                        </button>
+                                        </br></br>
+                                    {% endif %}
+                                    <div class="table-responsive">
+                                        <table id="datatable" class="table">
+                                            <thead class="thead-light">
+                                            <tr>
+
+                                                <th>Temat</th>
+                                                <th>Wydarzenie</th>
+                                                <th>Data wysłania</th>
+                                                <th>Status</th>
+                                                <th>Pozostało/Wysłano</th>
+                                                <th class="text-right">Action</th>
+                                            </tr><!--end tr-->
+                                            </thead>
+
+                                            <tbody>
+                                            {% for mailing in mailing_list %}
+                                            <tr>
+                                                <td>{{ mailing.subject }}</td>
+                                                <td>{{ mailing.event.title }}</td>
+                                                <td>{{ mailing.send_date }}</td>
+                                                <td>
+                                                    {% if mailing.status == mailing.READY %}
+                                                    <span class="badge badge-soft-primary" style="font-size: 100%" id="spinner{{ mailing.id }}">Gotowy do wysyłki</span>
+                                                    {% elif mailing.status == mailing.IN_PROGRESS %}
+                                                    <span class="badge badge-soft-purple" style="font-size: 100%" id="sending" value="{{ mailing.id }}">Wysyłanie...<div class="spinner-grow spinner-grow-sm" role="status"></div></span>
+                                                    {% elif mailing.status == mailing.SENT %}
+                                                    <span class="badge badge-soft-success" style="font-size: 100%" id="spinner{{ mailing.id }}">Wysłano</span>
+                                                    {% elif mailing.status == mailing.ERROR %}
+                                                    <span class="badge badge-soft-danger" style="font-size: 100%" id="spinner{{ mailing.id }}">Błąd!</span>
+                                                    {% endif %}
+                                                </td>
+                                                <td>{{ mailing.participants_amount }}/<a id="emails_sent_{{ mailing.id }}">{{ mailing.emails_sent }}</a></td>
+                                                <td class="text-right">
+                                                    {% if mailing.status == mailing.READY or mailing.status == mailing.ERROR %}
+                                                    <a href="#" class="mr-2a" id="send_button" value="{{ mailing.id }}">WYŚLIJ</a>
+                                                    {% endif %}
+                                                    <a href="#" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                                    <a href="{{ mailing.id }}/delete"><i class="fas fa-trash-alt text-danger font-16"></i></a>
+                                                </td>
+                                            </tr><!--end tr-->
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div><!--end card-body-->
+                            </div><!--end card-->
+                        </div> <!--end col-->
+                    </div><!--end row-->
+
+
+
+
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static '/assets/js/jquery.core.js' %}"></script>
+
+<script>
+var sending_mailing = $('#sending');
+if (sending_mailing.length > 0) {
+    var mailing_id = sending_mailing.attr('value');
+
+    checkLiveResult(mailing_id);
+}
+
+$(".mr-2a").click(function() {
+    var mailing_id = $(this).attr('value');
+    var info_badge = $("#spinner" + mailing_id);
+    info_badge.text("Wysyłanie");
+    info_badge.attr('badge-soft-primary', 'badge-soft-info');
+    info_badge.append("<div class=\"spinner-grow spinner-grow-sm\" role=\"status\"></div>");
+    $(this).hide();
+    var done = false;
+    $.ajax({
+        url: '/ajax/send_email/',
+        data: {
+            'mailing_id': mailing_id
+        },
+        dataType: 'json',
+    });
+
+    checkLiveResult(mailing_id);
+
+
+});
+
+function checkLiveResult(mailing_id) {
+    time = setInterval(function() {
+        $.ajax({
+            url: '/ajax/check_emails_sent',
+            data: {
+                'mailing_id': mailing_id
+            },
+            dataType: 'json',
+            success: function(data) {
+                if (data.status) {
+                    setTimeout(
+                        function() {
+                            location.reload();
+                        }, 4000);
+                } else {
+                    $("#emails_sent_" + mailing_id).text(data.emails_sent);
+                    console.log(data.emails_sent)
+                }
+
+            }
+        });
+    }, 1000);
+}
+</script>
+
+{% endblock %}

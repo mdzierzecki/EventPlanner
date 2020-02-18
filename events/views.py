@@ -123,7 +123,7 @@ class EventDetailParticipantAddView(CreateView):
         }
         )
 
-        email = EmailMultiAlternatives('Potwierdzenie uczestnictwa w wydarzeniu', text_content, 'ZipEvent Team <mateusz@luksurio.pl>', to=['{}'.format(mail)])
+        email = EmailMultiAlternatives('Potwierdzenie uczestnictwa w wydarzeniu', text_content, 'ZipEvent Team <no-reply@slickcode.pl>', to=['{}'.format(mail)])
         email.attach_alternative(html_message, "text/html")
         email.send()
 
