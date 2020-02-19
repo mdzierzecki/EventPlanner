@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
@@ -25,8 +25,10 @@ class EventAddView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         obj = form.save(commit=False)
         obj.author = self.request.user
         obj.save()
+
+        last_user_event = Event.objects.filter(author=self.request.user).last()
         messages.add_message(self.request, messages.SUCCESS, 'Wydarzenie poprawnie dodane.')
-        return HttpResponseRedirect(reverse('user_events_list'))
+        return redirect(reverse('event_panel_view', kwargs={'id': last_user_event.pk}))
 
 
 class EventDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
@@ -60,7 +62,9 @@ class EventUpdateView(LoginRequiredMixin, UpdateView):
         obj.author = self.request.user
         obj.save()
         messages.add_message(self.request, messages.SUCCESS, 'Wydarzenie poprawnie zapisane.')
-        return HttpResponseRedirect(reverse('user_events_list'))
+
+        last_user_event = Event.objects.filter(author=self.request.user).last()
+        return redirect(reverse('event_panel_view', kwargs={'id': last_user_event.pk}))
 
 
 class EventListView(LoginRequiredMixin, ListView):
