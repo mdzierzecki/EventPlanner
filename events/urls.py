@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.urls import path
 
 from .views import EventAddView, EventListView, EventDeleteView,  EventDetailParticipantAddView, EventUpdateView, \
-    ParticipantsListView, ParticipantDeleteView, ParticipantSuccessAddView, participant_export_csv, \
+    EventPanelView, ParticipantDeleteView, ParticipantSuccessAddView, participant_export_csv, \
     participant_self_delete_view, participant_self_delete_succcess, participant_self_delete_error
 
 
@@ -13,7 +13,7 @@ urlpatterns = [
 
     path('your-events/<int:id>/edit', EventUpdateView.as_view(), name="event_update_view"),
 
-    path('your-events/<int:id>/members', ParticipantsListView.as_view(), name="event_members_view"),
+    path('your-events/<int:id>/panel', EventPanelView.as_view(), name="event_panel_view"),
 
     path('your-events/member/<int:id>/delete', ParticipantDeleteView.as_view(), name="member_delete_view"),
 

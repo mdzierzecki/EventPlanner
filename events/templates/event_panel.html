@@ -110,6 +110,12 @@
                         <td>Nie ustawiono </td>
                         {% endif %}
                      </tr>
+                     {% if event.if_additional_field == True %}
+                     <tr>
+                        <th>Odpowiedzi na tak: </th>
+                        <td>{{ question_result }} </td>
+                     </tr>
+                     {% endif %}
                      <tr>
                         <th>Ilość uczestników/limit</th>
                         {% if event.if_participants_limit == True %}

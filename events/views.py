@@ -132,9 +132,9 @@ class EventDetailParticipantAddView(CreateView):
 
 # Participants views
 
-class ParticipantsListView(LoginRequiredMixin, ListView):
+class EventPanelView(LoginRequiredMixin, ListView):
 
-    template_name = 'event_members.html'
+    template_name = 'event_panel.html'
     model = Participant
     context_object_name = 'participants'
 
@@ -168,7 +168,7 @@ class ParticipantDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView)
     def get_success_url(self):
         participant = Participant.objects.get(pk=self.kwargs.get('id'))
 
-        return reverse('event_members_view', kwargs={'id':participant.event.id})
+        return reverse('event_panel_view', kwargs={'id':participant.event.id})
 
     def delete(self, request, *args, **kwargs):
         # decrement event participants counter
