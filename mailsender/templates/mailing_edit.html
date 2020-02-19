@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block content %}
-
 {% if form.errors %}
     {% for field in form %}
         {% for error in field.errors %}
@@ -18,16 +17,15 @@
         </div>
         {% endfor %}
     {% endfor %}
-        {% for error in form.non_field_errors %}
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-           <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
-           </button>
-           <strong>{{ error|escape }}</strong>
-        </div>
-        {% endfor %}
-    {% endif %}
-
+    {% for error in form.non_field_errors %}
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+       <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
+       </button>
+       <strong>{{ error|escape }}</strong>
+    </div>
+    {% endfor %}
+{% endif %}
 <!-- Page Content-->
 <div class="container-fluid">
    <!-- Page-Title -->
@@ -36,13 +34,13 @@
          <div class="page-title-box">
             <div class="float-right">
                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="javascript:void(0);">Event Planner</a></li>
-                  <li class="breadcrumb-item active">Wyślij mailing</li>
+                  <li class="breadcrumb-item"><a href="{% url 'mailing_list' %}">Mailing</a></li>
+                  <li class="breadcrumb-item active">Edytuj mailing</li>
                </ol>
                <!--end breadcrumb-->
             </div>
             <!--end /div-->
-            <h4 class="page-title">Wyślij mailing do uczestników</h4>
+            <h4 class="page-title">Edytuj mailing</h4>
          </div>
          <!--end page-title-box-->
       </div>
@@ -54,8 +52,8 @@
       <div class="col-lg-9">
          <div class="card">
             <div class="card-body">
-               <h4 class="mt-0 header-title">Kreator mailingu</h4>
-               <p class="text-muted mb-3">Tutaj możesz stworzyć mailing do uczestniów wydarzenia.
+               <h4 class="mt-0 header-title">Edytor mailingu</h4>
+               <p class="text-muted mb-3">Tutaj możesz dowolnie edytować mailing.
                </p>
                <form method="post">
                   {% csrf_token %}
@@ -74,7 +72,7 @@
                            </div>
                         </div>
                         <div class="form-group row">
-                           <label class="col-sm-2 col-form-label text-right">Wydarzenie: </label>
+                           <label class="col-sm-2 col-form-label text-right">Event: </label>
                            <div class="col-sm-10">
                               {{ form.event }}
                            </div>
@@ -98,7 +96,7 @@
                   <div class="time-item">
                      <div class="item-info">
                         <div class="d-flex justify-content-between align-items-center">
-                           <h6 class="m-0">Utwórz mailing</h6>
+                           <h6 class="m-0">Edytuj mailing</h6>
                         </div>
                         <p class="text-muted mt-3"> W edytorze po lewej stronie możesz dowolnie skonfigurować swój mailing.
                            Polecamy korzystać z czcionki wielkości Heading 3 dla najlepszej czytelności mailingu.
@@ -134,7 +132,6 @@
 </div>
 <!--end row-->
 </div>
-
 {% endblock %}
 
 {% block scripts %}
