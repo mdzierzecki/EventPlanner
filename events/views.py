@@ -1,11 +1,11 @@
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from .models import Event, Participant
 from .forms import EventAddForm, ParticipantAddForm, ParticipantSelfDelete
 import csv
@@ -39,6 +39,12 @@ class EventDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
         id = self.kwargs.get("id")
         return get_object_or_404(Event, id=id)
 
+    def dispatch(self, request, *args, **kwargs):
+        event = Event.objects.get(pk=self.kwargs.get('id'))
+        if event.author != self.request.user:
+            return HttpResponseForbidden()
+        return super(EventDeleteView, self).dispatch(request, *args, **kwargs)
+
     def get_success_url(self):
         return reverse('user_events_list')
 
@@ -56,6 +62,12 @@ class EventUpdateView(LoginRequiredMixin, UpdateView):
     def get_object(self):
         id = self.kwargs.get("id")
         return get_object_or_404(Event, id=id)
+
+    def dispatch(self, request, *args, **kwargs):
+        event = Event.objects.get(pk=self.kwargs.get('id'))
+        if event.author != self.request.user:
+            return HttpResponseForbidden()
+        return super(EventUpdateView, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         obj = form.save(commit=False)
@@ -146,6 +158,12 @@ class EventPanelView(LoginRequiredMixin, ListView):
         queryset = Participant.objects.all().filter(event=self.kwargs.get('id'))
         return queryset
 
+    def dispatch(self, request, *args, **kwargs):
+        event = Event.objects.get(pk=self.kwargs.get('id'))
+        if event.author != self.request.user:
+            return HttpResponseForbidden()
+        return super(EventPanelView, self).dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         event = Event.objects.get(pk=self.kwargs['id'])
         kwargs['event'] = event
@@ -173,6 +191,12 @@ class ParticipantDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView)
         participant = Participant.objects.get(pk=self.kwargs.get('id'))
 
         return reverse('event_panel_view', kwargs={'id':participant.event.id})
+
+    def dispatch(self, request, *args, **kwargs):
+        participant = Participant.objects.get(pk=self.kwargs.get('id'))
+        if participant.event.author != self.request.user:
+            return HttpResponseForbidden()
+        return super(ParticipantDeleteView, self).dispatch(request, *args, **kwargs)
 
     def delete(self, request, *args, **kwargs):
         # decrement event participants counter
@@ -220,7 +244,7 @@ def participant_self_delete_view(request):
     return render(request, 'participant_self_delete.html', context)
 
 
-def participant_self_delete_succcess(request):
+def participant_self_delete_success(request):
     return render(request, 'participant_self_delete_success.html')
 
 

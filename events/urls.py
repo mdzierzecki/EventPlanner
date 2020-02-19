@@ -3,7 +3,7 @@ from django.urls import path
 
 from .views import EventAddView, EventListView, EventDeleteView,  EventDetailParticipantAddView, EventUpdateView, \
     EventPanelView, ParticipantDeleteView, ParticipantSuccessAddView, participant_export_csv, \
-    participant_self_delete_view, participant_self_delete_succcess, participant_self_delete_error
+    participant_self_delete_view, participant_self_delete_success, participant_self_delete_error
 
 
 urlpatterns = [
@@ -19,7 +19,7 @@ urlpatterns = [
 
     # member self delete
     path('member/self-delete', participant_self_delete_view, name="member_self_delete_view"),
-    path('member/delete/success', participant_self_delete_succcess, name="member_self_delete_success"),
+    path('member/delete/success', participant_self_delete_success, name="member_self_delete_success"),
     path('member/delete/error', participant_self_delete_error, name="member_self_delete_error"),
 
     # both for event detail and participant form

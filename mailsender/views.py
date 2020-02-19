@@ -2,7 +2,7 @@ import time
 
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import reverse, get_object_or_404
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
@@ -156,6 +156,12 @@ class MailingDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     def get_success_url(self):
         return reverse('mailing_list')
 
+    def dispatch(self, request, *args, **kwargs):
+        mailing = Mailing.objects.get(pk=self.kwargs.get('id'))
+        if mailing.author != self.request.user:
+            return HttpResponseForbidden()
+        return super(MailingDeleteView, self).dispatch(request, *args, **kwargs)
+
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
         return super(MailingDeleteView, self).delete(request, *args, **kwargs)
@@ -175,6 +181,12 @@ class MailingUpdateView(LoginRequiredMixin, UpdateView):
         kwargs = super(MailingUpdateView, self).get_form_kwargs()
         kwargs['user'] = self.request.user
         return kwargs
+
+    def dispatch(self, request, *args, **kwargs):
+        mailing = Mailing.objects.get(pk=self.kwargs.get('id'))
+        if mailing.author != self.request.user:
+            return HttpResponseForbidden()
+        return super(MailingUpdateView, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         obj = form.save(commit=False)
