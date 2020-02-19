@@ -113,19 +113,22 @@ class EventDetailParticipantAddView(CreateView):
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
+        obj = form.save(commit=False)
+        mail = obj.email
+        name = obj.name
+
         event = Event.objects.get(pk=self.kwargs['pk'])
         if event.if_participants_limit:
             if event.participants_amount >= event.participants_limit:
                 return HttpResponseRedirect(reverse('event_detail', kwargs={'pk': self.kwargs.get('pk')}))
-        obj = form.save(commit=False)
-        mail = obj.email
-        name = obj.name
+
+        queryset = Participant.objects.filter(email=mail, event=event)
+        if len(queryset) >= 1:
+            messages.add_message(self.request, messages.ERROR, 'Jesteś już dodany do tego wydarzenia')
+            return HttpResponseRedirect(reverse('event_detail', kwargs={'pk': self.kwargs.get('pk')}))
+
         obj.event_id = self.kwargs.get('pk')
         obj.save()
-
-        # participants increment counter
-        event.participants_amount += 1
-        event.save()
 
         # confirmation email
         text_content = 'Dziekujemy za zapisanie na wydarzenie. Ten email jest potwierdzeniem rejestracji na wydarzenie, prosimy na niego nie odpowiadać. '
@@ -167,6 +170,7 @@ class EventPanelView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         event = Event.objects.get(pk=self.kwargs['id'])
         kwargs['event'] = event
+        kwargs['participants_amount_real'] = len(Participant.objects.filter(event=event))
 
         # conversion rate shows user how many people who viewed event in real joined to the event
         if event.event_views > 0:

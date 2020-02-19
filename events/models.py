@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
@@ -77,7 +78,11 @@ class Participant(models.Model):
 
     def save(self, force_insert=False, force_update=False):
         # if self.id is None:
-        self.event.participants_amount +1
+        queryset = Participant.objects.filter(event=self.event)
+        if self.event.if_participants_limit:
+            if len(queryset) >= self.event.participants_limit:
+                raise ValidationError('Miejsca na wydarzenie skończyły się :(')
+        self.event.participants_amount += 1
         self.event.save()
 
         super(Participant, self).save(force_insert, force_update)
