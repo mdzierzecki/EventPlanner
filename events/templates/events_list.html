@@ -36,10 +36,10 @@
                                                 {% elif event.event_status == 'Zakończone' %}
                                                 <td><span class="badge badge-soft-danger" style="font-size: 100%" >Zakończony</span></td>
                                                 {% endif %}
-                                                <td class="text-right">
-                                                    <a href="{{ event.id }}/members" class="mr-2"><i class="fas fa-chart-bar text-info font-16"></i></a>
-                                                    <a href="{{ event.id }}/edit" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
-                                                    <a href="{{ event.id }}/delete"><i class="fas fa-trash-alt text-danger font-16"></i></a>
+                                                <td class="">
+                                                    <button type="button" onclick="location.href='{{ event.id }}/members';" class="btn-md btn-info btn-square btn-outline-dashed waves-effect waves-light"><i class="mdi mdi-apps mr-2"></i>Panel</button>
+<!--                                                    <a href="{{ event.id }}/edit" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>-->
+<!--                                                    <a href="{{ event.id }}/delete"><i class="fas fa-trash-alt text-danger font-16"></i></a>-->
                                                 </td>
                                             </tr><!--end tr-->
                                            {% endfor %}
@@ -54,7 +54,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="header-title mt-0 mb-3">OD CZEGO ZACZĄĆ?</h4>
-                                    <div class="slimscroll hospital-dash-activity">
+                                    <br>
                                         <div class="activity">
                                             <i class="mdi mdi-pencil-outline icon-success"></i>
                                             <div class="time-item">
@@ -103,7 +103,7 @@
 
 
                                         </div><!--end activity-->
-                                    </div>
+
                                 </div>  <!--end card-body-->
                             </div><!--end card-->
                         </div>
