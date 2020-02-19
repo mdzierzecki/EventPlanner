@@ -75,8 +75,8 @@ class EventUpdateView(LoginRequiredMixin, UpdateView):
         obj.save()
         messages.add_message(self.request, messages.SUCCESS, 'Wydarzenie poprawnie zapisane.')
 
-        last_user_event = Event.objects.filter(author=self.request.user).last()
-        return redirect(reverse('event_panel_view', kwargs={'id': last_user_event.pk}))
+        event = Event.objects.get(id=self.kwargs.get("id"))
+        return redirect(reverse('event_panel_view', kwargs={'id': event.pk}))
 
 
 class EventListView(LoginRequiredMixin, ListView):
