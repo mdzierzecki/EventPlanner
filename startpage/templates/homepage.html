@@ -35,19 +35,24 @@
 
           <div class="col-auto col-lg-auto1 mr-auto mx-lg-auto d-flex align-items-center">
             <button class="navbar-toggler" type="button"><span class="navbar-toggler-icon"></span></button>
-          <a class="navbar-brand" href="/">
-            <img class="logo-dark" src="{% static '/assets_landing/img/logo-dark.png' %}" alt="logo">
-            <img class="logo-light" src="{% static '/assets_landing/img/logo-light.png' %}" alt="logo">
+          <a class="navbar-brand mobilehide desktopshow" href="/">
+            <img class="logo-dark" src="{% static '/assets_landing/img/logo-dark-full.png' %}" alt="logo" style="width: 120px; height: 25px;">
+            <img class="logo-light" src="{% static '/assets_landing/img/logo-full.png' %}" alt="logo" style="width: 140px; height: 29px;">
+          </a>
+
+          <a class="navbar-brand desktophide mobileshow" href="/">
+            <img class="logo-dark" src="{% static '/assets_landing/img/logo-dark-full.png' %}" alt="logo" style="width: 120px; height: 25px;">
+            <img class="logo-light" src="{% static '/assets_landing/img/logo-full.png' %}" alt="logo" style="width: 120px; height: 25px;">
           </a>
           </div>
 
           <div class="col-auto col-lg-5 text-right">
             {% if user.is_authenticated %}
-            <a class="btn btn-sm btn-round btn-outline-success d-none d-lg-inline-block mr-2" href="{% url 'user_events_list' %}">Panel klienta</a>
-            <a class="btn btn-sm btn-round btn-success" href="{% url 'logout_view' %}">Wyloguj się</a>
+            <a class="btn btn-sm btn-round btn-outline-success  d-lg-inline-block mr-2" href="{% url 'user_events_list' %}">Panel</a>
+            <a class="btn btn-sm btn-round btn-success mobilehide" href="{% url 'logout_view' %}">Wyloguj się</a>
 
             {% else %}
-            <a class="btn btn-sm btn-round btn-outline-success d-none d-lg-inline-block mr-2" href="{% url 'register_account' %}">Zarejestruj się</a>
+            <a class="btn btn-sm btn-round btn-outline-success mobilehide d-lg-inline-block mr-2" href="{% url 'register_account' %}">Zarejestruj się</a>
             <a class="btn btn-sm btn-round btn-success" href="{% url 'login_view' %}">Zaloguj się</a>
             {% endif %}
 
@@ -227,7 +232,7 @@
         <div class="row" id="contact">
 
           <div class="col-12">
-            <p><a href="#"><img src="{% static '/assets_landing/img/logo-dark.png' %}" alt="logo"></a></p>
+            <p><a href="#"><img src="{% static '/assets_landing/img/logo-dark-full.png' %}" alt="logo" style="width: 140px; height: 29px;"></a></p>
           </div>
 
           <div class="col-xl-5">

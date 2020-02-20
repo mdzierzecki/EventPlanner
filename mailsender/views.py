@@ -94,29 +94,29 @@ def send_email(request):
     user = User.objects.get(pk=request.user.id)
 
     participants_list.append(user.email)
-    # divide = lambda lst, sz: [lst[i:i + sz] for i in range(0, len(lst), sz)]
+    divide = lambda lst, sz: [lst[i:i + sz] for i in range(0, len(lst), sz)]
+    real_list = divide(participants_list, 90)
     print(participants_list)
     try:
-        connection = get_connection()  # uses SMTP server specified in settings.py
-        connection.open()
-
         text_content = "{}".format(mailing.text)
-        msg = EmailMultiAlternatives(mailing.subject, text_content, "ZipEvent Team <no-reply@slickcode.pl>", bcc=participants_list,
-                                     connection=connection)
-        msg.attach_alternative(html, "text/html")
-        msg.send()
+        for part_list in real_list:
+            connection = get_connection()  # uses SMTP server specified in settings.py
+            connection.open()
+            msg = EmailMultiAlternatives(mailing.subject, text_content, "ZipEvent Team <no-reply@slickcode.pl>", bcc=part_list,
+                                         connection=connection)
+            msg.attach_alternative(html, "text/html")
+            msg.send()
+            connection.close()  # Cleanu
+            mailing.emails_sent += len(part_list)
+            mailing.save()
+            time.sleep(3)
 
-        connection.close()  # Cleanup
         data = {
             'done': True,
         }
-        # result = send_mass_html_mail(message1, mailing_id)
-        mailing.emails_sent += len(participants_list)-1
-        mailing.save()
 
-        # if len(participants) != mailing.emails_sent:
-        #     for a in range(0, 900):
-        #         time.sleep(1)
+        mailing.emails_sent -= 1
+        mailing.save()
     except:
         mailing.status = mailing.ERROR
         mailing.save()
