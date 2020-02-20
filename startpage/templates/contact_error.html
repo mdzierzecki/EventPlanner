@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Page Content-->
+<div class="container-fluid">
+   <!-- Page-Title -->
+   <div class="row">
+      <div class="col-sm-12">
+         <div class="page-title-box">
+            <div class="float-right">
+               <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'user_events_list' %}">ZipEvent</a></li>
+                  <li class="breadcrumb-item active">Kontakt</li>
+               </ol>
+               <!--end breadcrumb-->
+            </div>
+            <!--end /div-->
+            <h4 class="page-title">Kontakt</h4>
+         </div>
+         <!--end page-title-box-->
+      </div>
+      <!--end col-->
+   </div>
+   <!--end row-->
+                    <div class="row">
+                        <div class="col-md-12 col-lg-8">
+                            <div class="card">
+
+                                 <div class="card-body">
+                                    <h4 class="mt-0 header-title">Formularz kontaktowy</h4>
+                                     <p style="color: red">Błąd wysyłania wiadomości. Prosimy o kontakt bezpośrednio przez email: kontakt@slickcode.pl</p>
+                                </div><!--end card-body-->
+
+
+                            </div><!--end card-->
+                        </div><!--end col-->
+
+                    </div><!--end row-->
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static '/assets/plugins/moment/moment.js' %}"></script>
+<script src="{% static '/assets/plugins/daterangepicker/daterangepicker.js' %}"></script>
+<script src="{% static '/assets/plugins/select2/select2.min.js' %}"></script>
+<script src="{% static '/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js' %}"></script>
+<script src="{% static '/assets/plugins/timepicker/bootstrap-material-datetimepicker.js' %}"></script>
+<script src="{% static '/assets/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js' %}"></script>
+<script src="{% static '/assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js' %}"></script>
+
+<script src="{% static '/assets/pages/jquery.forms-advanced.js' %}"></script>
+
+<script src="{% static '/ckeditor/ckeditor-init.js' %}"></script>
+<script src="{% static '/ckeditor/ckeditor/ckeditor.js' %}"></script>
+
+
+{% endblock %}
