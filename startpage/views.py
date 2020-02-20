@@ -78,3 +78,6 @@ class UserRegisterView(FormView):
 
         return super(UserRegisterView, self).form_invalid(form)
 
+
+def user_help_view(request):
+    return render(request, 'help.html')

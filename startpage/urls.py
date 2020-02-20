@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.urls import path
 
-from .views import startpage, UserRegisterView, logout_view, UserLoginView
+from .views import startpage, UserRegisterView, logout_view, UserLoginView, user_help_view
 
 urlpatterns = [
     path('', startpage),
@@ -11,4 +11,7 @@ urlpatterns = [
          UserLoginView.as_view(), name="login_view"),
     path('logout/',
          logout_view, name="logout_view"),
+
+
+    path('help/', user_help_view, name="help_view"),
 ]
