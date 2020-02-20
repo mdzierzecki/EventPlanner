@@ -16,7 +16,7 @@
                                             <thead class="thead-light">
                                             <tr>
                                                 <th>Nazwa wydarzenia</th>
-                                                <th>Data</th>
+                                                <th class="mobilehide">Data wydarzenia</th>
                                                 <th>Stan</th>
                                                 <th class="text-right">Opcje</th>
                                             </tr><!--end tr-->
@@ -26,7 +26,7 @@
                                             {% for event in user_events_list %}
                                             <tr>
                                                 <td><a target="_blank" rel="noopener noreferrer" href="{% url 'event_detail' event.id %}">{{ event.title }} </a></td>
-                                                <td>{{ event.date }} | {{ event.time }}</td>
+                                                <td class="mobilehide">{{ event.date }} | {{ event.time }}</td>
                                                 {% if event.event_status == 'Aktywne' %}
                                                 <td><span class="badge badge-soft-success" style="font-size: 100%" >Aktywny</span></td>
                                                 {% elif event.event_status == 'Wstrzymane' %}

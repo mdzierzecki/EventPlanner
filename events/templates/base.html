@@ -27,12 +27,19 @@
             <!-- LOGO -->
             <div class="topbar-left">
                <a href="/" class="logo">
+               <div class="mobilehide">
                <span>
                <img src="{% static '/assets/images/logo-sm.png' %}" alt="logo-small" class="logo-sm">
                </span>
                <span>
                <img src="{% static '/assets/images/logo-dark.png' %}" alt="logo-large" class="logo-lg">
                </span>
+               </div>
+               <div class="desktophide">
+               <span>
+               <img src="{% static '/assets/images/logo-dark-full-panel.png' %}" alt="logo-small" class="logo-sm" style="width: 152px; height: 32px">
+               </span>
+               </div>
                </a>
             </div>
             <!--topbar-left-->

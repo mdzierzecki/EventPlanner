@@ -903,7 +903,7 @@ small {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
   .app-search,
   .hidden-sm {
     display: none;
@@ -8755,4 +8755,28 @@ hr.thick {
 .hospital-dash-activity {
   min-height: 525px;
 }
+
+
+@media screen and (min-width: 1024px) {
+.desktophide {
+display:none; }
+}
+
+@media screen and (max-width: 1024px) {
+.mobilehide {
+display:none; }
+}
+
+@media screen and (max-width: 1024px) {
+.mobileshow {
+display:block; }
+}
+
+@media screen and (min-width: 1024px) {
+.desktopshow {
+display:block; }
+}
+
+
+
 /*# sourceMappingURL=style.css.map */

@@ -18,12 +18,14 @@
 
 /*# sourceMappingURL=style.css.map */
 
-.mobilehide {
-display:none;
+@media screen and (min-width: 500px) {
+.desktophide {
+display:none; }
 }
 
-.desktophide {
-display:none;
+@media screen and (max-width: 500px) {
+.mobilehide {
+display:none; }
 }
 
 @media screen and (max-width: 500px) {

@@ -133,6 +133,12 @@ USE_TZ = True
 #     os.path.join(BASE_DIR, 'static'),
 # ]
 
+CKEDITOR_CONFIGS = {
+'default': {
+    'toolbar': 'Full',
+    'width': '100%',
+}}
+
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
