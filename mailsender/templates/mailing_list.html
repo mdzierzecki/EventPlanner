@@ -82,6 +82,9 @@
 {% block scripts %}
 <script src="{% static '/assets/js/jquery.core.js' %}"></script>
 <script>
+   window.scrollTo(0, 0);
+
+
    var sending_mailing = $('#sending');
    if (sending_mailing.length > 0) {
        var mailing_id = sending_mailing.attr('value');
@@ -122,7 +125,7 @@
                    if (data.status) {
                        setTimeout(
                            function() {
-                               location.reload();
+                               window.location.replace("https://zipevent.pl/mailing/");
                            }, 4000);
                    } else {
                        $("#emails_sent_" + mailing_id).text(data.emails_sent);
@@ -133,5 +136,12 @@
            });
        }, 1000);
    }
+
+
+
+   function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
 </script>
 {% endblock %}
