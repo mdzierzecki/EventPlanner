@@ -55,7 +55,8 @@ class EventMailingCreator(LoginRequiredMixin, CreateView):
         obj = form.save(commit=False)
         event = Event.objects.get(pk=form.instance.event.id)
         if len(Participant.objects.all().filter(event=event)) > 250:
-            messages.add_message(self.request, messages.ERROR, 'Nie możesz dodać mailingu dla wydarzenia które ma ponad 250 osób. Skontaktuj się z zespołem ZipEvent.')
+            messages.add_message(self.request, messages.ERROR, 'Nie możesz dodać mailingu dla wydarzenia które ma ponad '
+                                                               '250 osób. Jeśli potrzebujesz większego limitu, skontaktuj się z zespołem ZipEvent.')
             return HttpResponseRedirect(reverse('mailing_list'))
 
         obj.event_id = form.instance.event.id
