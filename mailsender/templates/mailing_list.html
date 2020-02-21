@@ -6,7 +6,7 @@
    <div class="col-12">
       <div class="card">
          <div class="card-body">
-            <div class="alert alert-light mb-0" role="alert">
+            <div class="alert alert-light mb-4" role="alert">
                <h4 class="alert-heading font-18">Informacja</h4>
                <p>W kontach bezpłatnych mailing może być obsługiwany dla wydarzeń do 250 osób. W celu zwiększenia tego limitu, prosimy o kontakt z administratorem.</p>
                <p class="mb-0">Wysyłka jest realizowana natychmiastowo. Za treść mailów odpowiada wyłącznie organizator wydarzenia. Administracja ZipEvent.pl udostępnia jedynie narzędzie wysyłkowe, nie weryfikuje mailingów i nie ponosi odpowiedzialności za ich treść.</p>
@@ -14,13 +14,13 @@
                <p class="mb-0">Wysyłka zostanie również zrealizowana na Twój email. </p>
             </div>
             {% if can_add_event == True %}
-            <a class="btn btn-primary px-4 mt-0 mb-3 mt-4" href="{% url 'mailing_creator' %}"><i class="mdi mdi-plus-circle-outline mr-2"></i>Dodaj nowy mailing</a>
+            <a class="btn btn-primary px-4 mt-0" href="{% url 'mailing_creator' %}"><i class="mdi mdi-plus-circle-outline mr-2"></i>Dodaj nowy mailing</a>
             {% else %}
             <button type="button" tabindex="0" class="btn btn-info waves-effect" data-toggle="popover" data-trigger="focus" title="" data-content="Możesz mieć tylko jeden aktywny (gotowy do wysłania) mailing na liście" data-original-title="Blokada dodawania">
             <i class="mdi mdi-plus-circle-outline mr-2"></i>Dodaj nowy mailing
             </button>
             {% endif %}
-            <div class="table-responsive">
+            <div class="table-responsive mt-4">
                <table id="datatable" class="table">
                   <thead class="thead-light">
                      <tr>
