@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block content %}
-
 <!-- Page Content-->
 <div class="container-fluid">
    <!-- Page-Title -->
@@ -24,42 +23,42 @@
       <!--end col-->
    </div>
    <!--end row-->
-                    <div class="row">
-                        <div class="col-md-12 col-lg-8">
-                            <div class="card">
-
-                                 <div class="card-body">
-                                    <h4 class="mt-0 header-title">Formularz kontaktowy</h4>
-                                    <p class="text-muted">Zachęcamy do kontaktu przez poniższy formularz. Odpowiemy maksymalnie w ciągu 48 godzin roboczych.
-                                    Zazwyczaj jednak jest to szybciej.</p>
-                                    <form method="post"> {% csrf_token %}
-                                        <div class="form-group row">
-                                            <div class="col-sm-12 col-lg-6  mo-b-15">
-                                                {{ form.name }}
-                                            </div>
-                                            <div class="col-sm-12 col-lg-6">
-                                                {{ form.your_email }}
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="col-sm-12">
-                                                {{ form.subject }}
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            {{ form.text }}
-                                        </div>
-
-                                        <button type="submit" class="btn btn-primary btn-block px-4">Wyślij wiadomość</button>
-                                    </form>
-                                </div><!--end card-body-->
-
-
-                            </div><!--end card-->
-                        </div><!--end col-->
-
-                    </div><!--end row-->
+   <div class="row">
+      <div class="col-md-12 col-lg-8">
+         <div class="card">
+            <div class="card-body">
+               <h4 class="mt-0 header-title">Formularz kontaktowy</h4>
+               <p class="text-muted">Zachęcamy do kontaktu przez poniższy formularz. Odpowiemy maksymalnie w ciągu 48 godzin roboczych.
+                  Zazwyczaj jednak jest to szybciej.
+               </p>
+               <form method="post">
+                  {% csrf_token %}
+                  <div class="form-group row">
+                     <div class="col-sm-12 col-lg-6  mo-b-15">
+                        {{ form.name }}
+                     </div>
+                     <div class="col-sm-12 col-lg-6">
+                        {{ form.your_email }}
+                     </div>
+                  </div>
+                  <div class="form-group row">
+                     <div class="col-sm-12">
+                        {{ form.subject }}
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     {{ form.text }}
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-block px-4">Wyślij wiadomość</button>
+               </form>
+            </div>
+            <!--end card-body-->
+         </div>
+         <!--end card-->
+      </div>
+      <!--end col-->
+   </div>
+   <!--end row-->
 </div>
 {% endblock %}
 
@@ -71,11 +70,7 @@
 <script src="{% static '/assets/plugins/timepicker/bootstrap-material-datetimepicker.js' %}"></script>
 <script src="{% static '/assets/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js' %}"></script>
 <script src="{% static '/assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js' %}"></script>
-
 <script src="{% static '/assets/pages/jquery.forms-advanced.js' %}"></script>
-
 <script src="{% static '/ckeditor/ckeditor-init.js' %}"></script>
 <script src="{% static '/ckeditor/ckeditor/ckeditor.js' %}"></script>
-
-
 {% endblock %}

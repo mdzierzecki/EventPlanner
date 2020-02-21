@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block content %}
 
+{% block content %}
 <!-- Page Content-->
 <div class="container-fluid">
    <!-- Page-Title -->
@@ -28,79 +28,82 @@
    <div class="row">
       <div class="col-lg-12">
          <div class="card">
-           <div class="card-body">
-                                    <h4 class="mt-0 header-title">Najczęściej zadawane pytania</h4>
-                                    <p class="text-muted">Poniżej znajdziesz odpowiedzi na najczęściej zadawane pytania. Jeśli nie ma tutaj Twojego pytania - prosimy o kontakt poprzez formularz kontaktowy.
-                                    </p>
-                                    <div class="accordion" id="accordionExample-faq">
-                                        <div class="card shadow-none border mb-1">
-                                            <div class="card-header" id="headingOne">
-                                            <h5 class="my-0">
-                                                <button class="btn btn-link ml-4" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                    Czy ta usługa jest bezpłatna?
-                                                </button>
-                                            </h5>
-                                            </div>
-
-                                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample-faq">
-                                            <div class="card-body">
-                                                Tak, ZipEvent jest w 100% bezpłatny i na zawsze taki pozostanie.
-                                            </div>
-                                            </div>
-                                        </div>
-                                        <div class="card shadow-none border mb-1">
-                                            <div class="card-header" id="headingTwo">
-                                            <h5 class="my-0">
-                                                <button class="btn btn-link collapsed ml-4 align-self-center" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                    Czy mogę założyć testowe wydarzenie?
-                                                </button>
-                                            </h5>
-                                            </div>
-                                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample-faq">
-                                            <div class="card-body">
-                                                Absolutnie tak! Możesz utworzyć tak dużo wydarzeń jak tylko zechesz. To od Ciebie zależy które opublikujesz.                                            </div>
-                                            </div>
-                                        </div>
-                                        <div class="card shadow-none border mb-1">
-                                            <div class="card-header" id="headingThree">
-                                            <h5 class="my-0">
-                                                <button class="btn btn-link collapsed ml-4" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                    Czy mogę wyeksportować maile wszystkich uczestników wydarzenia?
-                                                </button>
-                                            </h5>
-                                            </div>
-                                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample-faq">
-                                            <div class="card-body">
-                                                Wszystkie dane uczestników wydarzeń które stworzysz możesz wyeksportować do pliku .csv jednym przyciskiem w panelu. Pamiętaj jednak, że
-                                                to, jak wykorzystasz zebrane adrese emailowe, zależy już tylko od Ciebie.
-                                            </div>
-                                            </div>
-                                        </div>
-                                        <div class="card shadow-none border mb-1">
-                                            <div class="card-header" id="headingThree">
-                                            <h5 class="my-0">
-                                                <button class="btn btn-link collapsed ml-4" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
-                                                    Czy są jakieś limity usługi?
-                                                </button>
-                                            </h5>
-                                            </div>
-                                            <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample-faq">
-                                            <div class="card-body">
-                                                Jedyny limit na ZipEvent dotyczy ilości osób w pojedynczej wysyłce Mailingowej. Taką wysyłkę możesz realizować maksymalnie do 250 osób.
-                                                Jeśli potrzebujesz większego limitu - skontaktuj się z nami!
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </div><!--end accordion-->
-                                </div><!--end card-body-->
+            <div class="card-body">
+               <h4 class="mt-0 header-title">Najczęściej zadawane pytania</h4>
+               <p class="text-muted">Poniżej znajdziesz odpowiedzi na najczęściej zadawane pytania. Jeśli nie ma tutaj Twojego pytania - prosimy o kontakt poprzez formularz kontaktowy.
+               </p>
+               <div class="accordion" id="accordionExample-faq">
+                  <div class="card shadow-none border mb-1">
+                     <div class="card-header" id="headingOne">
+                        <h5 class="my-0">
+                           <button class="btn btn-link ml-4" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                           Czy ta usługa jest bezpłatna?
+                           </button>
+                        </h5>
+                     </div>
+                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample-faq">
+                        <div class="card-body">
+                           Tak, ZipEvent jest w 100% bezpłatny i na zawsze taki pozostanie.
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card shadow-none border mb-1">
+                     <div class="card-header" id="headingTwo">
+                        <h5 class="my-0">
+                           <button class="btn btn-link collapsed ml-4 align-self-center" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                           Czy mogę założyć testowe wydarzenie?
+                           </button>
+                        </h5>
+                     </div>
+                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample-faq">
+                        <div class="card-body">
+                           Absolutnie tak! Możesz utworzyć tak dużo wydarzeń jak tylko zechesz. To od Ciebie zależy które opublikujesz.
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card shadow-none border mb-1">
+                     <div class="card-header" id="headingThree">
+                        <h5 class="my-0">
+                           <button class="btn btn-link collapsed ml-4" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                           Czy mogę wyeksportować maile wszystkich uczestników wydarzenia?
+                           </button>
+                        </h5>
+                     </div>
+                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample-faq">
+                        <div class="card-body">
+                           Wszystkie dane uczestników wydarzeń które stworzysz możesz wyeksportować do pliku .csv jednym przyciskiem w panelu. Pamiętaj jednak, że
+                           to, jak wykorzystasz zebrane adrese emailowe, zależy już tylko od Ciebie.
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card shadow-none border mb-1">
+                     <div class="card-header" id="headingThree">
+                        <h5 class="my-0">
+                           <button class="btn btn-link collapsed ml-4" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                           Czy są jakieś limity usługi?
+                           </button>
+                        </h5>
+                     </div>
+                     <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample-faq">
+                        <div class="card-body">
+                           Jedyny limit na ZipEvent dotyczy ilości osób w pojedynczej wysyłce Mailingowej. Taką wysyłkę możesz realizować maksymalnie do 250 osób.
+                           Jeśli potrzebujesz większego limitu - skontaktuj się z nami!
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!--end accordion-->
+            </div>
+            <!--end card-body-->
+         </div>
+         <!--end card-->
       </div>
-      <!--end card-->
+      <!--end col-->
    </div>
-   <!--end col-->
-</div>
-<!--end row-->
+   <!--end row-->
 </div>
 {% endblock %}
+
 
 {% block scripts %}
 <script src="{% static '/assets/plugins/moment/moment.js' %}"></script>
@@ -110,11 +113,7 @@
 <script src="{% static '/assets/plugins/timepicker/bootstrap-material-datetimepicker.js' %}"></script>
 <script src="{% static '/assets/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js' %}"></script>
 <script src="{% static '/assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js' %}"></script>
-
 <script src="{% static '/assets/pages/jquery.forms-advanced.js' %}"></script>
-
 <script src="{% static '/ckeditor/ckeditor-init.js' %}"></script>
 <script src="{% static '/ckeditor/ckeditor/ckeditor.js' %}"></script>
-
-
 {% endblock %}

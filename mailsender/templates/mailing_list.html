@@ -13,14 +13,12 @@
                <br>
                <p class="mb-0">Wysyłka zostanie również zrealizowana na Twój email. </p>
             </div>
-            <br><br>
             {% if can_add_event == True %}
-            <a class="btn btn-primary px-4 mt-0 mb-3" href="{% url 'mailing_creator' %}"><i class="mdi mdi-plus-circle-outline mr-2"></i>Dodaj nowy mailing</a>
+            <a class="btn btn-primary px-4 mt-0 mb-3 mt-4" href="{% url 'mailing_creator' %}"><i class="mdi mdi-plus-circle-outline mr-2"></i>Dodaj nowy mailing</a>
             {% else %}
             <button type="button" tabindex="0" class="btn btn-info waves-effect" data-toggle="popover" data-trigger="focus" title="" data-content="Możesz mieć tylko jeden aktywny (gotowy do wysłania) mailing na liście" data-original-title="Blokada dodawania">
             <i class="mdi mdi-plus-circle-outline mr-2"></i>Dodaj nowy mailing
             </button>
-            </br></br>
             {% endif %}
             <div class="table-responsive">
                <table id="datatable" class="table">
