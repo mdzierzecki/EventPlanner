@@ -54,7 +54,7 @@ class EventMailingCreator(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         obj = form.save(commit=False)
         event = Event.objects.get(pk=form.instance.event.id)
-        if event.participants_amount > 250:
+        if len(Participant.objects.all().filter(event=event)) > 250:
             messages.add_message(self.request, messages.ERROR, 'Nie możesz dodać mailingu dla wydarzenia które ma ponad 250 osób. Skontaktuj się z zespołem ZipEvent.')
             return HttpResponseRedirect(reverse('mailing_list'))
 
@@ -70,6 +70,17 @@ def send_email(request):
     mailing = Mailing.objects.get(pk=mailing_id)
     mailing.status = mailing.IN_PROGRESS
     mailing.save()
+
+    event = Event.objects.get(pk=mailing.event.id)
+    if event.participants_amount > 250:
+        messages.add_message(request, messages.ERROR,
+                             'Nie możesz dodać mailingu dla wydarzenia które ma ponad 250 osób. Skontaktuj się z zespołem ZipEvent.')
+        mailing.status = mailing.ERROR
+        mailing.save()
+        data = {
+            'done': False,
+        }
+        return JsonResponse(data)
 
     participants = Participant.objects.all().filter(event=mailing.event).order_by('reg_date')
     text_content = '{}'.format(mailing.text)
