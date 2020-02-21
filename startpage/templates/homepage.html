@@ -1,5 +1,6 @@
 {% load static %}
 
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -7,7 +8,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
 
-    <title>ZipEvent - zarządzaj wydarzeniami</title>
+    <title>Marketing 2 — TheSaaS Sample Demo Landing Page</title>
 
     <!-- Styles -->
     <link href="{% static '/assets_landing/css/page.min.css' %}" rel="stylesheet">
@@ -18,9 +19,10 @@
     <link rel="icon" href="{% static '/assets_landing/img/favicon.ico' %}">
   </head>
 
-  <body>
+   <body>
 
-    <!-- Navbar -->
+
+ <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light navbar-stick-dark" data-navbar="sticky">
       <div class="container">
         <div class="row">
@@ -83,14 +85,10 @@
       </div>
     </header>
 
+
     <!-- Main Content -->
     <main class="main-content">
 
-      <!--
-      |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
-      | Features
-      |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
-      !-->
       <section id="section-features" class="section">
         <div class="container" id="functions">
           <header class="section-header" >
@@ -156,15 +154,15 @@
             </div>
 
 
-            <div class="col-md-6 col-xl-4">
-              <div class="media">
-                <div class="lead-6 line-height-1 text-danger mr-5"><i class="icon-phone"></i></div>
-                <div class="media-body">
-                  <h5>Mobilnie</h5>
-                  <p>Nasza aplikacja jest w pełni dostosowana do urządzeń mobilnych</p>
-                </div>
-              </div>
-            </div>
+<!--            <div class="col-md-6 col-xl-4">-->
+<!--              <div class="media">-->
+<!--                <div class="lead-6 line-height-1 text-danger mr-5"><i class="icon-phone"></i></div>-->
+<!--                <div class="media-body">-->
+<!--                  <h5>Mobilnie</h5>-->
+<!--                  <p>Nasza aplikacja jest w pełni dostosowana do urządzeń mobilnych</p>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
 
 
             <div class="col-md-6 col-xl-4">
@@ -182,6 +180,10 @@
 
         </div>
       </section>
+
+
+
+
 
 
       <section class="section" id="faq">
@@ -223,7 +225,9 @@
         </div>
       </section>
 
+
     </main>
+
 
 
     <!-- Footer -->
@@ -250,33 +254,61 @@
             <hr class="d-xl-none">
           </div>
 
-<!--          <div class="col-4 col-xl-2 offset-xl-1">-->
-<!--            <div class="nav flex-column">-->
-<!--              <a class="nav-link" href="#">About</a>-->
-<!--              <a class="nav-link" href="#">Careers</a>-->
-<!--              <a class="nav-link" href="#">Contact</a>-->
-<!--            </div>-->
-<!--          </div>-->
-
-<!--          <div class="col-4 col-xl-2">-->
-<!--            <div class="nav flex-column">-->
-<!--              <a class="nav-link" href="#">Features</a>-->
-<!--              <a class="nav-link" href="#">Pricing</a>-->
-<!--              <a class="nav-link" href="#">Security</a>-->
-<!--            </div>-->
-<!--          </div>-->
-
-<!--          <div class="col-4 col-xl-2">-->
-<!--            <div class="nav flex-column">-->
-<!--              <a class="nav-link" href="#">Help Center</a>-->
-<!--              <a class="nav-link" href="#">API</a>-->
-<!--              <a class="nav-link" href="#">FAQ</a>-->
-<!--            </div>-->
-<!--          </div>-->
 
         </div>
       </div>
     </footer><!-- /.footer -->
+
+
+    <!-- Offcanvas - Menu -->
+    <div id="offcanvas-menu" class="offcanvas text-white w-300 px-7" data-animation="slide-left" style="background-color: rgba(0,0,0,0.95)">
+      <button type="button" class="close position-static px-0" data-dismiss="offcanvas" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      <nav class="nav nav-lead flex-column my-7">
+        <a class="nav-link" href="#">Features</a>
+        <a class="nav-link" href="#">Pricing</a>
+        <a class="nav-link" href="#">Shop</a>
+        <a class="nav-link" href="#">Blog</a>
+        <a class="nav-link" href="#">About</a>
+        <a class="nav-link" href="#">Contact</a>
+      </nav>
+
+      <div class="social social-bg-dark">
+        <a class="social-facebook" href="#"><i class="fa fa-facebook"></i></a>
+        <a class="social-twitter" href="#"><i class="fa fa-twitter"></i></a>
+        <a class="social-instagram" href="#"><i class="fa fa-instagram"></i></a>
+      </div>
+    </div>
+
+
+
+
+
+
+<!--    &lt;!&ndash; Header &ndash;&gt;-->
+<!--    <header class="header text-white h-fullscreen pb-0 overflow-hidden" style="background-image: url('/static/assets_landing/img/vector/16.png'); background-color: #262a37;">-->
+<!--      <div class="overlay opacity-95" style="background-image: linear-gradient(to bottom, #09203f 0%, #537895 100%);"></div>-->
+<!--      <div class="container text-center">-->
+<!--        <div class="row align-items-center h-100">-->
+
+<!--          <div class="col-md-8 mx-auto">-->
+<!--            <h1>Lepsze zarządzanie wydarzeniami</h1>-->
+<!--            <p class="lead mt-4 mb-7">Stwórz wydarzenie, udostępnij link, obserwuj statystyki i eksportuj dane</p>-->
+<!--            <a class="btn btn-xl btn-round btn-primary px-8" href="{% url 'register_account' %}">Stwórz bezpłatne konto</a>-->
+<!--          </div>-->
+
+<!--          <div class="col-md-8 mx-auto align-self-end">-->
+<!--            <img class="mt-7" src="{% static '/assets_landing/img/screen.png' %}" alt="img" data-aos="fade-up">-->
+<!--          </div>-->
+
+<!--        </div>-->
+<!--      </div>-->
+<!--    </header>-->
+
+<!--    &lt;!&ndash; Main Content &ndash;&gt;-->
+<!--    <main class="main-content">-->
 
 
 
