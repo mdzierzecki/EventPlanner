@@ -67,7 +67,7 @@ class Event(models.Model):
 
 class Participant(models.Model):
     name = models.CharField(max_length=30)
-    email = models.EmailField(max_length=30)
+    email = models.EmailField(max_length=70)
     additional_field = models.BooleanField(default=False)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     reg_date = models.DateTimeField(
