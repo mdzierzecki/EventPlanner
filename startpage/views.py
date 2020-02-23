@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.views.generic import FormView, View
 from django.contrib.auth.models import User, Group
 from .models import eUser
-from .forms import UserRegisterForm, UserLoginForm, ContactForm
+from .forms import UserRegisterForm, UserLoginForm, ContactForm, LandingContactForm
 from django.db import IntegrityError
 from django.forms.utils import ErrorList
 from django.contrib.auth import (authenticate,
@@ -15,9 +15,12 @@ from django.contrib.auth import (authenticate,
 from django.core.mail import send_mail
 
 
-
 def startpage(request):
     return render(request, 'homepage.html')
+
+
+def functions_startpage_view(request):
+    return render(request, 'functions.html')
 
 
 def logout_view(request):
@@ -86,11 +89,11 @@ def user_help_view(request):
 
 
 def contact_success_view(request):
-    return render(request, 'contact_success.html')
+    return render(request, 'contact/contact_success.html')
 
 
 def contact_error_view(request):
-    return render(request, 'contact_error.html')
+    return render(request, 'contact/contact_error.html')
 
 
 def contact_view(request):
@@ -122,4 +125,44 @@ def contact_view(request):
         'form': form,
     }
 
-    return render(request, 'contact.html', context)
+    return render(request, 'contact/contact.html', context)
+
+
+def contact_startpage_view(request):
+
+    form = LandingContactForm(request.POST)
+
+    # If this is a POST request then process the Form data
+    if request.method == 'POST':
+        # Create a form instance and populate it with data from the request (binding):
+        form = LandingContactForm(request.POST)
+
+        # Check if the form is valid:
+        if form.is_valid():
+            try:
+                email = send_mail(
+                    'ZipEvent Kontakt',
+                    'Name: {}, From email: {} , Message: {} '.format(form.cleaned_data['name'], form.cleaned_data['your_email'], form.cleaned_data['text']),
+                    'ZipEvent Team <no-reply@slickcode.pl>',
+                    ['kontakt@slickcode.pl'],
+                    fail_silently=False,
+                )
+                if email == 1:
+                    return HttpResponseRedirect(reverse('contact_startpage_success_view'))
+                else:
+                    return HttpResponseRedirect(reverse('contact_startpage_error_view'))
+            except:
+                return HttpResponseRedirect(reverse('contact_startpage_error_view'))
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'contact/contact_startpage.html', context)
+
+
+def contact_startpage_success_view(request):
+    return render(request, 'contact/contact_startpage_success.html')
+
+
+def contact_startpage_error_view(request):
+    return render(request, 'contact/contact_startpage_error.html')

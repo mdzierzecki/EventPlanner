@@ -40,8 +40,17 @@ class UserRegisterForm(forms.Form):
 
 
 class ContactForm(forms.Form):
-    name = forms.CharField(label='Email', max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Imie'}))
+    name = forms.CharField(label='Name', max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Imie'}))
     your_email = forms.CharField(label='Email', max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Twój email'}))
-    subject = forms.CharField(label='Email', max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Temat', }))
-    text = forms.CharField(label='Email', max_length=1000, widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Treść wiadomości', 'rows': 4}))
+    subject = forms.CharField(label='Subject', max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Temat', }))
+    text = forms.CharField(label='Text', max_length=1000, widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Treść wiadomości', 'rows': 4}))
+
+
+class LandingContactForm(forms.Form):
+    name = forms.CharField(label='Name', max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Imie'}))
+    your_email = forms.CharField(label='Email', max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Twój email'}))
+    text = forms.CharField(label='Text', max_length=1000, widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Treść wiadomości', 'rows': 4}))
+
+
+
 

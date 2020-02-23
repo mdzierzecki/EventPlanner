@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
 
-    <title>Marketing 2 — TheSaaS Sample Demo Landing Page</title>
+    <title>Organizuj wydarzenia, lepiej - ZipEvent</title>
 
     <!-- Styles -->
     <link href="{% static '/assets_landing/css/page.min.css' %}" rel="stylesheet">
@@ -29,9 +29,9 @@
 
           <section class="col-lg-5 navbar-mobile">
             <nav class="nav nav-navbar mr-auto">
-              <a class="nav-link" href="/#section-features">Funkcje</a>
-              <a class="nav-link" href="/#faq">FAQ</a>
-              <a class="nav-link" href="/#contact">Kontakt</a>
+              <a class="nav-link" href="{% url 'functions_startpage_view' %}">Funkcje</a>
+              <a class="nav-link" href="{% url 'contact_startpage_view' %}">FAQ</a>
+              <a class="nav-link" href="{% url 'contact_startpage_view' %}">Kontakt</a>
             </nav>
           </section>
 
@@ -72,8 +72,8 @@
         <div class="row align-items-center h-100">
 
           <div class="col-md-8 mx-auto">
-            <h1>Lepsze zarządzanie wydarzeniami</h1>
-            <p class="lead mt-4 mb-7">Stwórz wydarzenie, udostępnij link, obserwuj statystyki i eksportuj dane</p>
+            <h1>Organizuj wydarzenia... lepiej</h1>
+            <p class="lead mt-4 mb-7">Stwórz wydarzenie, udostępnij link, obserwuj statystyki i wysyłaj mailingi!</p>
             <a class="btn btn-xl btn-round btn-primary px-8" href="{% url 'register_account' %}">Stwórz bezpłatne konto</a>
           </div>
 
@@ -89,142 +89,83 @@
     <!-- Main Content -->
     <main class="main-content">
 
-      <section id="section-features" class="section">
-        <div class="container" id="functions">
-          <header class="section-header" >
-            <small>Funkcje</small>
-            <h2>Wszystko w jednym</h2>
-            <hr>
-            <p class="lead">Łatwe udostępnianie wydarzenia, śledzenie stastyk i wysyłanie maili. Słowem, wszystko czego potrzebujesz do zarządzania wydarzeniami.</p>
-          </header>
+ <section class="section bg-gray overflow-hidden">
+        <div class="container-fluid">
+          <div class="row gap-y align-items-center">
 
-
-
-          <div class="row gap-y">
-
-            <div class="col-md-8 mx-auto mb-7">
-              <img class="shadow-5" src="{% static '/assets_landing/img/screen2.png' %}" alt="..." data-aos="fade-up" data-aos-duration="2000">
+            <div class="col-md-4 mx-auto text-center">
+              <img class="border shadow-7" src="{% static '/assets_landing/img/screen2.png' %}" alt="..." data-aos="fade-right">
             </div>
 
 
-            <div class="w-100"></div>
-
-
-            <div class="col-md-6 col-xl-4">
-              <div class="media">
-                <div class="lead-6 line-height-1 text-dark mr-5"><i class="icon-piechart"></i></div>
-                <div class="media-body">
-                  <h5>Statystyki</h5>
-                  <p>Obserwuj statystyki swojego wydarzenia - ilość zapisanych osób, wyświetlenia eventu i wiele więcej.</p>
-                </div>
-              </div>
+            <div class="col-md-4 mx-auto">
+              <h3>Pełne statystyki</h3>
+              <p>Nasza aplikacja pozwoli Ci obserwować wszystkie statystyki dotyczące wydarzenia: wyświetlenia, ilość
+                uczestników, odpowiedzi na pytania i wiele, wiele więcej</p>
+              <a href="{% url 'functions_startpage_view' %}">Czytaj więcej <i class="ti-angle-right fs-10 ml-1"></i></a>
             </div>
-
-
-            <div class="col-md-6 col-xl-4">
-              <div class="media">
-                <div class="lead-6 line-height-1 text-info mr-5"><i class="icon-envelope"></i></div>
-                <div class="media-body">
-                  <h5>Zarządzaj adresami email</h5>
-                  <p>Prosta wysyłka i zarządzanie bazami mailingowymi</p>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="col-md-6 col-xl-4">
-              <div class="media">
-                <div class="lead-6 line-height-1 text-primary mr-5"><i class="icon-gears"></i></div>
-                <div class="media-body">
-                  <h5>Intuicyjny edytor</h5>
-                  <p>Nasz prosty a jednocześnie rozbudowany edytor pozwala edytować dowolny element wydarzenia.</p>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="col-md-6 col-xl-4">
-              <div class="media">
-                <div class="lead-6 line-height-1 text-warning mr-5"><i class="icon-global"></i></div>
-                <div class="media-body">
-                  <h5>Udostępnianie</h5>
-                  <p>Udostępnianie eventu jeszcze nigdy nie było tak proste</p>
-                </div>
-              </div>
-            </div>
-
-
-<!--            <div class="col-md-6 col-xl-4">-->
-<!--              <div class="media">-->
-<!--                <div class="lead-6 line-height-1 text-danger mr-5"><i class="icon-phone"></i></div>-->
-<!--                <div class="media-body">-->
-<!--                  <h5>Mobilnie</h5>-->
-<!--                  <p>Nasza aplikacja jest w pełni dostosowana do urządzeń mobilnych</p>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-
-
-            <div class="col-md-6 col-xl-4">
-              <div class="media">
-                <div class="lead-6 line-height-1 text-success mr-5"><i class="icon-chat"></i></div>
-                <div class="media-body">
-                  <h5>Pomoc techiczna</h5>
-                  <p>Odpowiemy na twoje pytania tak szybko, jak będzie to możliwe.</p>
-                </div>
-              </div>
-            </div>
-
 
           </div>
-
         </div>
       </section>
 
 
+      <section class="section overflow-hidden">
+        <div class="container-fluid">
+          <div class="row gap-y align-items-center">
+
+            <div class="col-md-4 mx-auto text-center">
+              <img class="border shadow-7" src="{% static '/assets_landing/img/screen3.png' %}" alt="..." data-aos="fade-left">
+            </div>
 
 
+            <div class="col-md-4 mx-auto order-md-first">
+              <h3>Przejrzysta i intuicyjna strona wydarzenia</h3>
+              <p>Informacje o twoim wydarzeniu prezentowane są przejrzystej i intuicyjnej formie. W kilka chwil
+                wygenerujesz link, który będziesz mógł udostępnić gdzie tylko zechcesz!</p>
+              <a href="{% url 'functions_startpage_view' %}">Czytaj więcej <i class="ti-angle-right fs-10 ml-1"></i></a>
+            </div>
+
+          </div>
+        </div>
+      </section>
 
 
-      <section class="section" id="faq">
+      <section class="section bg-gray overflow-hidden">
+        <div class="container-fluid">
+          <div class="row gap-y align-items-center">
+
+            <div class="col-md-4 mx-auto text-center">
+              <img class="border shadow-7" src="{% static '/assets_landing/img/email2.png' %}" alt="..." data-aos="fade-right">
+            </div>
+
+
+            <div class="col-md-4 mx-auto">
+              <h3>Po pierwsze: mailing</h3>
+              <p>Od teraz możesz komunikować się z uczestnikami swojego wydarzenia jednym kliknięciem! Twórz bazy
+                uczestników, wysyłaj maile i informuj o nadchodzących wydarzeniach.</p>
+              <a href="{% url 'functions_startpage_view' %}">Czytaj więcej <i class="ti-angle-right fs-10 ml-1"></i></a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+     <section class="section">
         <div class="container">
           <header class="section-header">
-            <small>FAQ</small>
-            <h2>Najczęściej zadawane pytania</h2>
+            <small>Wypróbuj nas</small>
+            <h2 class="lead-8"><strong>Załóż bezpłatne konto</strong></h2>
             <hr>
-            <p>Postaraliśmy się odpowiedzieć na wszystkie najpopularniejsze pytania. Jeśli twojego pytania tutaj nie ma,
-            zapraszamy do kontaktu!</p>
+            <p class="lead-2">Dołącz do naszej platformy i wnieś organizację swoich wydarzeń na wyższy poziom. Spróbować zawsze warto, prawda? :)</p>
           </header>
 
-
-          <div class="row gap-y">
-            <div class="col-md-6">
-              <h5>Czy jest to bezpłatna usługa?</h5>
-              <p>Tak, ZipEvent jest w 100% darmowy i na zawsze taki pozostanie.</p>
-            </div>
-
-
-            <div class="col-md-6">
-              <h5>Czy będę mógł sam skonfigurować wydarzenie?</h5>
-              <p>Tak, tworzenie wydarzenia jest maksymalnie proste i intuicyjne. Jeśli jednak miałbyś jakieś problemy, służymy pomocą!</p>
-            </div>
-
-
-            <div class="col-md-6">
-              <h5>Czy mogę założyć testowe wydarzenie?</h5>
-              <p>Absolutnie tak! Możesz utworzyć tak dużo wydarzeń jak tylko zechesz. To od Ciebie zależy które opublikujesz.</p>
-            </div>
-
-
-            <div class="col-md-6">
-              <h5>Czy mogę wyeksportować maile wszystkich uczestników wydarzenia?</h5>
-              <p>Wszystkie dane uczestników wydarzeń które stworzysz możesz wyeksportować do pliku .csv jednym przyciskiem w panelu. </p>
-            </div>
-
-          </div>
+          <p class="text-center">
+            <a class="btn btn-lg btn-success w-250" href="{% url 'register_account' %}">Założ konto</a><br>
+            <small class="text-lighter">Korzystasz już z ZipEvent? <a href="{% url 'login_view' %}">Zaloguj się</a></small>
+          </p>
         </div>
       </section>
-
 
     </main>
 
@@ -236,7 +177,7 @@
         <div class="row" id="contact">
 
           <div class="col-12">
-            <p><a href="#"><img src="{% static '/assets_landing/img/logo-dark-full.png' %}" alt="logo" style="width: 140px; height: 29px;"></a></p>
+            <p><a href="/"><img src="{% static '/assets_landing/img/logo-dark-full.png' %}" alt="logo" style="width: 140px; height: 29px;"></a></p>
           </div>
 
           <div class="col-xl-5">
@@ -248,10 +189,7 @@
 
                               <br> <span class="text-muted d-none d-sm-inline-block ">Rozwijane z <img src="{% static '/assets_landing/img/Heart.png' %}" alt="heart"> przez &nbsp;<a href="https://slickcode.pl" target="_blank" >Slickcode</a></span>
             <br>  &copy; 2020 ZipEvent
-
-
-
-            <hr class="d-xl-none">
+ <hr class="d-xl-none">
           </div>
 
 
@@ -281,34 +219,6 @@
         <a class="social-instagram" href="#"><i class="fa fa-instagram"></i></a>
       </div>
     </div>
-
-
-
-
-
-
-<!--    &lt;!&ndash; Header &ndash;&gt;-->
-<!--    <header class="header text-white h-fullscreen pb-0 overflow-hidden" style="background-image: url('/static/assets_landing/img/vector/16.png'); background-color: #262a37;">-->
-<!--      <div class="overlay opacity-95" style="background-image: linear-gradient(to bottom, #09203f 0%, #537895 100%);"></div>-->
-<!--      <div class="container text-center">-->
-<!--        <div class="row align-items-center h-100">-->
-
-<!--          <div class="col-md-8 mx-auto">-->
-<!--            <h1>Lepsze zarządzanie wydarzeniami</h1>-->
-<!--            <p class="lead mt-4 mb-7">Stwórz wydarzenie, udostępnij link, obserwuj statystyki i eksportuj dane</p>-->
-<!--            <a class="btn btn-xl btn-round btn-primary px-8" href="{% url 'register_account' %}">Stwórz bezpłatne konto</a>-->
-<!--          </div>-->
-
-<!--          <div class="col-md-8 mx-auto align-self-end">-->
-<!--            <img class="mt-7" src="{% static '/assets_landing/img/screen.png' %}" alt="img" data-aos="fade-up">-->
-<!--          </div>-->
-
-<!--        </div>-->
-<!--      </div>-->
-<!--    </header>-->
-
-<!--    &lt;!&ndash; Main Content &ndash;&gt;-->
-<!--    <main class="main-content">-->
 
 
 
