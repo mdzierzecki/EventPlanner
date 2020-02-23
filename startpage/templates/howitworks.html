@@ -2,195 +2,146 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-
-    <title>Opis funkcjonalności  | Organizuj wydarzenia lepiej - ZipEvent</title>
-
-    <!-- Styles -->
-    <link href="{% static '/assets_landing/css/page.min.css' %}" rel="stylesheet">
-    <link href="{% static '/assets_landing/css/style.css' %}" rel="stylesheet">
-
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" href="{% static '/assets_landing/img/apple-touch-icon.png' %}">
-    <link rel="icon" href="{% static '/assets_landing/img/favicon.ico' %}">
-  </head>
-
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="keywords" content="">
+      <title>Opis funkcjonalności  | Organizuj wydarzenia lepiej - ZipEvent</title>
+      <!-- Styles -->
+      <link href="{% static '/assets_landing/css/page.min.css' %}" rel="stylesheet">
+      <link href="{% static '/assets_landing/css/style.css' %}" rel="stylesheet">
+      <!-- Favicons -->
+      <link rel="apple-touch-icon" href="{% static '/assets_landing/img/apple-touch-icon.png' %}">
+      <link rel="icon" href="{% static '/assets_landing/img/favicon.ico' %}">
+   </head>
    <body>
-
-
- <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light navbar-stick-dark" data-navbar="sticky">
-      <div class="container">
-        <div class="row">
-
-          <section class="col-lg-5 navbar-mobile">
-             <nav class="nav nav-navbar mr-auto">
-              <a class="nav-link" href="{% url 'howitworks_startpage_view' %}">Jak to działa</a>
-              <a class="nav-link" href="{% url 'faq_startpage_view' %}">FAQ</a>
-              <a class="nav-link" href="{% url 'contact_startpage_view' %}">Kontakt</a>
-            </nav>
-          </section>
-
-          <div class="col-auto col-lg-auto1 mr-auto mx-lg-auto d-flex align-items-center">
-            <button class="navbar-toggler" type="button"><span class="navbar-toggler-icon"></span></button>
-          <a class="navbar-brand mobilehide desktopshow" href="/">
-            <img class="logo-dark" src="{% static '/assets_landing/img/logo-dark-full.png' %}" alt="logo" style="width: 120px; height: 25px;">
-            <img class="logo-light" src="{% static '/assets_landing/img/logo-full.png' %}" alt="logo" style="width: 140px; height: 29px;">
-          </a>
-
-          <a class="navbar-brand desktophide mobileshow" href="/">
-            <img class="logo-dark" src="{% static '/assets_landing/img/logo-dark-full.png' %}" alt="logo" style="width: 120px; height: 25px;">
-            <img class="logo-light" src="{% static '/assets_landing/img/logo-full.png' %}" alt="logo" style="width: 120px; height: 25px;">
-          </a>
-          </div>
-
-          <div class="col-auto col-lg-5 text-right">
-            {% if user.is_authenticated %}
-            <a class="btn btn-sm btn-round btn-outline-success  d-lg-inline-block mr-2" href="{% url 'user_events_list' %}">Panel</a>
-            <a class="btn btn-sm btn-round btn-success mobilehide" href="{% url 'logout_view' %}">Wyloguj się</a>
-
-            {% else %}
-            <a class="btn btn-sm btn-round btn-outline-success mobilehide d-lg-inline-block mr-2" href="{% url 'register_account' %}">Zarejestruj się</a>
-            <a class="btn btn-sm btn-round btn-success" href="{% url 'login_view' %}">Zaloguj</a>
-            {% endif %}
-
-          </div>
-
-        </div>
-      </div>
-    </nav><!-- /.navbar -->
-
-
-    <!-- Header -->
-    <header class="header text-white pb-0  overflow-hidden" style=" background-color: #262a37;
-     height: 3vh !important; padding-top: 70px;">
-      <div class="overlay opacity-95" style="background-image: linear-gradient(to bottom, #09203f 0%, #537895 100%);"></div>
-      <div class="container text-center">
-        <div class="row align-items-center h-100">
-
-          <div class="col-md-8 mx-auto">
-            <h1>Lepsze zarządzanie wydarzeniami</h1>
-            <p class="lead mt-4 mb-7">Stwórz wydarzenie, udostępnij link, obserwuj statystyki i eksportuj dane</p>
-          </div>
-
-
-        </div>
-      </div>
-    </header>
-
-
-    <!-- Main Content -->
-    <main class="main-content">
-
-        <section class="section">
-        <div class="container">
- <header class="section-header">
-            <h2>Jak działa ZipEvent?</h2>
-            <hr>
-
-          </header>
-          <div class="row gap-y align-items-center py-7">
-            <div class="col-md-6 text-center">
-              <img src="{% static '/assets_landing/img/sc1.png' %}" alt="...">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-light navbar-stick-dark" data-navbar="sticky">
+         <div class="container">
+            <div class="row">
+               <section class="col-lg-5 navbar-mobile">
+                  <nav class="nav nav-navbar mr-auto">
+                     <a class="nav-link" href="{% url 'howitworks_startpage_view' %}">Jak to działa</a>
+                     <a class="nav-link" href="{% url 'faq_startpage_view' %}">FAQ</a>
+                     <a class="nav-link" href="{% url 'contact_startpage_view' %}">Kontakt</a>
+                  </nav>
+               </section>
+               <div class="col-auto col-lg-auto1 mr-auto mx-lg-auto d-flex align-items-center">
+                  <button class="navbar-toggler" type="button"><span class="navbar-toggler-icon"></span></button>
+                  <a class="navbar-brand mobilehide desktopshow" href="/">
+                  <img class="logo-dark" src="{% static '/assets_landing/img/logo-dark-full.png' %}" alt="logo" style="width: 120px; height: 25px;">
+                  <img class="logo-light" src="{% static '/assets_landing/img/logo-full.png' %}" alt="logo" style="width: 140px; height: 29px;">
+                  </a>
+                  <a class="navbar-brand desktophide mobileshow" href="/">
+                  <img class="logo-dark" src="{% static '/assets_landing/img/logo-dark-full.png' %}" alt="logo" style="width: 120px; height: 25px;">
+                  <img class="logo-light" src="{% static '/assets_landing/img/logo-full.png' %}" alt="logo" style="width: 120px; height: 25px;">
+                  </a>
+               </div>
+               <div class="col-auto col-lg-5 text-right">
+                  {% if user.is_authenticated %}
+                  <a class="btn btn-sm btn-round btn-outline-success  d-lg-inline-block mr-2" href="{% url 'user_events_list' %}">Panel</a>
+                  <a class="btn btn-sm btn-round btn-success mobilehide" href="{% url 'logout_view' %}">Wyloguj się</a>
+                  {% else %}
+                  <a class="btn btn-sm btn-round btn-outline-success mobilehide d-lg-inline-block mr-2" href="{% url 'register_account' %}">Zarejestruj się</a>
+                  <a class="btn btn-sm btn-round btn-success" href="{% url 'login_view' %}">Zaloguj</a>
+                  {% endif %}
+               </div>
             </div>
-
-            <div class="col-md-5 ml-auto text-center text-md-left">
-              <h3>Stwórz wydarzenie</h3>
-              <p>Intuicyjny edytor pomoże Ci stworzyć wydarzenie. W prosty sposób ustawisz informacje takie jak tytuł, opis, adres,
-                datę czy godzinę. Możesz również dodać pytanie do uczestników (pytanie to wyświetli się w momencie zapisywania na wydarzenie)
-                i ewentualny limit uczestników wydarzenia.
-              </p>
+         </div>
+      </nav>
+      <!-- /.navbar -->
+      <!-- Header -->
+      <header class="header text-white pb-0  overflow-hidden" style=" background-color: #262a37;
+         height: 3vh !important; padding-top: 70px;">
+         <div class="overlay opacity-95" style="background-image: linear-gradient(to bottom, #09203f 0%, #537895 100%);"></div>
+         <div class="container text-center">
+            <div class="row align-items-center h-100">
+               <div class="col-md-8 mx-auto">
+                  <h1>Lepsze zarządzanie wydarzeniami</h1>
+                  <p class="lead mt-4 mb-7">Stwórz wydarzenie, udostępnij link, obserwuj statystyki i eksportuj dane</p>
+               </div>
             </div>
-          </div>
-
-
-          <div class="row gap-y align-items-center py-7">
-            <div class="col-md-5 mr-auto text-center text-md-left">
-              <h3>Udostępnij link </h3>
-              <p>Gdy twoje wydarzenie jest już stworzone, wystarczy udostępnić link potencjalnym uczestnikom. Wrzuć go na swoją stronę,
-              na Facebooka, grupy tematyczne i fora. Niech wszędzie będzie o nim głośno!</p>
+         </div>
+      </header>
+      <!-- Main Content -->
+      <main class="main-content">
+         <section class="section">
+            <div class="container">
+               <header class="section-header">
+                  <h2>Jak działa ZipEvent?</h2>
+                  <hr>
+               </header>
+               <div class="row gap-y align-items-center py-7">
+                  <div class="col-md-6 text-center">
+                     <img src="{% static '/assets_landing/img/sc1.png' %}" alt="...">
+                  </div>
+                  <div class="col-md-5 ml-auto text-center text-md-left">
+                     <h3>Stwórz wydarzenie</h3>
+                     <p>Intuicyjny edytor pomoże Ci stworzyć wydarzenie. W prosty sposób ustawisz informacje takie jak tytuł, opis, adres,
+                        datę czy godzinę. Możesz również dodać pytanie do uczestników (pytanie to wyświetli się w momencie zapisywania na wydarzenie)
+                        i ewentualny limit uczestników wydarzenia.
+                     </p>
+                  </div>
+               </div>
+               <div class="row gap-y align-items-center py-7">
+                  <div class="col-md-5 mr-auto text-center text-md-left">
+                     <h3>Udostępnij link </h3>
+                     <p>Gdy twoje wydarzenie jest już stworzone, wystarczy udostępnić link potencjalnym uczestnikom. Wrzuć go na swoją stronę,
+                        na Facebooka, grupy tematyczne i fora. Niech wszędzie będzie o nim głośno!
+                     </p>
+                  </div>
+                  <div class="col-md-6 text-center order-first order-md-last">
+                     <img src="{% static '/assets_landing/img/screen3.png' %}" alt="...">
+                  </div>
+               </div>
+               <div class="row gap-y align-items-center py-7">
+                  <div class="col-md-6 text-center">
+                     <img src="{% static '/assets_landing/img/screen2.png' %}" alt="...">
+                  </div>
+                  <div class="col-md-5 ml-auto text-center text-md-left">
+                     <h3>Obswerwuj statystyki</h3>
+                     <p>Oddajemy w Twoje ręce przejrzysty panel statystyk wydarzenia. Możesz obserwować wszystko - począwszy od ilości uczestników,
+                        przez odpowiedzi na zadane pytanie podczas rejestracji, na współczynniku konwersji kończąc.
+                     </p>
+                  </div>
+               </div>
+               <div class="row gap-y align-items-center py-7">
+                  <div class="col-md-5 text-center text-md-left">
+                     <h3>Rozsyłaj mailing do uczestników</h3>
+                     <p>Jednym kliknięciem wysyłaj mailing do uczestników wydarzenia. Zareklamuj kolejne wydarzenie albo poinformuj o zmianie terminu bądź miejsca -
+                        łatwo i szybko.
+                     </p>
+                  </div>
+                  <div class="col-md-6 ml-auto text-center order-first order-md-last">
+                     <img src="{% static '/assets_landing/img/sc4.png' %}" alt="...">
+                  </div>
+               </div>
             </div>
-
-            <div class="col-md-6 text-center order-first order-md-last">
-              <img src="{% static '/assets_landing/img/screen3.png' %}" alt="...">
+         </section>
+      </main>
+      <!-- Footer -->
+      <footer class="footer bg-gray py-7">
+         <div class="container">
+            <div class="row" id="contact">
+               <div class="col-12">
+                  <p><a href="#"><img src="{% static '/assets_landing/img/logo-dark-full.png' %}" alt="logo" style="width: 140px; height: 29px;"></a></p>
+               </div>
+               <div class="col-xl-5">
+                  <b>ZipEvent</b><br>
+                  Warszawa, Polska<br>
+                  <b>Email: </b>kontakt@slickcode.pl<br>
+                  <b>Tel: </b>+48 783 111 141<br>
+                  <br> <span class="text-muted d-none d-sm-inline-block ">Rozwijane z <img src="{% static '/assets_landing/img/Heart.png' %}" alt="heart"> przez &nbsp;<a href="https://slickcode.pl" target="_blank" >Slickcode</a></span>
+                  <br>  &copy; 2020 ZipEvent
+                  <hr class="d-xl-none">
+               </div>
             </div>
-          </div>
-
-
-          <div class="row gap-y align-items-center py-7">
-            <div class="col-md-6 text-center">
-              <img src="{% static '/assets_landing/img/screen2.png' %}" alt="...">
-            </div>
-
-            <div class="col-md-5 ml-auto text-center text-md-left">
-              <h3>Obswerwuj statystyki</h3>
-              <p>Oddajemy w Twoje ręce przejrzysty panel statystyk wydarzenia. Możesz obserwować wszystko - począwszy od ilości uczestników,
-              przez odpowiedzi na zadane pytanie podczas rejestracji, na współczynniku konwersji kończąc. </p>
-            </div>
-          </div>
-
-
-          <div class="row gap-y align-items-center py-7">
-            <div class="col-md-5 text-center text-md-left">
-              <h3>Rozsyłaj mailing do uczestników</h3>
-              <p>Jednym kliknięciem wysyłaj mailing do uczestników wydarzenia. Zareklamuj kolejne wydarzenie albo poinformuj o zmianie terminu bądź miejsca -
-              łatwo i szybko.</p>
-            </div>
-
-            <div class="col-md-6 ml-auto text-center order-first order-md-last">
-              <img src="{% static '/assets_landing/img/sc4.png' %}" alt="...">
-            </div>
-          </div>
-
-
-        </div>
-      </section>
-
-
-
-    </main>
-
-
-
-    <!-- Footer -->
-    <footer class="footer bg-gray py-7">
-      <div class="container">
-        <div class="row" id="contact">
-
-          <div class="col-12">
-            <p><a href="#"><img src="{% static '/assets_landing/img/logo-dark-full.png' %}" alt="logo" style="width: 140px; height: 29px;"></a></p>
-          </div>
-
-          <div class="col-xl-5">
-
-            <b>ZipEvent</b><br>
-            Warszawa, Polska<br>
-            <b>Email: </b>kontakt@slickcode.pl<br>
-            <b>Tel: </b>+48 783 111 141<br>
-
-                              <br> <span class="text-muted d-none d-sm-inline-block ">Rozwijane z <img src="{% static '/assets_landing/img/Heart.png' %}" alt="heart"> przez &nbsp;<a href="https://slickcode.pl" target="_blank" >Slickcode</a></span>
-            <br>  &copy; 2020 ZipEvent
-
-
-
-            <hr class="d-xl-none">
-          </div>
-
-
-        </div>
-      </div>
-    </footer><!-- /.footer -->
-
-
-    <!-- Scripts -->
-    <script src="{% static '/assets_landing/js/page.min.js' %}"></script>
-    <script src="{% static '/assets_landing/js/script.js' %}"></script>
-
-
-
-  </body>
+         </div>
+      </footer>
+      <!-- /.footer -->
+      <!-- Scripts -->
+      <script src="{% static '/assets_landing/js/page.min.js' %}"></script>
+      <script src="{% static '/assets_landing/js/script.js' %}"></script>
+   </body>
 </html>
