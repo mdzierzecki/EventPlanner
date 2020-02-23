@@ -1,0 +1,182 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <title>Otrzymaliśmy twojego maila | ZipEvent</title>
+
+    <!-- Styles -->
+    <link href="{% static '/assets_landing/css/page.min.css' %}" rel="stylesheet">
+    <link href="{% static '/assets_landing/css/style.css' %}" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="{% static '/assets_landing/img/apple-touch-icon.png' %}">
+    <link rel="icon" href="{% static '/assets_landing/img/favicon.ico' %}">
+  </head>
+
+   <body>
+
+
+ <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light navbar-stick-dark" data-navbar="sticky">
+      <div class="container">
+        <div class="row">
+
+          <section class="col-lg-5 navbar-mobile">
+            <nav class="nav nav-navbar mr-auto">
+              <a class="nav-link" href="{% url 'functions_startpage_view' %}">Funkcje</a>
+              <a class="nav-link" href="{% url 'contact_startpage_view' %}">FAQ</a>
+              <a class="nav-link" href="{% url 'contact_startpage_view' %}">Kontakt</a>
+            </nav>
+          </section>
+
+          <div class="col-auto col-lg-auto1 mr-auto mx-lg-auto d-flex align-items-center">
+            <button class="navbar-toggler" type="button"><span class="navbar-toggler-icon"></span></button>
+          <a class="navbar-brand mobilehide desktopshow" href="/">
+            <img class="logo-dark" src="{% static '/assets_landing/img/logo-dark-full.png' %}" alt="logo" style="width: 120px; height: 25px;">
+            <img class="logo-light" src="{% static '/assets_landing/img/logo-full.png' %}" alt="logo" style="width: 140px; height: 29px;">
+          </a>
+
+          <a class="navbar-brand desktophide mobileshow" href="/">
+            <img class="logo-dark" src="{% static '/assets_landing/img/logo-dark-full.png' %}" alt="logo" style="width: 120px; height: 25px;">
+            <img class="logo-light" src="{% static '/assets_landing/img/logo-full.png' %}" alt="logo" style="width: 120px; height: 25px;">
+          </a>
+          </div>
+
+          <div class="col-auto col-lg-5 text-right">
+            {% if user.is_authenticated %}
+            <a class="btn btn-sm btn-round btn-outline-success  d-lg-inline-block mr-2" href="{% url 'user_events_list' %}">Panel</a>
+            <a class="btn btn-sm btn-round btn-success mobilehide" href="{% url 'logout_view' %}">Wyloguj się</a>
+
+            {% else %}
+            <a class="btn btn-sm btn-round btn-outline-success mobilehide d-lg-inline-block mr-2" href="{% url 'register_account' %}">Zarejestruj się</a>
+            <a class="btn btn-sm btn-round btn-success" href="{% url 'login_view' %}">Zaloguj</a>
+            {% endif %}
+
+          </div>
+
+        </div>
+      </div>
+    </nav><!-- /.navbar -->
+
+
+    <!-- Header -->
+    <header class="header text-white pb-0  overflow-hidden" style=" background-color: #262a37;
+     height: 3vh !important; padding-top: 70px;">
+      <div class="overlay opacity-95" style="background-image: linear-gradient(to bottom, #09203f 0%, #537895 100%);"></div>
+      <div class="container text-center">
+        <div class="row align-items-center h-100">
+
+        </div>
+      </div>
+    </header>
+
+   <header class="header pt-10 pb-0">
+      <div class="container text-center">
+        <h1 class="display-4">Skontaktuj się z nami</h1>
+        <p class="lead-2 mt-6">Wyślij poniższy formularz, aby się z nami skontaktować. Odpowiemy w ciągu 48 godzin
+          roboczych, chodź zazwyczaj robimy to szybciej.</p>
+      </div>
+    </header><!-- /.header -->
+
+
+<main class="main-content">
+
+ <section class="section">
+        <div class="container">
+
+          <div class="row">
+            <form class="col-lg-6 mx-auto p-6 bg-gray rounded" method="POST" > {% csrf_token %}
+              <div class="alert alert-success d-on-success" style="background-color: #eab5af; border-color: #eab5af;">Błąd wysyłania wiadomości z przyczyn technicznych. Odezwij się do nas na kontakt@slickcode.pl</div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  {{ form.name }}
+                </div>
+
+                <div class="form-group col-md-6">
+                  {{ form.your_email }}
+                </div>
+              </div>
+              <div class="form-group">
+                {{ form.text }}
+              </div>
+
+              <div class="text-center">
+                <button class="btn btn-lg btn-primary" type="submit">Wyślij</button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </section>
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer bg-gray py-7">
+      <div class="container">
+        <div class="row" id="contact">
+
+          <div class="col-12">
+            <p><a href="#"><img src="{% static '/assets_landing/img/logo-dark-full.png' %}" alt="logo" style="width: 140px; height: 29px;"></a></p>
+          </div>
+
+          <div class="col-xl-5">
+
+            <b>ZipEvent</b><br>
+            Warszawa, Polska<br>
+            <b>Email: </b>kontakt@slickcode.pl<br>
+            <b>Tel: </b>+48 783 111 141<br>
+
+                              <br> <span class="text-muted d-none d-sm-inline-block ">Rozwijane z <img src="{% static '/assets_landing/img/Heart.png' %}" alt="heart"> przez &nbsp;<a href="https://slickcode.pl" target="_blank" >Slickcode</a></span>
+            <br>  &copy; 2020 ZipEvent
+
+
+
+            <hr class="d-xl-none">
+          </div>
+
+
+        </div>
+      </div>
+    </footer><!-- /.footer -->
+
+
+    <!-- Offcanvas - Menu -->
+    <div id="offcanvas-menu" class="offcanvas text-white w-300 px-7" data-animation="slide-left" style="background-color: rgba(0,0,0,0.95)">
+      <button type="button" class="close position-static px-0" data-dismiss="offcanvas" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      <nav class="nav nav-lead flex-column my-7">
+        <a class="nav-link" href="#">Features</a>
+        <a class="nav-link" href="#">Pricing</a>
+        <a class="nav-link" href="#">Shop</a>
+        <a class="nav-link" href="#">Blog</a>
+        <a class="nav-link" href="#">About</a>
+        <a class="nav-link" href="#">Contact</a>
+      </nav>
+
+      <div class="social social-bg-dark">
+        <a class="social-facebook" href="#"><i class="fa fa-facebook"></i></a>
+        <a class="social-twitter" href="#"><i class="fa fa-twitter"></i></a>
+        <a class="social-instagram" href="#"><i class="fa fa-instagram"></i></a>
+      </div>
+    </div>
+
+
+    <!-- Scripts -->
+    <script src="{% static '/assets_landing/js/page.min.js' %}"></script>
+    <script src="{% static '/assets_landing/js/script.js' %}"></script>
+
+
+
+  </body>
+</html>
