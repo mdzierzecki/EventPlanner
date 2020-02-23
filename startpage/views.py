@@ -19,8 +19,12 @@ def startpage(request):
     return render(request, 'homepage.html')
 
 
-def functions_startpage_view(request):
-    return render(request, 'functions.html')
+def howitworks_startpage_view(request):
+    return render(request, 'howitworks.html')
+
+
+def faq_startpage_view(request):
+    return render(request, 'faq.html')
 
 
 def logout_view(request):

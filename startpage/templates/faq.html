@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
 
-    <title>Kontakt | ZipEvent</title>
+    <title>FAQ | ZipEvent</title>
 
     <!-- Styles -->
     <link href="{% static '/assets_landing/css/page.min.css' %}" rel="stylesheet">
@@ -28,7 +28,7 @@
         <div class="row">
 
           <section class="col-lg-5 navbar-mobile">
-            <nav class="nav nav-navbar mr-auto">
+             <nav class="nav nav-navbar mr-auto">
               <a class="nav-link" href="{% url 'howitworks_startpage_view' %}">Jak to działa</a>
               <a class="nav-link" href="{% url 'faq_startpage_view' %}">FAQ</a>
               <a class="nav-link" href="{% url 'contact_startpage_view' %}">Kontakt</a>
@@ -76,43 +76,44 @@
       </div>
     </header>
 
-   <header class="header pt-10 pb-0">
-      <div class="container text-center">
-        <h1 class="display-4">Skontaktuj się z nami</h1>
-        <p class="lead-2 mt-6">Wyślij poniższy formularz, aby się z nami skontaktować. Odpowiemy w ciągu 48 godzin
-          roboczych, chodź zazwyczaj robimy to szybciej.</p>
-      </div>
-    </header><!-- /.header -->
-
-
 <main class="main-content">
 
- <section class="section">
+ <section class="section" id="faq">
         <div class="container">
+          <header class="section-header">
+            <small>FAQ</small>
+            <h2>Najczęściej zadawane pytania</h2>
+            <hr>
+            <p>Postaraliśmy się odpowiedzieć na wszystkie najpopularniejsze pytania. Jeśli twojego pytania tutaj nie ma,
+            zapraszamy do kontaktu!</p>
+          </header>
 
-          <div class="row">
-            <form class="col-lg-6 mx-auto p-6 bg-gray rounded" method="POST" > {% csrf_token %}
-<!--              <div class="alert alert-success d-on-success">Otrzymaliśmy twojego maila i wkrótce się odezwiemy :)</div>-->
 
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  {{ form.name }}
-                </div>
+          <div class="row gap-y">
+            <div class="col-md-6">
+              <h5>Czy jest to bezpłatna usługa?</h5>
+              <p>Tak, ZipEvent jest w 100% darmowy i na zawsze taki pozostanie.</p>
+            </div>
 
-                <div class="form-group col-md-6">
-                  {{ form.your_email }}
-                </div>
-              </div>
-              <div class="form-group">
-                {{ form.text }}
-              </div>
 
-              <div class="text-center">
-                <button class="btn btn-lg btn-primary" type="submit">Wyślij</button>
-              </div>
-            </form>
+            <div class="col-md-6">
+              <h5>Czy będę mógł sam skonfigurować wydarzenie?</h5>
+              <p>Tak, tworzenie wydarzenia jest maksymalnie proste i intuicyjne. Jeśli jednak miałbyś jakieś problemy, służymy pomocą!</p>
+            </div>
+
+
+            <div class="col-md-6">
+              <h5>Czy mogę założyć testowe wydarzenie?</h5>
+              <p>Absolutnie tak! Możesz utworzyć tak dużo wydarzeń jak tylko zechesz. To od Ciebie zależy które opublikujesz.</p>
+            </div>
+
+
+            <div class="col-md-6">
+              <h5>Czy mogę wyeksportować maile wszystkich uczestników wydarzenia?</h5>
+              <p>Wszystkie dane uczestników wydarzeń które stworzysz możesz wyeksportować do pliku .csv jednym przyciskiem w panelu. </p>
+            </div>
+
           </div>
-
         </div>
       </section>
 

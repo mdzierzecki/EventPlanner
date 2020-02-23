@@ -2,13 +2,14 @@ from django.conf.urls import url
 from django.urls import path
 
 from .views import startpage, UserRegisterView, logout_view, UserLoginView, user_help_view,\
-    contact_view, contact_success_view, contact_error_view, functions_startpage_view, contact_startpage_view,\
-    contact_startpage_success_view, contact_startpage_error_view
+    contact_view, contact_success_view, contact_error_view, howitworks_startpage_view, contact_startpage_view,\
+    contact_startpage_success_view, contact_startpage_error_view, faq_startpage_view
 
 urlpatterns = [
     # landing page/startpage
     path('', startpage),
-    path('functions/', functions_startpage_view, name="functions_startpage_view"),
+    path('how-it-works/', howitworks_startpage_view, name="howitworks_startpage_view"),
+    path('faq/', faq_startpage_view, name="faq_startpage_view"),
     path('contact/', contact_startpage_view, name="contact_startpage_view"),
 
     path('contact-success/', contact_startpage_success_view, name="contact_startpage_success_view"),

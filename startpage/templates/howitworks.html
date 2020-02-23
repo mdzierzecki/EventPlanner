@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
 
-    <title>Kontakt | ZipEvent</title>
+    <title>Opis funkcjonalności  | Organizuj wydarzenia lepiej - ZipEvent</title>
 
     <!-- Styles -->
     <link href="{% static '/assets_landing/css/page.min.css' %}" rel="stylesheet">
@@ -28,7 +28,7 @@
         <div class="row">
 
           <section class="col-lg-5 navbar-mobile">
-            <nav class="nav nav-navbar mr-auto">
+             <nav class="nav nav-navbar mr-auto">
               <a class="nav-link" href="{% url 'howitworks_startpage_view' %}">Jak to działa</a>
               <a class="nav-link" href="{% url 'faq_startpage_view' %}">FAQ</a>
               <a class="nav-link" href="{% url 'contact_startpage_view' %}">Kontakt</a>
@@ -72,52 +72,89 @@
       <div class="container text-center">
         <div class="row align-items-center h-100">
 
+          <div class="col-md-8 mx-auto">
+            <h1>Lepsze zarządzanie wydarzeniami</h1>
+            <p class="lead mt-4 mb-7">Stwórz wydarzenie, udostępnij link, obserwuj statystyki i eksportuj dane</p>
+          </div>
+
+
         </div>
       </div>
     </header>
 
-   <header class="header pt-10 pb-0">
-      <div class="container text-center">
-        <h1 class="display-4">Skontaktuj się z nami</h1>
-        <p class="lead-2 mt-6">Wyślij poniższy formularz, aby się z nami skontaktować. Odpowiemy w ciągu 48 godzin
-          roboczych, chodź zazwyczaj robimy to szybciej.</p>
-      </div>
-    </header><!-- /.header -->
 
+    <!-- Main Content -->
+    <main class="main-content">
 
-<main class="main-content">
-
- <section class="section">
+        <section class="section">
         <div class="container">
+ <header class="section-header">
+            <h2>Jak działa ZipEvent?</h2>
+            <hr>
 
-          <div class="row">
-            <form class="col-lg-6 mx-auto p-6 bg-gray rounded" method="POST" > {% csrf_token %}
-<!--              <div class="alert alert-success d-on-success">Otrzymaliśmy twojego maila i wkrótce się odezwiemy :)</div>-->
+          </header>
+          <div class="row gap-y align-items-center py-7">
+            <div class="col-md-6 text-center">
+              <img src="{% static '/assets_landing/img/sc1.png' %}" alt="...">
+            </div>
 
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  {{ form.name }}
-                </div>
-
-                <div class="form-group col-md-6">
-                  {{ form.your_email }}
-                </div>
-              </div>
-              <div class="form-group">
-                {{ form.text }}
-              </div>
-
-              <div class="text-center">
-                <button class="btn btn-lg btn-primary" type="submit">Wyślij</button>
-              </div>
-            </form>
+            <div class="col-md-5 ml-auto text-center text-md-left">
+              <h3>Stwórz wydarzenie</h3>
+              <p>Intuicyjny edytor pomoże Ci stworzyć wydarzenie. W prosty sposób ustawisz informacje takie jak tytuł, opis, adres,
+                datę czy godzinę. Możesz również dodać pytanie do uczestników (pytanie to wyświetli się w momencie zapisywania na wydarzenie)
+                i ewentualny limit uczestników wydarzenia.
+              </p>
+            </div>
           </div>
+
+
+          <div class="row gap-y align-items-center py-7">
+            <div class="col-md-5 mr-auto text-center text-md-left">
+              <h3>Udostępnij link </h3>
+              <p>Gdy twoje wydarzenie jest już stworzone, wystarczy udostępnić link potencjalnym uczestnikom. Wrzuć go na swoją stronę,
+              na Facebooka, grupy tematyczne i fora. Niech wszędzie będzie o nim głośno!</p>
+            </div>
+
+            <div class="col-md-6 text-center order-first order-md-last">
+              <img src="{% static '/assets_landing/img/screen3.png' %}" alt="...">
+            </div>
+          </div>
+
+
+          <div class="row gap-y align-items-center py-7">
+            <div class="col-md-6 text-center">
+              <img src="{% static '/assets_landing/img/screen2.png' %}" alt="...">
+            </div>
+
+            <div class="col-md-5 ml-auto text-center text-md-left">
+              <h3>Obswerwuj statystyki</h3>
+              <p>Oddajemy w Twoje ręce przejrzysty panel statystyk wydarzenia. Możesz obserwować wszystko - począwszy od ilości uczestników,
+              przez odpowiedzi na zadane pytanie podczas rejestracji, na współczynniku konwersji kończąc. </p>
+            </div>
+          </div>
+
+
+          <div class="row gap-y align-items-center py-7">
+            <div class="col-md-5 text-center text-md-left">
+              <h3>Rozsyłaj mailing do uczestników</h3>
+              <p>Jednym kliknięciem wysyłaj mailing do uczestników wydarzenia. Zareklamuj kolejne wydarzenie albo poinformuj o zmianie terminu bądź miejsca -
+              łatwo i szybko.</p>
+            </div>
+
+            <div class="col-md-6 ml-auto text-center order-first order-md-last">
+              <img src="{% static '/assets_landing/img/sc4.png' %}" alt="...">
+            </div>
+          </div>
+
 
         </div>
       </section>
 
 
+
     </main>
+
+
 
     <!-- Footer -->
     <footer class="footer bg-gray py-7">
@@ -147,8 +184,6 @@
         </div>
       </div>
     </footer><!-- /.footer -->
-
-
 
 
     <!-- Scripts -->

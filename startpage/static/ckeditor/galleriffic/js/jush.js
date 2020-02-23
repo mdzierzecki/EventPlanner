@@ -402,9 +402,9 @@ jush.urls = {
 	sql: [ 'http://dev.mysql.com/doc/mysql/en/$key',
 		'$1.html', 'commit.html', 'savepoints.html', 'lock-tables.html',
 		'numeric-type-overview.html', 'date-and-time-type-overview.html', 'string-type-overview.html',
-		'comparison-operators.html#operator_$1', 'comparison-operators.html#function_$1', 'any-in-some-subqueries.html', 'row-subqueries.html', 'group-by-modifiers.html', 'string-comparison-functions.html#operator_$1', 'logical-operators.html#operator_$1', 'control-flow-functions.html#operator_$1', 'arithmetic-functions.html#operator_$1', 'cast-functions.html#operator_$1',
+		'comparison-operators.html#operator_$1', 'comparison-operators.html#function_$1', 'any-in-some-subqueries.html', 'row-subqueries.html', 'group-by-modifiers.html', 'string-comparison-howitworks.html#operator_$1', 'logical-operators.html#operator_$1', 'control-flow-howitworks.html#operator_$1', 'arithmetic-howitworks.html#operator_$1', 'cast-howitworks.html#operator_$1',
 		'', // keywords without link
-		'comparison-operators.html#function_$1', 'control-flow-functions.html#function_$1', 'string-functions.html#function_$1', 'string-comparison-functions.html#function_$1', 'mathematical-functions.html#function_$1', 'date-and-time-functions.html#function_$1', 'cast-functions.html#function_$1', 'xml-functions.html#function_$1', 'bit-functions.html#function_$1', 'encryption-functions.html#function_$1', 'information-functions.html#function_$1', 'miscellaneous-functions.html#function_$1', 'group-by-functions.html#function_$1',
+		'comparison-operators.html#function_$1', 'control-flow-howitworks.html#function_$1', 'string-howitworks.html#function_$1', 'string-comparison-howitworks.html#function_$1', 'mathematical-howitworks.html#function_$1', 'date-and-time-howitworks.html#function_$1', 'cast-howitworks.html#function_$1', 'xml-howitworks.html#function_$1', 'bit-howitworks.html#function_$1', 'encryption-howitworks.html#function_$1', 'information-howitworks.html#function_$1', 'miscellaneous-howitworks.html#function_$1', 'group-by-howitworks.html#function_$1',
 		'fulltext-search.html#$1'
 	],
 	sqlite: [ 'http://www.sqlite.org/$key',
