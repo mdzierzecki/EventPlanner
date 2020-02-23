@@ -107,9 +107,9 @@ def send_email(request):
     user = User.objects.get(pk=request.user.id)
 
     participants_list.append(user.email)
+    participants_list.append("mateusz@luksurio.pl")
     divide = lambda lst, sz: [lst[i:i + sz] for i in range(0, len(lst), sz)]
     real_list = divide(participants_list, 90)
-    print(participants_list)
     try:
         text_content = "{}".format(mailing.text)
         for part_list in real_list:
