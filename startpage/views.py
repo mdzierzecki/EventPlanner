@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import FormView, View
 from django.contrib.auth.models import User, Group
+from events.models import Event
 from .models import eUser
 from .forms import UserRegisterForm, UserLoginForm, ContactForm, LandingContactForm
 from django.db import IntegrityError
@@ -52,7 +53,10 @@ class UserLoginView(View):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect(reverse('user_events_list'))
+                if len(Event.objects.filter(author=user)) <= 1:
+                    return HttpResponseRedirect(reverse('event_add_view'))
+                else:
+                    return HttpResponseRedirect(reverse('user_events_list'))
             else:
                 messages.error(request, "Niepoprawne dane logowania. Spróbuj ponownie")
 
