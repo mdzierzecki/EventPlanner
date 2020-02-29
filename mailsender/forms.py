@@ -11,6 +11,7 @@ class MailingAddForm(forms.ModelForm):
         exclude = ('author', )
         widgets = {
             'subject': forms.TextInput(attrs={'class': 'form-control', }),
+            'zipevent_template': forms.CheckboxInput(attrs={'class': 'custom-control-input'}),
             'author': forms.HiddenInput,
         }
 

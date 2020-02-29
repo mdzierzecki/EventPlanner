@@ -66,6 +66,13 @@
                            </div>
                         </div>
                         <div class="form-group row">
+                           <label class="col-sm-2 col-form-label text-right ml-3"></label>
+                           <div class="custom-control custom-switch">
+                              {{ form.zipevent_template }}
+                              <label class="custom-control-label" for="id_zipevent_template">Szablon mailingu ZipEvent</label>
+                           </div>
+                        </div>
+                        <div class="form-group row">
                            <label class="col-sm-2 col-form-label text-right">Opis: </label>
                            <div class="col-sm-10">
                               {{ form.text }}

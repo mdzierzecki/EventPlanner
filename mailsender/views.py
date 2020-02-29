@@ -86,13 +86,22 @@ def send_email(request):
 
     participants = Participant.objects.all().filter(event=mailing.event).order_by('reg_date')
     text_content = '{}'.format(mailing.text)
-    html = loader.render_to_string(
+
+
+    html_template = loader.render_to_string(
         'email_mailing/email_mailing.html',
         {
             'event_title': mailing.event.title,
             'event_id': mailing.event.id,
             'email_text': mailing.text,
 
+        }
+    )
+
+    html_raw = loader.render_to_string(
+        'email_mailing/email_mailing_raw.html',
+        {
+            'email_text': mailing.text,
         }
     )
 
@@ -117,7 +126,10 @@ def send_email(request):
             connection.open()
             msg = EmailMultiAlternatives(mailing.subject, text_content, "ZipEvent Team <no-reply@slickcode.pl>", bcc=part_list,
                                          connection=connection)
-            msg.attach_alternative(html, "text/html")
+            if mailing.zipevent_template:
+                msg.attach_alternative(html_template, "text/html")
+            else:
+                msg.attach_alternative(html_raw, "text/html")
             msg.send()
             connection.close()  # Cleanu
             mailing.emails_sent += len(part_list)
@@ -128,7 +140,7 @@ def send_email(request):
             'done': True,
         }
 
-        mailing.emails_sent -= 1
+        mailing.emails_sent -= 2
         mailing.save()
     except:
         mailing.status = mailing.ERROR
@@ -149,7 +161,7 @@ def check_emails_sent(request):
     done = False
     if mailing.status == mailing.ERROR:
         done = True
-    if mailing.participants_amount() == mailing.emails_sent:
+    if mailing.emails_sent >= mailing.participants_amount():
         done = True
     data = {
         'emails_sent': mailing.emails_sent,

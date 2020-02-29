@@ -20,6 +20,7 @@ class Mailing(models.Model):
 
     subject = models.CharField(max_length=30)
     text = RichTextUploadingField()
+    zipevent_template = models.BooleanField(default=True)
 
     status = models.CharField(max_length=64, choices=MAILING_STATUS_CHOICES,
                                     default=READY, null=True, blank=True)
