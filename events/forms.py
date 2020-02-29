@@ -1,6 +1,5 @@
 from .models import Event, Participant
 from django import forms
-from ckeditor.fields import CKEditorWidget
 from datetime import date
 
 
