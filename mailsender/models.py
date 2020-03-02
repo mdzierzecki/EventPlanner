@@ -18,7 +18,7 @@ class Mailing(models.Model):
         (ERROR, _('Błąd'))
     )
 
-    subject = models.CharField(max_length=30)
+    subject = models.CharField(max_length=50)
     text = RichTextUploadingField()
     zipevent_template = models.BooleanField(default=True)
 
