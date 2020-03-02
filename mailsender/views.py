@@ -120,10 +120,11 @@ def send_email(request):
     divide = lambda lst, sz: [lst[i:i + sz] for i in range(0, len(lst), sz)]
     real_list = divide(participants_list, 90)
     try:
+        connection = get_connection()  # uses SMTP server specified in settings.py
+        connection.open()
         text_content = "{}".format(mailing.text)
         for part_list in real_list:
-            connection = get_connection()  # uses SMTP server specified in settings.py
-            connection.open()
+
             msg = EmailMultiAlternatives(mailing.subject, text_content, "ZipEvent Team <no-reply@slickcode.pl>", bcc=part_list,
                                          connection=connection)
             if mailing.zipevent_template:
@@ -131,7 +132,6 @@ def send_email(request):
             else:
                 msg.attach_alternative(html_raw, "text/html")
             msg.send()
-            connection.close()  # Cleanu
             mailing.emails_sent += len(part_list)
             mailing.save()
             time.sleep(3)
@@ -142,6 +142,8 @@ def send_email(request):
 
         mailing.emails_sent -= 2
         mailing.save()
+        connection.close()  # Cleanu
+
     except:
         mailing.status = mailing.ERROR
         mailing.save()
