@@ -73,7 +73,6 @@ class UserRegisterView(FormView):
 
     def form_valid(self, form):
         try:
-
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             email = form.cleaned_data['email']

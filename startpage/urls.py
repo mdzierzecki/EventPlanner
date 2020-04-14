@@ -7,7 +7,7 @@ from .views import startpage, UserRegisterView, logout_view, UserLoginView, user
 
 urlpatterns = [
     # landing page/startpage
-    path('', startpage),
+    path('', startpage, name="startpage_view"),
     path('how-it-works/', howitworks_startpage_view, name="howitworks_startpage_view"),
     path('faq/', faq_startpage_view, name="faq_startpage_view"),
     path('contact/', contact_startpage_view, name="contact_startpage_view"),
